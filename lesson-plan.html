@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson Plans — Highland Heritages of Bhutan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'DM Sans', sans-serif; background: #fff; color: #000; }
+        a { text-decoration: none; color: inherit; }
+
+        /* HEADER */
+        header { position: sticky; top: 0; z-index: 1000; background: #fff; padding: 18px 8%; border-bottom: 1px solid #e8e8e8; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; position: relative; }
+        .logo { font-size: 1.4rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; flex-shrink: 0; }
+        .nav-list { list-style: none; display: flex; align-items: center; gap: 28px; margin: 0; padding: 0; }
+        .nav-list > li { position: relative; }
+        .nav-list > li > a { font-weight: 600; font-size: 0.82rem; text-transform: uppercase; letter-spacing: 1.2px; transition: opacity 0.3s; display: flex; align-items: center; gap: 5px; white-space: nowrap; }
+        .nav-list > li > a:hover { opacity: 0.45; }
+        .arrow { font-size: 0.68rem; transition: transform 0.3s; display: inline-block; }
+        .has-dropdown:hover .arrow { transform: rotate(180deg); }
+        .dropdown { display: none; position: absolute; top: calc(100% + 14px); left: 50%; transform: translateX(-50%); background: #fff; border: 1.5px solid #e0e0e0; border-radius: 12px; box-shadow: 0 8px 32px rgba(0,0,0,0.12); padding: 10px 8px; list-style: none; flex-direction: row; gap: 4px; white-space: nowrap; z-index: 2000; min-width: max-content; }
+        .dropdown::before { content: ''; position: absolute; top: -7px; left: 50%; transform: translateX(-50%); border-left: 7px solid transparent; border-right: 7px solid transparent; border-bottom: 7px solid #e0e0e0; }
+        .dropdown::after  { content: ''; position: absolute; top: -5px; left: 50%; transform: translateX(-50%); border-left: 6px solid transparent; border-right: 6px solid transparent; border-bottom: 6px solid #fff; }
+        .has-dropdown:hover .dropdown { display: flex; }
+        .dropdown li a { display: block; padding: 8px 16px; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; border-radius: 8px; transition: background 0.2s; white-space: nowrap; }
+        .dropdown li a:hover { background: #f4f4f4; }
+        .mega-dropdown { display: none; position: absolute; top: calc(100% + 14px); left: 0; background: #fff; border: 1.5px solid #e0e0e0; border-radius: 16px; box-shadow: 0 12px 40px rgba(0,0,0,0.13); padding: 24px 20px; flex-direction: row; gap: 0; z-index: 2000; min-width: 520px; }
+        .mega-dropdown::before { content: ''; position: absolute; top: -7px; left: 36px; border-left: 7px solid transparent; border-right: 7px solid transparent; border-bottom: 7px solid #e0e0e0; }
+        .mega-dropdown::after  { content: ''; position: absolute; top: -5px; left: 36px; border-left: 6px solid transparent; border-right: 6px solid transparent; border-bottom: 6px solid #fff; }
+        .mega-parent:hover .mega-dropdown { display: flex; }
+        .mega-col { display: flex; flex-direction: column; gap: 2px; flex: 1; padding: 0 16px; }
+        .mega-col:first-child { padding-left: 4px; }
+        .mega-col:last-child  { padding-right: 4px; }
+        .mega-heading { font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; color: #888; margin: 0 0 10px 8px; }
+        .mega-col a { display: block; padding: 8px 12px; font-size: 0.82rem; font-weight: 600; border-radius: 8px; transition: background 0.2s; white-space: nowrap; }
+        .mega-col a:hover { background: #f4f4f4; }
+        .mega-divider { width: 1px; background: #eee; margin: 0 4px; align-self: stretch; }
+        .search-item { list-style: none; }
+        .search-wrapper { display: flex; align-items: center; background: #f4f4f4; border-radius: 999px; padding: 6px 10px; transition: width 0.35s, background 0.2s; overflow: hidden; width: 36px; }
+        .search-wrapper.expanded { width: 200px; background: #f0f0f0; }
+        .search-icon-btn { background: none; border: none; cursor: pointer; padding: 0; display: flex; align-items: center; flex-shrink: 0; }
+        .search-input { border: none; background: transparent; outline: none; font-size: 0.82rem; width: 0; padding: 0; transition: width 0.35s, padding 0.35s; font-family: inherit; }
+        .search-wrapper.expanded .search-input { width: 140px; padding: 0 0 0 8px; }
+        .hamburger { display: none; flex-direction: column; justify-content: center; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; z-index: 1100; }
+        .hamburger span { display: block; width: 24px; height: 2px; background: #000; border-radius: 2px; transition: all 0.3s; }
+        .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .hamburger.open span:nth-child(2) { opacity: 0; }
+        .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+        /* BREADCRUMB */
+        .breadcrumb { position: sticky; top: 57px; z-index: 900; background: #fff; border-bottom: 1px solid #ececec; padding: 10px 8%; display: flex; align-items: center; gap: 8px; font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+        .breadcrumb a { color: #888; text-decoration: none; transition: color 0.2s; }
+        .breadcrumb a:hover { color: #000; }
+        .bc-sep { color: #ccc; font-size: 0.8rem; }
+        .bc-current { color: #000; }
+
+        /* INTRO */
+        .inner-intro { max-width: 760px; margin: 0 auto; padding: 40px 6% 48px; text-align: center; }
+        .inner-intro h2 { font-family: 'Cormorant Garamond', serif; font-size: 2.4rem; font-weight: 600; line-height: 1.2; margin-bottom: 16px; }
+        .inner-intro p { font-size: 0.95rem; color: #555; line-height: 1.9; }
+
+        /* FILTER */
+        .filter-bar { padding: 0 6% 32px; }
+        .filter-dropdown-wrap { position: relative; display: inline-block; }
+        .filter-trigger { background: none; border: 1px solid #000; padding: 8px 20px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; font-family: 'DM Sans', sans-serif; display: flex; align-items: center; gap: 8px; }
+        .filter-menu { display: none; position: absolute; top: 100%; left: 0; background: #fff; border: 1px solid #e8e8e8; border-top: 2px solid #000; min-width: 200px; z-index: 100; }
+        .filter-dropdown-wrap:hover .filter-menu { display: block; }
+        .filter-option { display: block; padding: 11px 18px; font-size: 0.8rem; transition: background 0.2s; cursor: pointer; text-decoration: none; color: #000; }
+        .filter-option:hover, .filter-option.active { background: #f5f5f5; font-weight: 600; }
+
+        /* LESSON CARDS */
+        .lesson-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; padding: 0 6% 80px; }
+        .lesson-card { border: 1px solid #e8e8e8; border-radius: 4px; overflow: hidden; display: flex; flex-direction: column; transition: box-shadow 0.3s, transform 0.3s; background: #fff; }
+        .lesson-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.11); transform: translateY(-3px); }
+        .lesson-card-header { padding: 22px 22px 18px; position: relative; }
+        .lesson-card-header.color-1 { background: #f0ede8; }
+        .lesson-card-header.color-2 { background: #e8ede8; }
+        .lesson-card-header.color-3 { background: #e8ecf0; }
+        .lesson-card-header.color-4 { background: #f0e8e8; }
+        .lesson-card-header.color-5 { background: #ede8f0; }
+        .lesson-card-header.color-6 { background: #f0ece8; }
+        .lesson-tag { display: inline-block; font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; padding: 4px 10px; border-radius: 999px; background: rgba(0,0,0,0.08); color: #333; margin-bottom: 12px; }
+        .lesson-card-header h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-weight: 600; line-height: 1.25; color: #111; margin-bottom: 8px; }
+        .lesson-card-header p { font-size: 0.8rem; color: #555; line-height: 1.6; }
+        .lesson-meta { display: flex; gap: 16px; padding: 14px 22px; border-bottom: 1px solid #f0f0f0; flex-wrap: wrap; }
+        .lesson-meta-item { display: flex; align-items: center; gap: 5px; font-size: 0.72rem; color: #777; font-weight: 500; }
+        .lesson-meta-item svg { flex-shrink: 0; }
+        .lesson-pdf-preview { background: #f8f8f8; border-top: 1px solid #eee; border-bottom: 1px solid #eee; padding: 14px 22px; display: flex; align-items: center; gap: 12px; }
+        .pdf-icon { width: 36px; height: 42px; background: #fff; border: 1px solid #ddd; border-radius: 4px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; position: relative; }
+        .pdf-icon::after { content: 'PDF'; font-size: 0.5rem; font-weight: 800; color: #c0392b; letter-spacing: 0.5px; }
+        .pdf-icon::before { content: ''; position: absolute; top: 0; right: 0; border-left: 8px solid #f8f8f8; border-bottom: 8px solid #ddd; width: 0; height: 0; }
+        .pdf-filename { font-size: 0.75rem; color: #444; font-weight: 500; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .pdf-size { font-size: 0.68rem; color: #999; flex-shrink: 0; }
+        .lesson-actions { padding: 14px 22px 18px; display: flex; gap: 10px; margin-top: auto; }
+        .btn-download { flex: 1; display: flex; align-items: center; justify-content: center; gap: 7px; padding: 10px 16px; background: #000; color: #fff; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; border-radius: 4px; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: background 0.2s, transform 0.15s; }
+        .btn-download:hover { background: #222; transform: translateY(-1px); }
+        .btn-preview { display: flex; align-items: center; justify-content: center; gap: 7px; padding: 10px 16px; background: #fff; color: #000; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; border-radius: 4px; border: 1px solid #ddd; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: background 0.2s, border-color 0.2s; white-space: nowrap; }
+        .btn-preview:hover { background: #f5f5f5; border-color: #999; }
+
+        /* PDF LIGHTBOX */
+        .pdf-lightbox { display: none; position: fixed; inset: 0; z-index: 9000; background: rgba(0,0,0,0.78); backdrop-filter: blur(4px); align-items: center; justify-content: center; padding: 32px; }
+        .pdf-lightbox.open { display: flex; }
+        .pdf-modal { background: #fff; border-radius: 8px; width: 100%; max-width: 860px; max-height: 90vh; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 24px 80px rgba(0,0,0,0.4); }
+        .pdf-modal-header { display: flex; align-items: center; justify-content: space-between; padding: 16px 22px; border-bottom: 1px solid #eee; flex-shrink: 0; }
+        .pdf-modal-title { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 600; }
+        .pdf-modal-actions { display: flex; align-items: center; gap: 10px; }
+        .pdf-modal-close { width: 32px; height: 32px; border-radius: 50%; border: 1px solid #ddd; background: none; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; color: #555; transition: background 0.2s; }
+        .pdf-modal-close:hover { background: #f4f4f4; }
+        .pdf-modal-body { flex: 1; overflow: hidden; display: flex; flex-direction: column; background: #f0f0f0; }
+        .pdf-placeholder { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; padding: 40px; text-align: center; }
+        .pdf-placeholder-icon { width: 72px; height: 84px; background: #fff; border: 2px solid #ddd; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; font-weight: 800; color: #c0392b; letter-spacing: 1px; position: relative; }
+        .pdf-placeholder-icon::before { content: ''; position: absolute; top: -1px; right: -1px; border-left: 16px solid #f0f0f0; border-bottom: 16px solid #ddd; }
+        .pdf-placeholder h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 600; }
+        .pdf-placeholder p { font-size: 0.85rem; color: #666; line-height: 1.7; max-width: 380px; }
+        .pdf-placeholder .btn-download { display: inline-flex; flex: none; padding: 12px 28px; }
+        .pdf-iframe { width: 100%; flex: 1; border: none; display: none; }
+
+        /* NOTICE */
+        .notice-bar { background: #f5f3ef; border-bottom: 1px solid #e0dbd3; padding: 14px 6%; display: flex; align-items: flex-start; gap: 12px; }
+        .notice-bar svg { flex-shrink: 0; margin-top: 2px; }
+        .notice-bar p { font-size: 0.82rem; color: #555; line-height: 1.6; }
+        .notice-bar strong { color: #222; }
+
+        @media (max-width: 900px) {
+            .lesson-grid { grid-template-columns: repeat(2,1fr); }
+            .hamburger { display: flex; }
+            #main-nav { display: none; position: absolute; top: calc(100% + 18px); left: 0; right: 0; background: #fff; border: 1.5px solid #e0e0e0; border-radius: 16px; box-shadow: 0 8px 32px rgba(0,0,0,0.12); padding: 16px 0; z-index: 999; }
+            #main-nav.open { display: block; }
+            .nav-list { flex-direction: column; align-items: flex-start; gap: 0; padding: 0 8px; }
+            .nav-list > li { width: 100%; }
+            .nav-list > li > a { padding: 12px 16px; border-radius: 10px; justify-content: space-between; width: 100%; }
+            .nav-list > li > a:hover { background: #f4f4f4; opacity: 1; }
+            .mega-dropdown { position: static; flex-direction: column; box-shadow: none; border: none; border-radius: 0; padding: 0 0 8px 12px; min-width: unset; width: 100%; display: none !important; }
+            .mega-dropdown::before, .mega-dropdown::after { display: none; }
+            .mega-dropdown.mobile-open { display: flex !important; }
+            .mega-col { padding: 4px 0; }
+            .mega-divider { width: 100%; height: 1px; margin: 6px 0; }
+            .dropdown { position: static; transform: none; box-shadow: none; border: none; border-radius: 0; padding: 0 0 8px 16px; flex-direction: column; background: transparent; min-width: unset; display: none !important; }
+            .dropdown::before, .dropdown::after { display: none; }
+            .dropdown.mobile-open { display: flex !important; }
+            .search-item { padding: 8px 16px; width: 100%; }
+            .search-wrapper { width: 100% !important; }
+            .search-input { width: 100% !important; padding: 0 0 0 8px !important; }
+            .breadcrumb { top: 57px; padding: 10px 4%; }
+            .pdf-lightbox { padding: 16px; }
+        }
+        @media (max-width: 600px) {
+            .lesson-grid { grid-template-columns: 1fr; }
+            .lesson-actions { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="nav-container">
+        <a href="index.html" class="logo">RTC Heritage Portal</a>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+        <nav id="main-nav">
+            <ul class="nav-list">
+                <li class="has-dropdown mega-parent">
+                    <a href="#">Location, Theme & More <span class="arrow">▾</span></a>
+                    <div class="mega-dropdown">
+                        <div class="mega-col">
+                            <p class="mega-heading">Location</p>
+                            <a href="haa-resourea.html">Haa Resources</a>
+                            <a href="index.html#sephu">Sephu Resources</a>
+                            <a href="index.html#thimphu">Thimphu Resources</a>
+                        </div>
+                        <div class="mega-divider"></div>
+                        <div class="mega-col">
+                            <p class="mega-heading">Theme</p>
+                            <a href="index.html?theme=0">Page Theme</a>
+                            <a href="index.html?theme=1">Theme Cultural</a>
+                            <a href="index.html?theme=2">Theme Cosmetic</a>
+                        </div>
+                        <div class="mega-divider"></div>
+                        <div class="mega-col">
+                            <p class="mega-heading">More</p>
+                            <a href="#">Additional Resources</a>
+                            <a href="#">Interactive Map</a>
+                            <a href="#">Announcement</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="search-item">
+                    <div class="search-wrapper" id="search-wrapper">
+                        <button class="search-icon-btn" id="search-btn" aria-label="Search">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                        </button>
+                        <input type="text" class="search-input" id="search-input" placeholder="Search...">
+                    </div>
+                </li>
+                <li class="has-dropdown">
+                    <a href="#">About <span class="arrow">▾</span></a>
+                    <ul class="dropdown">
+                        <li><a href="vmo.html">Vision</a></li>
+                        <li><a href="vmo.html">Mission</a></li>
+                        <li><a href="vmo.html">Objective</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<!-- DYNAMIC BREADCRUMB — parent label/href set by JS below -->
+<nav class="breadcrumb">
+    <a href="index.html">Home</a>
+    <span class="bc-sep">›</span>
+    <a href="index.html#media-gallery">Media Gallery</a>
+    <span class="bc-sep">›</span>
+    <a href="#" id="bc-parent">Films</a>
+    <span class="bc-sep">›</span>
+    <span class="bc-current">Lesson Plans</span>
+</nav>
+
+<div class="inner-intro">
+    <h2>Lesson Plans & Teaching Resources</h2>
+    <p>Downloadable lesson plans designed for educators, researchers, and community facilitators. Each plan is anchored to a specific film or vignette, providing classroom guides, discussion questions, and activity worksheets rooted in Bhutan's highland heritage.</p>
+</div>
+
+<div class="notice-bar">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    <p><strong>For educators:</strong> All lesson plans are free to download and use for non-commercial educational purposes. Click <em>Preview</em> to read in-browser or <em>Download</em> to save the PDF to your device.</p>
+</div>
+
+<div class="filter-bar" style="padding-top: 28px;">
+    <div class="filter-dropdown-wrap">
+        <button class="filter-trigger">Lesson Plans <span class="filter-arrow">▾</span></button>
+        <div class="filter-menu">
+            <a class="filter-option" href="films.html">Films</a>
+            <a class="filter-option" href="vignettes.html">Vignettes</a>
+            <a class="filter-option" href="photoessay.html">Photo Essay</a>
+            <a class="filter-option active" href="lesson-plan.html">Lesson Plans</a>
+        </div>
+    </div>
+</div>
+
+<section class="lesson-grid">
+
+    <!-- Card 1 -->
+    <div class="lesson-card">
+        <div class="lesson-card-header color-1">
+            <span class="lesson-tag">Film — Voices of Laya</span>
+            <h4>Yak Herding & Highland Livelihoods</h4>
+            <p>Explores pastoral economies, seasonal migration, and the relationship between Layap communities and their environment.</p>
+        </div>
+        <div class="lesson-meta">
+            <span class="lesson-meta-item">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                Grades 8–12
+            </span>
+            <span class="lesson-meta-item">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                90 min
+            </span>
+            <span class="lesson-meta-item">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                Social Studies
+            </span>
+        </div>
+        <div class="lesson-pdf-preview">
+            <div class="pdf-icon"></div>
+            <span class="pdf-filename">LP_Voices-of-Laya_Yak-Herding.pdf</span>
+            <span class="pdf-size">1.2 MB</span>
+        </div>
+        <div class="lesson-actions">
+            <button class="btn-download" onclick="downloadPdf('pdfs/Bakery-Business-Plan-Template-Example.pdf', 'LP_Voices-of-Laya_Yak-Herding.pdf')">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download
+            </button>
+            <button class="btn-preview" onclick="openPreview('pdfs/Bakery-Business-Plan-Template-Example.pdf', 'Yak Herding & Highland Livelihoods')">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                Preview
+            </button>
+        </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="lesson-card">
+        <div class="lesson-card-header color-2">
+            <span class="lesson-tag">Film — Salt & Passes</span>
+            <h4>Ancient Trade Routes of the Himalayas</h4>
+            <p>Maps the historical salt-for-grain trade between Tibet and Bhutan and what its disappearance means for highland identity.</p>
+        </div>
+        <div class="lesson-meta">
+            <span class="lesson-meta-item">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                Grades 9–12
+            </span>
+            <span class="lesson-meta-item">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                60 min
+            </span>
+            <span class="lesson-meta-item">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                History & Geography
+            </span>
+        </div>
+        <div class="lesson-pdf-preview">
+            <div class="pdf-icon"></div>
+            <span class="pdf-filename">LP_Salt-and-Passes_Trade-Routes.pdf</span>
+            <span class="pdf-size">980 KB</span>
+        </div>
+        <div class="lesson-actions">
+            <button class="btn-download" onclick="downloadPdf('pdfs/LP_Salt-and-Passes_Trade-Routes.pdf', 'LP_Salt-and-Passes_Trade-Routes.pdf')">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download
+            </button>
+            <button class="btn-preview" onclick="openPreview('pdfs/LP_Salt-and-Passes_Trade-Routes.pdf', 'Ancient Trade Routes of the Himalayas')">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                Preview
+            </button>
+        </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="lesson-card">
+        <div class="lesson-card-header color-3">
+            <span class="lesson-tag">Film — The Living Deity</span>
+            <h4>Sacred Cham Dance & Buddhist Ritual</h4>
+            <p>Examines the meaning of Tsechu festivals, the symbolism of mask dances, and their role in Bhutanese spiritual and community life.</p>
+        </div>
+        <div class="lesson-meta">
+            <span class="lesson-meta-item">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                Grades 7–10
+            </span>
+            <span class="lesson-meta-item">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                75 min
+            </span>
+            <span class="lesson-meta-item">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                Religious Studies
+            </span>
+        </div>
+        <div class="lesson-pdf-preview">
+            <div class="pdf-icon"></div>
+            <span class="pdf-filename">LP_Living-Deity_Cham-Dance.pdf</span>
+            <span class="pdf-size">1.5 MB</span>
+        </div>
+        <div class="lesson-actions">
+            <button class="btn-download" onclick="downloadPdf('pdfs/LP_Living-Deity_Cham-Dance.pdf', 'LP_Living-Deity_Cham-Dance.pdf')">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download
+            </button>
+            <button class="btn-preview" onclick="openPreview('pdfs/LP_Living-Deity_Cham-Dance.pdf', 'Sacred Cham Dance & Buddhist Ritual')">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                Preview
+            </button>
+        </div>
+    </div>
+
+    <!-- Card 4 -->
+    <div class="lesson-card">
+        <div class="lesson-card-header color-4">
+            <span class="lesson-tag">Vignette — The Butter Lamp Room</span>
+            <h4>Ritual, Repetition & Devotional Practice</h4>
+            <p>A discussion guide around the vignette on an elderly nun's morning ritual — exploring devotion, solitude, and the preservation of sacred knowledge.</p>
+        </div>
+        <div class="lesson-meta">
+            <span class="lesson-meta-item">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                Grades 8–12
+            </span>
+            <span class="lesson-meta-item">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                45 min
+            </span>
+            <span class="lesson-meta-item">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                Ethics & Culture
+            </span>
+        </div>
+        <div class="lesson-pdf-preview">
+            <div class="pdf-icon"></div>
+            <span class="pdf-filename">LP_Butter-Lamp-Room_Devotion.pdf</span>
+            <span class="pdf-size">760 KB</span>
+        </div>
+        <div class="lesson-actions">
+            <button class="btn-download" onclick="downloadPdf('pdfs/LP_Butter-Lamp-Room_Devotion.pdf', 'LP_Butter-Lamp-Room_Devotion.pdf')">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download
+            </button>
+            <button class="btn-preview" onclick="openPreview('pdfs/LP_Butter-Lamp-Room_Devotion.pdf', 'Ritual, Repetition & Devotional Practice')">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                Preview
+            </button>
+        </div>
+    </div>
+
+    <!-- Card 5 -->
+    <div class="lesson-card">
+        <div class="lesson-card-header color-5">
+            <span class="lesson-tag">Vignette — The Last Thangka Painter</span>
+            <h4>Intangible Heritage & Craft Transmission</h4>
+            <p>Looks at endangered craft traditions, master–apprentice knowledge transfer, and why intangible heritage matters to cultural survival.</p>
+        </div>
+        <div class="lesson-meta">
+            <span class="lesson-meta-item">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                Grades 9–12
+            </span>
+            <span class="lesson-meta-item">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                60 min
+            </span>
+            <span class="lesson-meta-item">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                Arts & Heritage
+            </span>
+        </div>
+        <div class="lesson-pdf-preview">
+            <div class="pdf-icon"></div>
+            <span class="pdf-filename">LP_Thangka-Painter_Craft-Heritage.pdf</span>
+            <span class="pdf-size">1.1 MB</span>
+        </div>
+        <div class="lesson-actions">
+            <button class="btn-download" onclick="downloadPdf('pdfs/LP_Thangka-Painter_Craft-Heritage.pdf', 'LP_Thangka-Painter_Craft-Heritage.pdf')">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download
+            </button>
+            <button class="btn-preview" onclick="openPreview('pdfs/LP_Thangka-Painter_Craft-Heritage.pdf', 'Intangible Heritage & Craft Transmission')">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                Preview
+            </button>
+        </div>
+    </div>
+
+    <!-- Card 6 -->
+    <div class="lesson-card">
+        <div class="lesson-card-header color-6">
+            <span class="lesson-tag">Vignette — Reading the Sky</span>
+            <h4>Traditional Ecological Knowledge</h4>
+            <p>Introduces students to indigenous environmental knowledge — how highland communities read weather, land, and seasons without instruments.</p>
+        </div>
+        <div class="lesson-meta">
+            <span class="lesson-meta-item">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                Grades 6–10
+            </span>
+            <span class="lesson-meta-item">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                50 min
+            </span>
+            <span class="lesson-meta-item">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                Environment & Science
+            </span>
+        </div>
+        <div class="lesson-pdf-preview">
+            <div class="pdf-icon"></div>
+            <span class="pdf-filename">LP_Reading-the-Sky_Eco-Knowledge.pdf</span>
+            <span class="pdf-size">890 KB</span>
+        </div>
+        <div class="lesson-actions">
+            <button class="btn-download" onclick="downloadPdf('pdfs/LP_Reading-the-Sky_Eco-Knowledge.pdf', 'LP_Reading-the-Sky_Eco-Knowledge.pdf')">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download
+            </button>
+            <button class="btn-preview" onclick="openPreview('pdfs/LP_Reading-the-Sky_Eco-Knowledge.pdf', 'Traditional Ecological Knowledge')">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                Preview
+            </button>
+        </div>
+    </div>
+
+</section>
+
+<!-- PDF LIGHTBOX -->
+<div class="pdf-lightbox" id="pdf-lightbox" onclick="closeLightboxOnBg(event)">
+    <div class="pdf-modal">
+        <div class="pdf-modal-header">
+            <span class="pdf-modal-title" id="pdf-modal-title">Lesson Plan</span>
+            <div class="pdf-modal-actions">
+                <button class="btn-download" id="pdf-modal-download" style="padding:8px 16px;font-size:0.7rem;border-radius:4px;" onclick="downloadCurrentPdf()">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    Download
+                </button>
+                <button class="pdf-modal-close" onclick="closeLightbox()">&#215;</button>
+            </div>
+        </div>
+        <div class="pdf-modal-body">
+            <iframe class="pdf-iframe" id="pdf-iframe" title="PDF Preview"></iframe>
+            <div class="pdf-placeholder" id="pdf-placeholder">
+                <div class="pdf-placeholder-icon">PDF</div>
+                <h3 id="placeholder-title">Lesson Plan</h3>
+                <p>Your PDF file will appear here once linked. Place your PDF files in a <code>pdfs/</code> folder alongside this HTML file, matching the filenames shown on each card.</p>
+                <button class="btn-download" onclick="downloadCurrentPdf()">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    Download PDF
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+/* ── DYNAMIC BREADCRUMB ── */
+(function(){
+    const params = new URLSearchParams(window.location.search);
+    const from = params.get('from');
+    const bcParent = document.getElementById('bc-parent');
+    const map = {
+        films:      { label: 'Films',      href: 'films.html' },
+        vignettes:  { label: 'Vignettes',  href: 'vignettes.html' },
+        photoessay: { label: 'Photo Essay', href: 'photoessay.html' }
+    };
+    const match = map[from] || map['films'];
+    bcParent.textContent = match.label;
+    bcParent.href = match.href;
+})();
+
+/* ── NAV ── */
+(function(){
+    const hamburger=document.getElementById('hamburger'),mainNav=document.getElementById('main-nav'),searchBtn=document.getElementById('search-btn'),searchWrapper=document.getElementById('search-wrapper'),searchInput=document.getElementById('search-input');
+    document.querySelectorAll('.has-dropdown').forEach(function(item){
+        const drop=item.querySelector('.mega-dropdown')||item.querySelector('.dropdown');
+        if(!drop)return;
+        let t;
+        function open(){clearTimeout(t);document.querySelectorAll('.mega-dropdown,.dropdown').forEach(d=>{if(d!==drop)d.style.display='';});drop.style.display='flex';}
+        function close(){t=setTimeout(()=>drop.style.display='',120);}
+        item.addEventListener('mouseenter',()=>{if(window.innerWidth>900)open();});
+        item.addEventListener('mouseleave',()=>{if(window.innerWidth>900)close();});
+        drop.addEventListener('mouseenter',()=>{if(window.innerWidth>900)clearTimeout(t);});
+        drop.addEventListener('mouseleave',()=>{if(window.innerWidth>900)close();});
+    });
+    if(searchBtn){searchBtn.addEventListener('click',function(e){e.stopPropagation();const o=searchWrapper.classList.toggle('expanded');if(o)searchInput.focus();else{searchInput.value='';searchInput.blur();}});}
+    document.addEventListener('click',function(e){if(searchWrapper&&!searchWrapper.contains(e.target)){searchWrapper.classList.remove('expanded');if(searchInput)searchInput.value='';}});
+    if(hamburger){hamburger.addEventListener('click',function(e){e.stopPropagation();hamburger.classList.toggle('open');mainNav.classList.toggle('open');});}
+    document.querySelectorAll('.has-dropdown').forEach(function(item){
+        item.addEventListener('click',function(e){
+            if(window.innerWidth<=900){
+                const drop=item.querySelector('.mega-dropdown')||item.querySelector('.dropdown'),arrow=item.querySelector('.arrow');
+                if(!drop)return;
+                const open=drop.classList.contains('mobile-open');
+                document.querySelectorAll('.mega-dropdown.mobile-open,.dropdown.mobile-open').forEach(d=>d.classList.remove('mobile-open'));
+                document.querySelectorAll('.arrow').forEach(a=>a.style.transform='');
+                if(!open){drop.classList.add('mobile-open');if(arrow)arrow.style.transform='rotate(180deg)';}
+                e.preventDefault();
+            }
+        });
+    });
+    document.addEventListener('click',function(e){if(mainNav&&hamburger&&!mainNav.contains(e.target)&&!hamburger.contains(e.target)){mainNav.classList.remove('open');hamburger.classList.remove('open');document.querySelectorAll('.mega-dropdown.mobile-open,.dropdown.mobile-open').forEach(d=>d.classList.remove('mobile-open'));}});
+})();
+
+/* ── PDF FUNCTIONS ── */
+let _currentPdfPath = '';
+
+function openPreview(pdfPath, title) {
+    _currentPdfPath = pdfPath;
+    document.getElementById('pdf-modal-title').textContent = title;
+    document.getElementById('placeholder-title').textContent = title;
+    const iframe = document.getElementById('pdf-iframe');
+    const placeholder = document.getElementById('pdf-placeholder');
+    const lightbox = document.getElementById('pdf-lightbox');
+    iframe.style.display = 'none';
+    placeholder.style.display = 'flex';
+    iframe.onload = function() {
+        iframe.style.display = 'block';
+        placeholder.style.display = 'none';
+    };
+    iframe.onerror = function() {
+        iframe.style.display = 'none';
+        placeholder.style.display = 'flex';
+    };
+    iframe.src = pdfPath;
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+    document.getElementById('pdf-lightbox').classList.remove('open');
+    document.getElementById('pdf-iframe').src = '';
+    document.body.style.overflow = '';
+}
+
+function closeLightboxOnBg(e) {
+    if (e.target === document.getElementById('pdf-lightbox')) closeLightbox();
+}
+
+function downloadPdf(pdfPath, filename) {
+    const a = document.createElement('a');
+    a.href = pdfPath;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+}
+
+function downloadCurrentPdf() {
+    if (_currentPdfPath) downloadPdf(_currentPdfPath, _currentPdfPath.split('/').pop());
+}
+
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeLightbox();
+});
+</script>
+</body>
+</html>

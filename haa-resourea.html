@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Haa Resources — Highland Heritages of Bhutan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'DM Sans', sans-serif; background: #fff; color: #000; }
+        a { text-decoration: none; color: inherit; }
+
+        /* ── HEADER ── */
+        header {
+            position: sticky; top: 0; z-index: 1000;
+            background: #fff; padding: 18px 8%;
+            border-bottom: 1px solid #e8e8e8;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+        }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; position: relative; }
+        .logo { font-size: 1.4rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; flex-shrink: 0; }
+        .nav-list { list-style: none; display: flex; align-items: center; gap: 28px; margin: 0; padding: 0; }
+        .nav-list > li { position: relative; }
+        .nav-list > li > a { font-weight: 600; font-size: 0.82rem; text-transform: uppercase; letter-spacing: 1.2px; transition: opacity 0.3s; display: flex; align-items: center; gap: 5px; white-space: nowrap; }
+        .nav-list > li > a:hover { opacity: 0.45; }
+        .arrow { font-size: 0.68rem; transition: transform 0.3s; display: inline-block; }
+        .has-dropdown:hover .arrow { transform: rotate(180deg); }
+        .dropdown { display: none; position: absolute; top: calc(100% + 14px); left: 50%; transform: translateX(-50%); background: #fff; border: 1.5px solid #e0e0e0; border-radius: 12px; box-shadow: 0 8px 32px rgba(0,0,0,0.12); padding: 10px 8px; list-style: none; flex-direction: row; gap: 4px; white-space: nowrap; z-index: 2000; min-width: max-content; }
+        .dropdown::before { content: ''; position: absolute; top: -7px; left: 50%; transform: translateX(-50%); border-left: 7px solid transparent; border-right: 7px solid transparent; border-bottom: 7px solid #e0e0e0; }
+        .dropdown::after  { content: ''; position: absolute; top: -5px; left: 50%; transform: translateX(-50%); border-left: 6px solid transparent; border-right: 6px solid transparent; border-bottom: 6px solid #fff; }
+        .has-dropdown:hover .dropdown { display: flex; }
+        .dropdown li a { display: block; padding: 8px 16px; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; border-radius: 8px; transition: background 0.2s; white-space: nowrap; }
+        .dropdown li a:hover { background: #f4f4f4; }
+        .mega-dropdown { display: none; position: absolute; top: calc(100% + 14px); left: 0; background: #fff; border: 1.5px solid #e0e0e0; border-radius: 16px; box-shadow: 0 12px 40px rgba(0,0,0,0.13); padding: 24px 20px; flex-direction: row; gap: 0; z-index: 2000; min-width: 520px; }
+        .mega-dropdown::before { content: ''; position: absolute; top: -7px; left: 36px; border-left: 7px solid transparent; border-right: 7px solid transparent; border-bottom: 7px solid #e0e0e0; }
+        .mega-dropdown::after  { content: ''; position: absolute; top: -5px; left: 36px; border-left: 6px solid transparent; border-right: 6px solid transparent; border-bottom: 6px solid #fff; }
+        .mega-parent:hover .mega-dropdown { display: flex; }
+        .mega-col { display: flex; flex-direction: column; gap: 2px; flex: 1; padding: 0 16px; }
+        .mega-col:first-child { padding-left: 4px; }
+        .mega-col:last-child  { padding-right: 4px; }
+        .mega-heading { font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; color: #888; margin: 0 0 10px 8px; }
+        .mega-col a { display: block; padding: 8px 12px; font-size: 0.82rem; font-weight: 600; border-radius: 8px; transition: background 0.2s; white-space: nowrap; }
+        .mega-col a:hover { background: #f4f4f4; }
+        .mega-divider { width: 1px; background: #eee; margin: 0 4px; align-self: stretch; }
+        .search-item { list-style: none; }
+        .search-wrapper { display: flex; align-items: center; background: #f4f4f4; border-radius: 999px; padding: 6px 10px; transition: width 0.35s, background 0.2s; overflow: hidden; width: 36px; }
+        .search-wrapper.expanded { width: 200px; background: #f0f0f0; }
+        .search-icon-btn { background: none; border: none; cursor: pointer; padding: 0; display: flex; align-items: center; flex-shrink: 0; }
+        .search-input { border: none; background: transparent; outline: none; font-size: 0.82rem; width: 0; padding: 0; transition: width 0.35s, padding 0.35s; font-family: inherit; }
+        .search-wrapper.expanded .search-input { width: 140px; padding: 0 0 0 8px; }
+        .hamburger { display: none; flex-direction: column; justify-content: center; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; z-index: 1100; }
+        .hamburger span { display: block; width: 24px; height: 2px; background: #000; border-radius: 2px; transition: all 0.3s; }
+        .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .hamburger.open span:nth-child(2) { opacity: 0; }
+        .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+        /* ── HERO BANNER ── */
+        .hero {
+            position: relative;
+            width: 100%;
+            height: 72vh;
+            min-height: 480px;
+            overflow: hidden;
+            background: #0d1a14;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background-image: url('image/gasa-dzong-lo-res.avif');
+            background-size: cover;
+            background-position: center 30%;
+            opacity: 0.52;
+            transform: scale(1.04);
+            animation: heroZoom 14s ease-in-out forwards;
+        }
+
+        @keyframes heroZoom {
+            from { transform: scale(1.04); }
+            to   { transform: scale(1.00); }
+        }
+
+        /* layered gradient: dark bottom, slight top fade */
+        .hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to bottom,
+                rgba(0,0,0,0.18) 0%,
+                rgba(0,0,0,0.10) 40%,
+                rgba(0,0,0,0.72) 100%
+            );
+            z-index: 2;
+        }
+
+        .hero-content {
+            position: absolute;
+            inset: 0;
+            z-index: 3;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-end;
+            padding: 0 8% 56px;
+        }
+
+        .hero-eyebrow {
+            font-size: 0.68rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            color: rgba(255,255,255,0.62);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .hero-eyebrow::before {
+            content: '';
+            display: block;
+            width: 28px;
+            height: 1px;
+            background: rgba(255,255,255,0.45);
+        }
+
+        .hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.8rem, 6vw, 5rem);
+            font-weight: 600;
+            color: #fff;
+            line-height: 1.0;
+            letter-spacing: -0.5px;
+            margin-bottom: 20px;
+            max-width: 700px;
+            text-shadow: 0 4px 32px rgba(0,0,0,0.5);
+        }
+
+        .hero-desc {
+            font-size: 0.92rem;
+            color: rgba(255,255,255,0.72);
+            line-height: 1.85;
+            max-width: 520px;
+            font-weight: 300;
+            letter-spacing: 0.3px;
+            margin-bottom: 32px;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 32px;
+        }
+
+        .hero-stat {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .hero-stat-num {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.9rem;
+            font-weight: 600;
+            color: #fff;
+            line-height: 1;
+        }
+
+        .hero-stat-label {
+            font-size: 0.62rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: rgba(255,255,255,0.5);
+        }
+
+        /* ── BACK BUTTON ── */
+        .back-btn { display: inline-flex; align-items: center; gap: 12px; color: #000; padding: 28px 8%; transition: opacity 0.3s; }
+        .back-btn:hover { opacity: 0.5; }
+        .back-circle { width: 28px; height: 28px; border-radius: 50%; border: 1px solid #000; display: flex; align-items: center; justify-content: center; font-size: 1rem; transition: background 0.3s, color 0.3s; flex-shrink: 0; }
+        .back-btn:hover .back-circle { background: #000; color: #fff; }
+        .back-text { font-size: 0.58rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* ── SECTION WRAPPER ── */
+        .resources-body {
+            padding: 0 0 100px;
+        }
+
+        /* ── SECTION HEADER ── */
+        .section-header {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            padding: 56px 8% 28px;
+            border-top: 1px solid #ececec;
+        }
+
+        .section-header:first-child {
+            border-top: none;
+        }
+
+        .section-label-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .section-eyebrow {
+            font-size: 0.62rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #aaa;
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 600;
+            color: #000;
+            line-height: 1.1;
+        }
+
+        .section-view-all {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #000;
+            border-bottom: 1px solid #000;
+            padding-bottom: 2px;
+            transition: opacity 0.25s;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .section-view-all:hover { opacity: 0.4; }
+        .section-view-all svg { transition: transform 0.25s; }
+        .section-view-all:hover svg { transform: translateX(4px); }
+
+        /* ── CARD GRIDS ── */
+
+        /* Films — 3 col */
+        .films-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            padding: 0 8%;
+        }
+
+        /* Photo Essay — 2 col wide editorial */
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2px;
+            padding: 0 8%;
+        }
+
+        /* Vignettes — 4 col compact */
+        .vignette-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2px;
+            padding: 0 8%;
+        }
+
+        /* ── BASE CARD ── */
+        .res-card {
+            display: block;
+            overflow: hidden;
+            position: relative;
+            background: #111;
+            text-decoration: none;
+            color: #000;
+        }
+
+        .res-card-thumb {
+            display: block;
+            width: 100%;
+            object-fit: cover;
+            transition: transform 0.55s ease, opacity 0.35s ease;
+        }
+
+        .res-card:hover .res-card-thumb {
+            transform: scale(1.05);
+            opacity: 0.82;
+        }
+
+        /* film card thumb ratio */
+        .films-grid .res-card-thumb { aspect-ratio: 16/10; }
+
+        /* photo essay thumb ratio */
+        .photo-grid .res-card-thumb { aspect-ratio: 3/2; }
+
+        /* vignette thumb ratio */
+        .vignette-grid .res-card-thumb { aspect-ratio: 4/5; }
+
+        .res-card-body {
+            padding: 16px 18px 20px;
+            background: #fff;
+            border-top: 1px solid #f0f0f0;
+        }
+
+        .res-card-tag {
+            display: inline-block;
+            font-size: 0.58rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #999;
+            margin-bottom: 6px;
+        }
+
+        .res-card-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            line-height: 1.25;
+            margin-bottom: 6px;
+            color: #111;
+        }
+
+        /* smaller title for vignette compact cards */
+        .vignette-grid .res-card-title { font-size: 0.98rem; }
+
+        .res-card-desc {
+            font-size: 0.78rem;
+            color: #666;
+            line-height: 1.65;
+        }
+
+        /* vignette — hide desc to stay compact */
+        .vignette-grid .res-card-desc { display: none; }
+
+        /* hover arrow badge on card */
+        .res-card-arrow {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.92);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transform: scale(0.8);
+            transition: opacity 0.25s, transform 0.25s;
+            z-index: 5;
+            backdrop-filter: blur(4px);
+        }
+
+        .res-card:hover .res-card-arrow {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* ── PHOTO ESSAY — featured first card spans 2 rows ── */
+        .photo-grid .res-card:first-child {
+            grid-row: span 2;
+        }
+
+        .photo-grid .res-card:first-child .res-card-thumb {
+            aspect-ratio: auto;
+            height: calc(100% - 80px); /* fills available height */
+            min-height: 360px;
+        }
+
+        /* For the featured card, fill image height properly */
+        .photo-grid .res-card:first-child {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .photo-grid .res-card:first-child .res-card-thumb {
+            flex: 1;
+            width: 100%;
+            height: 0;
+            min-height: 280px;
+            aspect-ratio: unset;
+        }
+
+        .photo-grid .res-card:first-child .res-card-title {
+            font-size: 1.35rem;
+        }
+
+        /* ── DIVIDER RULE ── */
+        .section-divider {
+            width: calc(100% - 16%);
+            margin: 0 8%;
+            height: 1px;
+            background: #ececec;
+        }
+
+        /* ── MOBILE ── */
+        @media (max-width: 1100px) {
+            .vignette-grid { grid-template-columns: repeat(3,1fr); }
+        }
+
+        @media (max-width: 900px) {
+            .films-grid { grid-template-columns: repeat(2,1fr); }
+            .photo-grid { grid-template-columns: 1fr; }
+            .vignette-grid { grid-template-columns: repeat(2,1fr); }
+            .photo-grid .res-card:first-child { grid-row: span 1; }
+            .photo-grid .res-card:first-child .res-card-thumb { flex: none; aspect-ratio: 3/2; height: auto; min-height: unset; }
+            .section-header { padding: 40px 5% 20px; }
+            .films-grid, .photo-grid, .vignette-grid { padding: 0 5%; }
+            .hero-content { padding: 0 5% 40px; }
+            .back-btn { padding: 22px 5%; }
+
+            /* mobile nav */
+            .hamburger { display: flex; }
+            #main-nav { display: none; position: absolute; top: calc(100% + 18px); left: 0; right: 0; background: #fff; border: 1.5px solid #e0e0e0; border-radius: 16px; box-shadow: 0 8px 32px rgba(0,0,0,0.12); padding: 16px 0; z-index: 999; }
+            #main-nav.open { display: block; }
+            .nav-list { flex-direction: column; align-items: flex-start; gap: 0; padding: 0 8px; }
+            .nav-list > li { width: 100%; }
+            .nav-list > li > a { padding: 12px 16px; border-radius: 10px; justify-content: space-between; width: 100%; }
+            .nav-list > li > a:hover { background: #f4f4f4; opacity: 1; }
+            .mega-dropdown { position: static; flex-direction: column; box-shadow: none; border: none; border-radius: 0; padding: 0 0 8px 12px; min-width: unset; width: 100%; display: none !important; }
+            .mega-dropdown::before, .mega-dropdown::after { display: none; }
+            .mega-dropdown.mobile-open { display: flex !important; }
+            .mega-col { padding: 4px 0; }
+            .mega-divider { width: 100%; height: 1px; margin: 6px 0; }
+            .dropdown { position: static; transform: none; box-shadow: none; border: none; border-radius: 0; padding: 0 0 8px 16px; flex-direction: column; background: transparent; min-width: unset; display: none !important; }
+            .dropdown::before, .dropdown::after { display: none; }
+            .dropdown.mobile-open { display: flex !important; }
+            .search-item { padding: 8px 16px; width: 100%; }
+            .search-wrapper { width: 100% !important; }
+            .search-input { width: 100% !important; padding: 0 0 0 8px !important; }
+        }
+
+        @media (max-width: 600px) {
+            .films-grid { grid-template-columns: 1fr; }
+            .vignette-grid { grid-template-columns: repeat(2,1fr); }
+            .hero { height: 60vh; }
+            .hero h1 { font-size: 2.4rem; }
+            .hero-stats { gap: 20px; }
+            .section-header { flex-direction: column; align-items: flex-start; gap: 14px; }
+        }
+        /* ── SECTION BREADCRUMBS ── */
+.section-breadcrumb {
+    position: sticky;
+    top: 73px; /* header height */
+    z-index: 800;
+    background: #fff;
+    border-bottom: 1px solid #ececec;
+    padding: 9px 8%;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.68rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+}
+
+.section-breadcrumb.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.section-breadcrumb a {
+    color: #aaa;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.section-breadcrumb a:hover { color: #000; }
+.section-breadcrumb .bc-sep { color: #ddd; font-size: 0.8rem; }
+.section-breadcrumb .bc-current { color: #000; }
+    </style>
+</head>
+<body>
+
+<!-- ── HEADER ── -->
+<header>
+    <div class="nav-container">
+        <a href="index.html" class="logo">RTC Heritage Portal</a>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+        <nav id="main-nav">
+            <ul class="nav-list">
+                <li class="has-dropdown mega-parent">
+                    <a href="#">Location, Theme & More <span class="arrow">▾</span></a>
+                    <div class="mega-dropdown">
+                        <div class="mega-col">
+                            <p class="mega-heading">Location</p>
+                            <a href="haa-resources.html">Haa Resources</a>
+                            <a href="index.html#sephu">Sephu Resources</a>
+                            <a href="index.html#thimphu">Thimphu Resources</a>
+                        </div>
+                        <div class="mega-divider"></div>
+                        <div class="mega-col">
+                            <p class="mega-heading">Theme</p>
+                            <a href="index.html?theme=0">Page Theme</a>
+                            <a href="index.html?theme=1">Theme Cultural</a>
+                            <a href="index.html?theme=2">Theme Cosmetic</a>
+                        </div>
+                        <div class="mega-divider"></div>
+                        <div class="mega-col">
+                            <p class="mega-heading">More</p>
+                            <a href="resources.html">Additional Resources</a>
+                            <a href="#">Interactive Map</a>
+                            <a href="#">Announcement</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="search-item">
+                    <div class="search-wrapper" id="search-wrapper">
+                        <button class="search-icon-btn" id="search-btn" aria-label="Search">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                        </button>
+                        <input type="text" class="search-input" id="search-input" placeholder="Search...">
+                    </div>
+                </li>
+                <li class="has-dropdown">
+                    <a href="#">About <span class="arrow">▾</span></a>
+                    <ul class="dropdown">
+                        <li><a href="vmo.html">Vision</a></li>
+                        <li><a href="vmo.html">Mission</a></li>
+                        <li><a href="vmo.html">Objective</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<!-- ── HERO BANNER ── -->
+<section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+        <p class="hero-eyebrow">Location Collection</p>
+        <h1>Haa District<br>Resources</h1>
+        <p class="hero-desc">A curated collection of films, photo essays, and ethnographic vignettes documenting the living heritage of Haa — Bhutan's westernmost and most pristine highland valley, home to the Haap people, ancient fortresses, and seasonal yak-herding traditions.</p>
+        <div class="hero-stats">
+            <div class="hero-stat">
+                <span class="hero-stat-num">3</span>
+                <span class="hero-stat-label">Films</span>
+            </div>
+            <div class="hero-stat">
+                <span class="hero-stat-num">4</span>
+                <span class="hero-stat-label">Photo Essays</span>
+            </div>
+            <div class="hero-stat">
+                <span class="hero-stat-num">6</span>
+                <span class="hero-stat-label">Vignettes</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<div class="resources-body">
+
+    <!-- ══════════════════════════════════
+         SECTION 1 — FILMS
+    ══════════════════════════════════ -->
+    <div class="section-sentinel" id="sentinel-films"></div>
+    <nav class="section-breadcrumb" id="bc-films">
+        <a href="index.html">Home</a>
+        <span class="bc-sep">›</span>
+        <a href="haa-resourea.html">Haa Resources</a>
+        <span class="bc-sep">›</span>
+        <span class="bc-current">Films</span>
+    </nav>
+    <div class="section-header">
+        <div class="section-label-group">
+            <span class="section-eyebrow">Moving Image</span>
+            <h2 class="section-title">Films</h2>
+        </div>
+        <a href="films.html" class="section-view-all">
+            View all films
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+    </div>
+
+    <div class="films-grid">
+
+        <!-- Film 1 -->
+        <a href="films.html" class="res-card">
+            <img class="res-card-thumb" src="image/gasa-dzong-lo-res.avif" alt="Voices of Haa">
+            <div class="res-card-arrow">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </div>
+            <div class="res-card-body">
+                <span class="res-card-tag">Documentary · 38 min</span>
+                <h3 class="res-card-title">Voices of Haa</h3>
+                <p class="res-card-desc">An intimate portrait of the Haap people — their dialect, their fortresses, and a pastoral way of life shaped by altitude and isolation.</p>
+            </div>
+        </a>
+
+        <!-- Film 2 -->
+        <a href="films.html" class="res-card">
+            <img class="res-card-thumb" src="image/Glacial Lakes Bhutan.jpg" alt="The Western Gate">
+            <div class="res-card-arrow">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </div>
+            <div class="res-card-body">
+                <span class="res-card-tag">Documentary · 52 min</span>
+                <h3 class="res-card-title">The Western Gate</h3>
+                <p class="res-card-desc">Tracing the ancient pilgrimage trail that connects Haa valley to the sacred sites along the Bhutan–Tibet border through high alpine passes.</p>
+            </div>
+        </a>
+
+        <!-- Film 3 -->
+        <a href="films.html" class="res-card">
+            <img class="res-card-thumb" src="image/Dagala-Thousand-Lakes-Trekking-Tour.jpg" alt="Seasons of Katsho">
+            <div class="res-card-arrow">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </div>
+            <div class="res-card-body">
+                <span class="res-card-tag">Documentary · 44 min</span>
+                <h3 class="res-card-title">Seasons of Katsho</h3>
+                <p class="res-card-desc">A year-long portrait of a single village in upper Haa — from the summer yak drives to the first snowfall that seals the valley until spring.</p>
+            </div>
+        </a>
+
+    </div><!-- /films-grid -->
+
+    <div class="section-divider" style="margin-top: 48px;"></div>
+
+    <!-- ══════════════════════════════════
+         SECTION 2 — PHOTO ESSAY
+    ══════════════════════════════════ -->
+    <div class="section-sentinel" id="sentinel-photo"></div>
+    <nav class="section-breadcrumb" id="bc-photo">
+        <a href="index.html">Home</a>
+        <span class="bc-sep">›</span>
+        <a href="haa-resourea.html">Haa Resources</a>
+        <span class="bc-sep">›</span>
+        <span class="bc-current">Photo Essays</span>
+    </nav>
+    <div class="section-header">
+        <div class="section-label-group">
+            <span class="section-eyebrow">Still Image</span>
+            <h2 class="section-title">Photo Essays</h2>
+        </div>
+        <a href="films.html" class="section-view-all">
+            View all essays
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+    </div>
+
+    <div class="photo-grid">
+
+        <!-- Featured photo essay -->
+        <a href="films.html" class="res-card">
+            <img class="res-card-thumb" src="image/img.jpeg" alt="Faces of the Valley Floor">
+            <div class="res-card-arrow">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </div>
+            <div class="res-card-body">
+                <span class="res-card-tag">Photo Essay · 48 images</span>
+                <h3 class="res-card-title">Faces of the Valley Floor</h3>
+                <p class="res-card-desc">Portraits gathered across three seasons in Haa — elders, children, monks, and herders — each face a chapter in a story of continuity and change.</p>
+            </div>
+        </a>
+
+        <!-- Photo essay 2 -->
+        <a href="films.html" class="res-card">
+            <img class="res-card-thumb" src="image/culture.jpg" alt="Lha Kha Karpo">
+            <div class="res-card-arrow">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </div>
+            <div class="res-card-body">
+                <span class="res-card-tag">Photo Essay · 32 images</span>
+                <h3 class="res-card-title">Lha Kha Karpo — The White God Mountain</h3>
+                <p class="res-card-desc">A photographic journey to the sacred peak above Haa, following the annual offering procession made by Haap families at the start of summer.</p>
+            </div>
+        </a>
+
+        <!-- Photo essay 3 -->
+        <a href="films.html" class="res-card">
+            <img class="res-card-thumb" src="image/education.webp" alt="Inside the Dzong">
+            <div class="res-card-arrow">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </div>
+            <div class="res-card-body">
+                <span class="res-card-tag">Photo Essay · 24 images</span>
+                <h3 class="res-card-title">Inside the Dzong</h3>
+                <p class="res-card-desc">The Haa Dzong — rarely photographed — opens its inner courtyards for this visual record of murals, butter lamps, and monastic daily life.</p>
+            </div>
+        </a>
+
+        <!-- Photo essay 4 -->
+        <a href="films.html" class="res-card">
+            <img class="res-card-thumb" src="image/student.jpg" alt="The Last Weavers of Haa">
+            <div class="res-card-arrow">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </div>
+            <div class="res-card-body">
+                <span class="res-card-tag">Photo Essay · 36 images</span>
+                <h3 class="res-card-title">The Last Weavers of Haa</h3>
+                <p class="res-card-desc">Four women — the only remaining practitioners of Haa's distinctive wool-weaving tradition — photographed at their looms over two winters.</p>
+            </div>
+        </a>
+
+    </div><!-- /photo-grid -->
+
+    <div class="section-divider" style="margin-top: 48px;"></div>
+
+     <!-- ══════════════════════════════════
+         SECTION 3 — VIGNETTES
+    ══════════════════════════════════ -->
+    <div class="section-sentinel" id="sentinel-vignette"></div>
+    <nav class="section-breadcrumb" id="bc-vignette">
+        <a href="index.html">Home</a>
+        <span class="bc-sep">›</span>
+        <a href="haa-resourea.html">Haa Resources</a>
+        <span class="bc-sep">›</span>
+        <span class="bc-current">Vignettes</span>
+    </nav>
+    <div class="section-header">
+        <div class="section-label-group">
+            <span class="section-eyebrow">Written Observation</span>
+            <h2 class="section-title">Ethnographic Vignettes</h2>
+        </div>
+        <a href="vignettes.html" class="section-view-all">
+            View all vignettes
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+    </div>
+
+    <div class="vignette-grid">
+
+        <a href="vignettes.html" class="res-card">
+            <img class="res-card-thumb" src="image/ritual.jpeg" alt="The Firewood Stack">
+            <div class="res-card-arrow">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </div>
+            <div class="res-card-body">
+                <span class="res-card-tag">Vignette</span>
+                <h3 class="res-card-title">The Firewood Stack</h3>
+            </div>
+        </a>
+
+        <a href="vignettes.html" class="res-card">
+            <img class="res-card-thumb" src="image/Bhutan_mountains.jpg" alt="A Dog Barks at Dusk">
+            <div class="res-card-arrow">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </div>
+            <div class="res-card-body">
+                <span class="res-card-tag">Vignette</span>
+                <h3 class="res-card-title">A Dog Barks at Dusk</h3>
+            </div>
+        </a>
+
+        <a href="vignettes.html" class="res-card">
+            <img class="res-card-thumb" src="image/namads.jpeg" alt="How Buckwheat is Threshed">
+            <div class="res-card-arrow">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </div>
+            <div class="res-card-body">
+                <span class="res-card-tag">Vignette</span>
+                <h3 class="res-card-title">How Buckwheat is Threshed</h3>
+            </div>
+        </a>
+
+        <a href="vignettes.html" class="res-card">
+            <img class="res-card-thumb" src="image/culture.jpg" alt="The Grandmother's Prayer Wheel">
+            <div class="res-card-arrow">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </div>
+            <div class="res-card-body">
+                <span class="res-card-tag">Vignette</span>
+                <h3 class="res-card-title">The Grandmother's Prayer Wheel</h3>
+            </div>
+        </a>
+
+        <a href="vignettes.html" class="res-card">
+            <img class="res-card-thumb" src="image/education.webp" alt="First Snow">
+            <div class="res-card-arrow">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </div>
+            <div class="res-card-body">
+                <span class="res-card-tag">Vignette</span>
+                <h3 class="res-card-title">First Snow</h3>
+            </div>
+        </a>
+
+        <a href="vignettes.html" class="res-card">
+            <img class="res-card-thumb" src="image/student.jpg" alt="The Sound of the Conch">
+            <div class="res-card-arrow">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </div>
+            <div class="res-card-body">
+                <span class="res-card-tag">Vignette</span>
+                <h3 class="res-card-title">The Sound of the Conch</h3>
+            </div>
+        </a>
+
+    </div><!-- /vignette-grid -->
+
+</div><!-- /resources-body -->
+
+<script>
+(function(){
+    const hamburger=document.getElementById('hamburger'),mainNav=document.getElementById('main-nav'),searchBtn=document.getElementById('search-btn'),searchWrapper=document.getElementById('search-wrapper'),searchInput=document.getElementById('search-input');
+    document.querySelectorAll('.has-dropdown').forEach(function(item){
+        const drop=item.querySelector('.mega-dropdown')||item.querySelector('.dropdown');
+        if(!drop)return;
+        let t;
+        function open(){clearTimeout(t);document.querySelectorAll('.mega-dropdown,.dropdown').forEach(d=>{if(d!==drop)d.style.display='';});drop.style.display='flex';}
+        function close(){t=setTimeout(()=>drop.style.display='',120);}
+        item.addEventListener('mouseenter',()=>{if(window.innerWidth>900)open();});
+        item.addEventListener('mouseleave',()=>{if(window.innerWidth>900)close();});
+        drop.addEventListener('mouseenter',()=>{if(window.innerWidth>900)clearTimeout(t);});
+        drop.addEventListener('mouseleave',()=>{if(window.innerWidth>900)close();});
+    });
+    if(searchBtn){searchBtn.addEventListener('click',function(e){e.stopPropagation();const o=searchWrapper.classList.toggle('expanded');if(o)searchInput.focus();else{searchInput.value='';searchInput.blur();}});}
+    document.addEventListener('click',function(e){if(searchWrapper&&!searchWrapper.contains(e.target)){searchWrapper.classList.remove('expanded');if(searchInput)searchInput.value='';}});
+    if(hamburger){hamburger.addEventListener('click',function(e){e.stopPropagation();hamburger.classList.toggle('open');mainNav.classList.toggle('open');});}
+    document.querySelectorAll('.has-dropdown').forEach(function(item){
+        item.addEventListener('click',function(e){
+            if(window.innerWidth<=900){
+                const drop=item.querySelector('.mega-dropdown')||item.querySelector('.dropdown'),arrow=item.querySelector('.arrow');
+                if(!drop)return;
+                const open=drop.classList.contains('mobile-open');
+                document.querySelectorAll('.mega-dropdown.mobile-open,.dropdown.mobile-open').forEach(d=>d.classList.remove('mobile-open'));
+                document.querySelectorAll('.arrow').forEach(a=>a.style.transform='');
+                if(!open){drop.classList.add('mobile-open');if(arrow)arrow.style.transform='rotate(180deg)';}
+                e.preventDefault();
+            }
+        });
+    });
+    document.addEventListener('click',function(e){if(mainNav&&hamburger&&!mainNav.contains(e.target)&&!hamburger.contains(e.target)){mainNav.classList.remove('open');hamburger.classList.remove('open');document.querySelectorAll('.mega-dropdown.mobile-open,.dropdown.mobile-open').forEach(d=>d.classList.remove('mobile-open'));}});
+})();
+// ── SECTION-SCOPED STICKY BREADCRUMBS ──
+(function () {
+    const sections = [
+        { sentinel: 'sentinel-films',    bc: 'bc-films',    end: 'sentinel-photo' },
+        { sentinel: 'sentinel-photo',    bc: 'bc-photo',    end: 'sentinel-vignette' },
+        { sentinel: 'sentinel-vignette', bc: 'bc-vignette', end: null }
+    ];
+
+    const HEADER_H = 73;
+
+    sections.forEach(function (s) {
+        var bcEl       = document.getElementById(s.bc);
+        var startEl    = document.getElementById(s.sentinel);
+        var endEl      = s.end ? document.getElementById(s.end) : null;
+
+        function update () {
+            var startRect = startEl.getBoundingClientRect();
+            var inSection;
+
+            if (endEl) {
+                var endRect = endEl.getBoundingClientRect();
+                // show when start has scrolled past header AND end hasn't reached header yet
+                inSection = startRect.top <= HEADER_H && endRect.top > HEADER_H;
+            } else {
+                // last section — show until bottom of page
+                inSection = startRect.top <= HEADER_H;
+            }
+
+            bcEl.classList.toggle('visible', inSection);
+        }
+
+        window.addEventListener('scroll', update, { passive: true });
+        update(); // run once on load
+    });
+})();
+</script>
+</body>
+</html>

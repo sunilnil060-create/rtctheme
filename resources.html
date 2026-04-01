@@ -1,0 +1,1344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Additional Resources | RTC Heritage Portal</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+
+        * {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'DM Sans', sans-serif;
+            background: #ffffff;
+            color: #000000;
+        }
+
+        /* ── DROPDOWN HOVER GAP FIX (same as vmo.html) ── */
+        .dropdown      { top: calc(100% + 2px) !important; }
+        .mega-dropdown { top: calc(100% + 2px) !important; }
+        .has-dropdown > a { position: relative; }
+        .has-dropdown > a::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: -20px;
+            right: -20px;
+            height: 16px;
+            background: transparent;
+            display: block;
+        }
+
+        /* ── PAGE HERO ── */
+        .res-hero {
+            background: #ffffff;
+            border-bottom: 2px solid #000000;
+            padding: 80px 8% 60px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: end;
+        }
+
+        .res-hero-left .res-tag {
+            font-size: 0.68rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            color: #888888;
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        .res-hero-left h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 5.2rem;
+            font-weight: 600;
+            color: #000000;
+            margin: 0;
+            line-height: 0.92;
+            letter-spacing: -1px;
+        }
+
+        .res-hero-right {
+            padding-bottom: 8px;
+        }
+
+        .res-hero-right p {
+            font-size: 1rem;
+            color: #555555;
+            line-height: 1.85;
+            margin: 0 0 32px 0;
+        }
+
+        .res-hero-stats {
+            display: flex;
+            gap: 40px;
+        }
+
+        .res-stat-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .res-stat-num {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.6rem;
+            font-weight: 700;
+            color: #000000;
+            line-height: 1;
+        }
+
+        .res-stat-label {
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #888888;
+        }
+
+        @media (max-width: 900px) {
+            .res-hero {
+                grid-template-columns: 1fr;
+                gap: 32px;
+                padding: 60px 6% 48px;
+            }
+            .res-hero-left h1 { font-size: 3.4rem; }
+        }
+
+        /* ── BREADCRUMB ── */
+        .breadcrumb {
+            padding: 18px 8%;
+            border-bottom: 1px solid #e8e8e8;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.76rem;
+            color: #888888;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .breadcrumb a { color: #888888; text-decoration: none; transition: color 0.2s; }
+        .breadcrumb a:hover { color: #000000; }
+        .breadcrumb .sep { color: #cccccc; }
+        .breadcrumb .current { color: #000000; font-weight: 700; }
+
+        /* ── FILTER TABS ── */
+        .res-filter {
+            padding: 32px 8% 0;
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            border-bottom: 1px solid #e8e8e8;
+        }
+
+        .res-filter-btn {
+            padding: 10px 20px;
+            border: 1.5px solid #000000;
+            border-radius: 999px;
+            background: transparent;
+            color: #000000;
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            cursor: pointer;
+            transition: background 0.25s, color 0.25s;
+            font-family: 'DM Sans', sans-serif;
+            margin-bottom: 16px;
+        }
+
+        .res-filter-btn:hover,
+        .res-filter-btn.active {
+            background: #000000;
+            color: #ffffff;
+        }
+
+        /* ── FEATURED RESOURCE (large card) ── */
+        .res-featured {
+            padding: 64px 8%;
+            border-bottom: 1px solid #e8e8e8;
+        }
+
+        .res-featured-label {
+            font-size: 0.65rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: #888888;
+            display: block;
+            margin-bottom: 28px;
+        }
+
+        .res-featured-card {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border: 2px solid #000000;
+            border-radius: 0;
+            overflow: hidden;
+        }
+
+        .res-featured-img {
+            background: #0a0a0a;
+            min-height: 420px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: flex-end;
+        }
+
+        .res-featured-img-bg {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #0a0a0a 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .res-featured-img-icon {
+            font-size: 6rem;
+            opacity: 0.15;
+        }
+
+        .res-featured-img-tag {
+            position: absolute;
+            bottom: 24px;
+            left: 24px;
+            background: #ffffff;
+            color: #000000;
+            font-size: 0.65rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            padding: 8px 16px;
+        }
+
+        .res-featured-body {
+            padding: 52px 48px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .res-featured-body .res-type {
+            font-size: 0.65rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: #888888;
+            display: block;
+            margin-bottom: 16px;
+        }
+
+        .res-featured-body h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.8rem;
+            font-weight: 600;
+            color: #000000;
+            margin: 0 0 20px;
+            line-height: 1.1;
+        }
+
+        .res-featured-body p {
+            font-size: 0.95rem;
+            color: #555555;
+            line-height: 1.85;
+            margin: 0 0 32px;
+        }
+
+        .res-featured-meta {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+        }
+
+        .res-meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .res-meta-label {
+            font-size: 0.6rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #aaaaaa;
+        }
+
+        .res-meta-value {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: #000000;
+        }
+
+        .res-download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 28px;
+            background: #000000;
+            color: #ffffff;
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-decoration: none;
+            border: 2px solid #000000;
+            align-self: flex-start;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .res-download-btn:hover {
+            background: #333333;
+        }
+
+        .res-download-btn svg { flex-shrink: 0; }
+
+        @media (max-width: 900px) {
+            .res-featured-card { grid-template-columns: 1fr; }
+            .res-featured-img { min-height: 220px; }
+            .res-featured-body { padding: 36px 28px; }
+            .res-featured-body h2 { font-size: 2rem; }
+        }
+
+        /* ── RESOURCE GRID ── */
+        .res-grid-section {
+            padding: 64px 8%;
+            border-bottom: 1px solid #e8e8e8;
+        }
+
+        .res-grid-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 40px;
+        }
+
+        .res-grid-header h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.4rem;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .res-grid-header span {
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #888888;
+        }
+
+        .res-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0;
+            border: 1.5px solid #000000;
+        }
+
+        .res-card {
+            padding: 36px 32px;
+            border-right: 1px solid #e0e0e0;
+            border-bottom: 1px solid #e0e0e0;
+            position: relative;
+            overflow: hidden;
+            transition: background 0.3s;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .res-card:nth-child(3n) { border-right: none; }
+        .res-card:nth-last-child(-n+3) { border-bottom: none; }
+
+        .res-card:hover { background: #f8f8f8; }
+
+        .res-card-icon {
+            width: 44px;
+            height: 44px;
+            border: 1.5px solid #000000;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            flex-shrink: 0;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .res-card:hover .res-card-icon {
+            background: #000000;
+        }
+
+        .res-card:hover .res-card-icon svg {
+            stroke: #ffffff;
+        }
+
+        .res-card-type {
+            font-size: 0.6rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #888888;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .res-card h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin: 0 0 12px;
+            line-height: 1.3;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .res-card p {
+            font-size: 0.85rem;
+            color: #666666;
+            line-height: 1.7;
+            margin: 0 0 24px;
+            flex-grow: 1;
+        }
+
+        .res-card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+        }
+
+        .res-card-tag {
+            font-size: 0.6rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            background: #000000;
+            color: #ffffff;
+            padding: 5px 12px;
+            border-radius: 999px;
+        }
+
+        .res-card-arrow {
+            font-size: 1rem;
+            color: #cccccc;
+            transition: color 0.2s, transform 0.2s;
+        }
+
+        .res-card:hover .res-card-arrow {
+            color: #000000;
+            transform: translateX(4px);
+        }
+
+        @media (max-width: 900px) {
+            .res-grid { grid-template-columns: 1fr 1fr; }
+            .res-card:nth-child(3n) { border-right: 1px solid #e0e0e0; }
+            .res-card:nth-child(2n) { border-right: none; }
+        }
+
+        @media (max-width: 600px) {
+            .res-grid { grid-template-columns: 1fr; }
+            .res-card { border-right: none; }
+        }
+
+        /* ── PUBLICATIONS LIST ── */
+        .res-pubs-section {
+            padding: 64px 8%;
+            background: #fafafa;
+            border-bottom: 2px solid #000000;
+        }
+
+        .res-pubs-section > h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.4rem;
+            font-weight: 600;
+            margin: 0 0 8px;
+        }
+
+        .res-pubs-section > p {
+            font-size: 0.9rem;
+            color: #666666;
+            margin: 0 0 48px;
+            line-height: 1.7;
+        }
+
+        .pub-item {
+            display: grid;
+            grid-template-columns: 60px 1fr auto;
+            gap: 28px;
+            align-items: center;
+            padding: 28px 0;
+            border-bottom: 1px solid #e8e8e8;
+            transition: padding-left 0.3s;
+            cursor: default;
+        }
+
+        .pub-item:hover { padding-left: 10px; }
+        .pub-item:last-child { border-bottom: none; }
+
+        .pub-year {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: #cccccc;
+            line-height: 1;
+            transition: color 0.3s;
+        }
+
+        .pub-item:hover .pub-year { color: #000000; }
+
+        .pub-content h4 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin: 0 0 6px;
+            line-height: 1.3;
+        }
+
+        .pub-content p {
+            font-size: 0.82rem;
+            color: #777777;
+            margin: 0;
+            font-style: italic;
+        }
+
+        .pub-badge {
+            font-size: 0.6rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: 1.5px solid #000000;
+            padding: 5px 12px;
+            border-radius: 999px;
+            white-space: nowrap;
+            color: #000000;
+        }
+
+        @media (max-width: 768px) {
+            .pub-item { grid-template-columns: 48px 1fr; gap: 16px; }
+            .pub-badge { display: none; }
+        }
+
+        /* ── EXTERNAL LINKS BAND ── */
+        .res-links-section {
+            padding: 64px 8%;
+            border-bottom: 1px solid #e8e8e8;
+        }
+
+        .res-links-section > h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.4rem;
+            font-weight: 600;
+            margin: 0 0 8px;
+        }
+
+        .res-links-section > p {
+            font-size: 0.9rem;
+            color: #666666;
+            margin: 0 0 48px;
+            line-height: 1.7;
+        }
+
+        .res-links-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .ext-link-card {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 24px 28px;
+            border: 1.5px solid #e0e0e0;
+            text-decoration: none;
+            color: #000000;
+            transition: border-color 0.3s, background 0.3s;
+        }
+
+        .ext-link-card:hover {
+            border-color: #000000;
+            background: #f8f8f8;
+        }
+
+        .ext-link-num {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #eeeeee;
+            line-height: 1;
+            flex-shrink: 0;
+            transition: color 0.3s;
+            min-width: 40px;
+        }
+
+        .ext-link-card:hover .ext-link-num { color: #cccccc; }
+
+        .ext-link-body h4 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin: 0 0 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .ext-link-body p {
+            font-size: 0.8rem;
+            color: #666666;
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        .ext-link-arrow {
+            margin-left: auto;
+            color: #cccccc;
+            font-size: 1.1rem;
+            transition: color 0.2s, transform 0.2s;
+            flex-shrink: 0;
+        }
+
+        .ext-link-card:hover .ext-link-arrow {
+            color: #000000;
+            transform: translateX(4px);
+        }
+
+        @media (max-width: 768px) {
+            .res-links-grid { grid-template-columns: 1fr; }
+        }
+
+        /* ── QUOTE BAND ── */
+        .res-quote {
+            background: #000000;
+            padding: 80px 8%;
+            text-align: center;
+        }
+
+        .res-quote blockquote {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.6rem;
+            font-weight: 400;
+            font-style: italic;
+            color: #ffffff;
+            margin: 0 auto;
+            max-width: 860px;
+            line-height: 1.35;
+        }
+
+        .res-quote cite {
+            display: block;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: rgba(255,255,255,0.4);
+            margin-top: 32px;
+            font-style: normal;
+        }
+
+        @media (max-width: 768px) {
+            .res-quote blockquote { font-size: 1.8rem; }
+        }
+
+        /* ── CTA STRIP ── */
+        .res-cta {
+            border-top: 2px solid #000000;
+            padding: 80px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .res-cta h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.6rem;
+            font-weight: 600;
+            margin: 0;
+            line-height: 1.1;
+            max-width: 500px;
+        }
+
+        .res-cta-links { display: flex; gap: 16px; flex-shrink: 0; }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 14px 28px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .cta-btn-dark { background: #000000; color: #ffffff; border: 2px solid #000000; }
+        .cta-btn-dark:hover { background: #333333; }
+        .cta-btn-outline { background: transparent; color: #000000; border: 2px solid #000000; }
+        .cta-btn-outline:hover { background: #000000; color: #ffffff; }
+
+        @media (max-width: 768px) {
+            .res-cta { flex-direction: column; align-items: flex-start; }
+            .res-cta h3 { font-size: 2rem; }
+            .res-cta-links { flex-direction: column; width: 100%; }
+            .cta-btn { text-align: center; }
+        }
+
+        /* ── FOOTER (same as main page) ── */
+        .site-footer { border-top: 2px solid #000000; background: #ffffff; }
+
+        .footer-main {
+            padding: 64px 8% 48px;
+            display: grid;
+            grid-template-columns: 1.4fr 1fr;
+            gap: 64px;
+            align-items: start;
+            border-bottom: 1px solid #e8e8e8;
+        }
+
+        .footer-brand .footer-logo {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: #000000;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            display: block;
+            margin-bottom: 16px;
+        }
+
+        .footer-brand p { font-size: 0.9rem; color: #666666; line-height: 1.75; margin: 0; max-width: 360px; }
+
+        .footer-social h4 { font-size: 0.65rem; font-weight: 800; text-transform: uppercase; letter-spacing: 4px; color: #888888; margin: 0 0 20px 0; }
+
+        .footer-social-links { display: flex; gap: 12px; flex-wrap: wrap; }
+
+        .social-btn {
+            display: flex; align-items: center; gap: 8px;
+            padding: 10px 18px; border: 1.5px solid #000000; border-radius: 999px;
+            text-decoration: none; color: #000000; font-size: 0.75rem; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 1.5px; transition: background 0.25s, color 0.25s;
+        }
+
+        .social-btn:hover { background: #000000; color: #ffffff; }
+        .social-btn svg { flex-shrink: 0; }
+
+        .footer-bottom {
+            padding: 24px 8%; display: flex; justify-content: space-between;
+            align-items: center; gap: 20px;
+        }
+
+        .footer-copy { font-size: 0.76rem; color: #888888; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; }
+
+        .footer-bottom-links { display: flex; gap: 24px; }
+
+        .footer-bottom-links a {
+            font-size: 0.76rem; color: #888888; font-weight: 600;
+            text-transform: uppercase; letter-spacing: 1px; text-decoration: none; transition: color 0.2s;
+        }
+
+        .footer-bottom-links a:hover { color: #000000; }
+
+        @media (max-width: 768px) {
+            .footer-main { grid-template-columns: 1fr; gap: 40px; padding: 48px 6% 36px; }
+            .footer-bottom { flex-direction: column; align-items: flex-start; padding: 24px 6%; gap: 14px; }
+        }
+.breadcrumb {
+    position: sticky;
+    top: 57px; /* adjust to match your header height */
+    z-index: 900;
+    background: #fff;
+    border-bottom: 1px solid #ececec;
+    padding: 10px 8%;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.breadcrumb a {
+    color: #888;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+.breadcrumb a:hover { color: #000; }
+.bc-sep { color: #ccc; font-size: 0.8rem; }
+.bc-current { color: #000; }
+    </style>
+</head>
+
+<body>
+
+<!-- ── HEADER (identical to main site) ── -->
+<header>
+    <div class="nav-container">
+        <a href="index.html" class="logo">RTC Heritage Portal</a>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+        <nav id="main-nav">
+            <ul class="nav-list">
+
+                <li class="has-dropdown mega-parent">
+                    <a href="#">Location, Theme & More <span class="arrow">▾</span></a>
+                    <div class="mega-dropdown">
+                        <div class="mega-col">
+                            <p class="mega-heading">Location</p>
+                            <a href="haa-resourea.html">Haa Resources</a>
+                            <a href="#sephu">Sephu Resources</a>
+                            <a href="#thimphu">Thimphu Resources</a>
+                        </div>
+                        <div class="mega-divider"></div>
+                        <div class="mega-col">
+                            <p class="mega-heading">Theme</p>
+                            <a href="index.html?theme=0" data-theme="0">Page Theme</a>
+                            <a href="index.html?theme=1" data-theme="1">Theme Cultural</a>
+                            <a href="index.html?theme=2" data-theme="2">Theme Cosmetic</a>
+                        </div>
+                        <div class="mega-divider"></div>
+                        <div class="mega-col">
+                            <p class="mega-heading">More</p>
+                            <a href="resources.html" class="active-nav">Additional Resources</a>
+                            <a href="#interactive-map">Interactive Map</a>
+                            <a href="#announcement">Announcement</a>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="search-item">
+                    <div class="search-wrapper" id="search-wrapper">
+                        <button class="search-icon-btn" id="search-btn" aria-label="Search">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="11" cy="11" r="8"/>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                            </svg>
+                        </button>
+                        <input type="text" class="search-input" id="search-input" placeholder="Search...">
+                    </div>
+                </li>
+
+                <li class="has-dropdown">
+                    <a href="vmo.html">About <span class="arrow">▾</span></a>
+                    <ul class="dropdown">
+                        <li><a href="vmo.html#vision">Vision</a></li>
+                        <li><a href="vmo.html#mission">Mission</a></li>
+                        <li><a href="vmo.html#objectives">Objective</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<!-- ── PAGE HERO ── -->
+<section class="res-hero">
+    <div class="res-hero-left">
+        <span class="res-tag">RTC Heritage Portal — Knowledge Base</span>
+        <h1>Additional<br>Resources</h1>
+    </div>
+    <div class="res-hero-right">
+        <p>A curated collection of research papers, field guides, oral history recordings, archival maps, and partner institution links — assembled to support scholars, students, and communities engaged with the living heritage of highland Bhutan.</p>
+        <div class="res-hero-stats">
+            <div class="res-stat-item">
+                <span class="res-stat-num">48+</span>
+                <span class="res-stat-label">Resources</span>
+            </div>
+            <div class="res-stat-item">
+                <span class="res-stat-num">12</span>
+                <span class="res-stat-label">Partners</span>
+            </div>
+            <div class="res-stat-item">
+                <span class="res-stat-num">6</span>
+                <span class="res-stat-label">Categories</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ── BREADCRUMB ── -->
+<div class="breadcrumb">
+    <a href="index.html">Home</a>
+    <span class="sep">›</span>
+    <span class="current">Additional Resources</span>
+</div>
+
+<!-- ── FILTER TABS ── -->
+<div class="res-filter">
+    <button class="res-filter-btn active" data-filter="all">All Resources</button>
+    <button class="res-filter-btn" data-filter="research">Research Papers</button>
+    <button class="res-filter-btn" data-filter="fieldguide">Field Guides</button>
+    <button class="res-filter-btn" data-filter="archive">Archival Maps</button>
+    <button class="res-filter-btn" data-filter="audio">Audio & Oral History</button>
+    <button class="res-filter-btn" data-filter="teaching">Teaching Materials</button>
+</div>
+
+<!-- ── FEATURED RESOURCE ── -->
+<section class="res-featured">
+    <span class="res-featured-label">Featured Resource</span>
+    <div class="res-featured-card">
+        <div class="res-featured-img">
+            <div class="res-featured-img-bg">
+                <span class="res-featured-img-icon">📜</span>
+            </div>
+            <span class="res-featured-img-tag">Research Report — 2024</span>
+        </div>
+        <div class="res-featured-body">
+            <span class="res-type">Research Paper</span>
+            <h2>Intangible Cultural Heritage of Bhutan's Northern Highlands</h2>
+            <p>A comprehensive baseline study conducted across Laya, Lunana, and Merak-Sakteng gewogs documenting oral traditions, ceremonial practices, material culture, and ecological knowledge systems. Produced jointly by RTC and the Bhutan Department of Culture.</p>
+            <div class="res-featured-meta">
+                <div class="res-meta-item">
+                    <span class="res-meta-label">Authors</span>
+                    <span class="res-meta-value">Dorji, T. &amp; Wangmo, K.</span>
+                </div>
+                <div class="res-meta-item">
+                    <span class="res-meta-label">Pages</span>
+                    <span class="res-meta-value">184</span>
+                </div>
+                <div class="res-meta-item">
+                    <span class="res-meta-label">Language</span>
+                    <span class="res-meta-value">English / Dzongkha</span>
+                </div>
+                <div class="res-meta-item">
+                    <span class="res-meta-label">Licence</span>
+                    <span class="res-meta-value">CC BY-NC 4.0</span>
+                </div>
+            </div>
+            <a href="#" class="res-download-btn">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download PDF — Free
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ── RESOURCE GRID ── -->
+<section class="res-grid-section" id="resources-grid">
+    <div class="res-grid-header">
+        <h2>Browse All Resources</h2>
+        <span>48 items</span>
+    </div>
+
+    <div class="res-grid">
+
+        <a href="#" class="res-card">
+            <div class="res-card-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            </div>
+            <span class="res-card-type">Field Guide</span>
+            <h3>Highland Flora & Ethnobotany Guide</h3>
+            <p>A photographic identification guide to 120 medicinal and culturally significant plant species found above 3,000m across the Bhutanese highlands, with local names and traditional uses documented in collaboration with community healers.</p>
+            <div class="res-card-footer">
+                <span class="res-card-tag">Field Guide</span>
+                <span class="res-card-arrow">→</span>
+            </div>
+        </a>
+
+        <a href="#" class="res-card">
+            <div class="res-card-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            </div>
+            <span class="res-card-type">Archival Map</span>
+            <h3>Historic Trade Routes of Northern Bhutan</h3>
+            <p>Digitised and georeferenced maps of the salt and wool trade routes connecting the Tibetan plateau to lowland Bhutan, overlaid with contemporary satellite imagery and annotated oral route descriptions from highland elders.</p>
+            <div class="res-card-footer">
+                <span class="res-card-tag">Archival</span>
+                <span class="res-card-arrow">→</span>
+            </div>
+        </a>
+
+        <a href="#" class="res-card">
+            <div class="res-card-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+            </div>
+            <span class="res-card-type">Audio Archive</span>
+            <h3>Oral History Collection — Laya Gewog</h3>
+            <p>Over 14 hours of recorded oral histories from Layap elders, covering origin myths, seasonal migration narratives, yak herding practices, and the oral poetry tradition of the Brokpa community. Available in Layap dialect with Dzongkha transcripts.</p>
+            <div class="res-card-footer">
+                <span class="res-card-tag">Audio</span>
+                <span class="res-card-arrow">→</span>
+            </div>
+        </a>
+
+        <a href="#" class="res-card">
+            <div class="res-card-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+            </div>
+            <span class="res-card-type">Research Paper</span>
+            <h3>Ritual Calendar & Seasonal Cosmology</h3>
+            <p>An academic study of the agricultural and ceremonial calendar systems used across five highland districts, mapping the intersection of Buddhist liturgical cycles with indigenous ecological knowledge and lunar observation practices.</p>
+            <div class="res-card-footer">
+                <span class="res-card-tag">Research</span>
+                <span class="res-card-arrow">→</span>
+            </div>
+        </a>
+
+        <a href="#" class="res-card">
+            <div class="res-card-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+            </div>
+            <span class="res-card-type">Teaching Material</span>
+            <h3>Classroom Toolkit — Highland Heritage</h3>
+            <p>A complete lesson plan package for secondary and tertiary educators, including discussion frameworks, primary source excerpts, documentary viewing guides, and student activity worksheets covering six aspects of highland Bhutanese culture.</p>
+            <div class="res-card-footer">
+                <span class="res-card-tag">Teaching</span>
+                <span class="res-card-arrow">→</span>
+            </div>
+        </a>
+
+        <a href="#" class="res-card">
+            <div class="res-card-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <span class="res-card-type">Archival Map</span>
+            <h3>Sacred Landscape Atlas of Bhutan</h3>
+            <p>A geospatial atlas identifying 200+ sacred sites across the highlands — mountain deities (yullha), lake spirits (tso), and forest protectors — compiled from Buddhist texts, community testimonies, and field verification expeditions.</p>
+            <div class="res-card-footer">
+                <span class="res-card-tag">Archival</span>
+                <span class="res-card-arrow">→</span>
+            </div>
+        </a>
+
+        <a href="#" class="res-card">
+            <div class="res-card-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+            </div>
+            <span class="res-card-type">Audio Archive</span>
+            <h3>Traditional Music & Song Repository</h3>
+            <p>Recordings of 80+ traditional songs from across the highlands — including boedra court songs, zhungdra classical forms, and community work songs — with annotated liner notes on context, occasion, and regional variations.</p>
+            <div class="res-card-footer">
+                <span class="res-card-tag">Audio</span>
+                <span class="res-card-arrow">→</span>
+            </div>
+        </a>
+
+        <a href="#" class="res-card">
+            <div class="res-card-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            </div>
+            <span class="res-card-type">Research Paper</span>
+            <h3>Weaving Traditions & Textile Symbolism</h3>
+            <p>A technical and cultural study of textile production in Bhutan's highland communities — analysing pattern vocabulary, dye sources, loom types, and the social role of weaving as a form of cultural transmission across generations of women weavers.</p>
+            <div class="res-card-footer">
+                <span class="res-card-tag">Research</span>
+                <span class="res-card-arrow">→</span>
+            </div>
+        </a>
+
+        <a href="#" class="res-card">
+            <div class="res-card-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+            </div>
+            <span class="res-card-type">Teaching Material</span>
+            <h3>Fieldwork Methods for Heritage Research</h3>
+            <p>A practical guide for student researchers — covering interview protocols, ethical consent procedures, recording equipment setup, transcription standards, and data storage best practices for community-based heritage fieldwork in rural Bhutan.</p>
+            <div class="res-card-footer">
+                <span class="res-card-tag">Teaching</span>
+                <span class="res-card-arrow">→</span>
+            </div>
+        </a>
+
+    </div>
+</section>
+
+<!-- ── PUBLICATIONS LIST ── -->
+<section class="res-pubs-section" id="publications">
+    <h2>Recent Publications</h2>
+    <p>Peer-reviewed research and working papers produced by RTC faculty and student researchers — all freely available under open access licences.</p>
+
+    <div class="pub-list">
+
+        <div class="pub-item">
+            <span class="pub-year">2024</span>
+            <div class="pub-content">
+                <h4>Yak Herding Practices and Climate Adaptation in Lunana Gewog</h4>
+                <p>Dorji, T., Pema, K., Wangchuk, R. — Journal of Himalayan Studies, Vol. 12</p>
+            </div>
+            <span class="pub-badge">Open Access</span>
+        </div>
+
+        <div class="pub-item">
+            <span class="pub-year">2024</span>
+            <div class="pub-content">
+                <h4>Dzong Architecture as Cosmological Map: A Highland Bhutan Perspective</h4>
+                <p>Namgay, S. — RTC Working Paper Series, No. 7</p>
+            </div>
+            <span class="pub-badge">PDF</span>
+        </div>
+
+        <div class="pub-item">
+            <span class="pub-year">2023</span>
+            <div class="pub-content">
+                <h4>Oral Literature of the Layap People: Forms, Functions, and Transmission</h4>
+                <p>Wangmo, K. &amp; Tshering, D. — Bhutan Journal of Culture and Society, Vol. 4</p>
+            </div>
+            <span class="pub-badge">Open Access</span>
+        </div>
+
+        <div class="pub-item">
+            <span class="pub-year">2023</span>
+            <div class="pub-content">
+                <h4>Sacred Grove Conservation Through Traditional Ecological Knowledge in Haa</h4>
+                <p>Phuntsho, K. — Environment and Society Research Group, RTC</p>
+            </div>
+            <span class="pub-badge">PDF</span>
+        </div>
+
+        <div class="pub-item">
+            <span class="pub-year">2022</span>
+            <div class="pub-content">
+                <h4>Community Consent Frameworks for Intangible Heritage Documentation</h4>
+                <p>Gyeltshen, C., Dorji, T. — UNESCO Intangible Heritage Working Group</p>
+            </div>
+            <span class="pub-badge">Open Access</span>
+        </div>
+
+        <div class="pub-item">
+            <span class="pub-year">2022</span>
+            <div class="pub-content">
+                <h4>Namda Felt-Making in Haa: Material Culture and Livelihood</h4>
+                <p>Pem, D. — RTC Heritage Portal Research Notes, No. 3</p>
+            </div>
+            <span class="pub-badge">PDF</span>
+        </div>
+
+    </div>
+</section>
+
+<!-- ── EXTERNAL LINKS ── -->
+<section class="res-links-section" id="partners">
+    <h2>Partner Institutions & External Links</h2>
+    <p>Trusted organisations whose archives, databases, and programmes complement and extend the work of the RTC Heritage Portal.</p>
+
+    <div class="res-links-grid">
+
+        <a href="#" class="ext-link-card">
+            <span class="ext-link-num">01</span>
+            <div class="ext-link-body">
+                <h4>Bhutan Department of Culture</h4>
+                <p>Official repository of national heritage policy, intangible heritage registries, and cultural preservation programmes across all 20 dzongkhags.</p>
+            </div>
+            <span class="ext-link-arrow">↗</span>
+        </a>
+
+        <a href="#" class="ext-link-card">
+            <span class="ext-link-num">02</span>
+            <div class="ext-link-body">
+                <h4>UNESCO Intangible Heritage — Asia-Pacific</h4>
+                <p>Regional programmes and best-practice frameworks for safeguarding intangible cultural heritage across the Himalayan region, including Bhutan's submissions.</p>
+            </div>
+            <span class="ext-link-arrow">↗</span>
+        </a>
+
+        <a href="#" class="ext-link-card">
+            <span class="ext-link-num">03</span>
+            <div class="ext-link-body">
+                <h4>Khesar Gyalpo University of Medical Sciences</h4>
+                <p>Partner institution for traditional medicine documentation, with shared research on medicinal plant use and indigenous health practices in highland communities.</p>
+            </div>
+            <span class="ext-link-arrow">↗</span>
+        </a>
+
+        <a href="#" class="ext-link-card">
+            <span class="ext-link-num">04</span>
+            <div class="ext-link-body">
+                <h4>National Library & Archives of Bhutan</h4>
+                <p>Home to thousands of religious manuscripts, historical records, and rare Dzongkha texts — many of which are directly relevant to highland cultural history.</p>
+            </div>
+            <span class="ext-link-arrow">↗</span>
+        </a>
+
+        <a href="#" class="ext-link-card">
+            <span class="ext-link-num">05</span>
+            <div class="ext-link-body">
+                <h4>Himalayan Art Resources (HAR)</h4>
+                <p>International database of Buddhist and Himalayan art, iconography, and thangka painting traditions — a valuable reference for RTC's visual culture research.</p>
+            </div>
+            <span class="ext-link-arrow">↗</span>
+        </a>
+
+        <a href="#" class="ext-link-card">
+            <span class="ext-link-num">06</span>
+            <div class="ext-link-body">
+                <h4>Ugyen Wangchuck Institute for Conservation</h4>
+                <p>Research partner for projects at the intersection of biodiversity conservation and traditional ecological knowledge across Bhutan's northern protected areas.</p>
+            </div>
+            <span class="ext-link-arrow">↗</span>
+        </a>
+
+    </div>
+</section>
+
+<!-- ── QUOTE BAND ── -->
+<section class="res-quote">
+    <blockquote>
+        "A resource is only truly useful when it is findable, readable, and shared freely — these materials belong to the communities that produced them."
+    </blockquote>
+    <cite>— RTC Heritage Portal, Open Access Policy Statement</cite>
+</section>
+
+<!-- ── CTA STRIP ── -->
+<section class="res-cta">
+    <h3>Explore More of the Heritage Portal</h3>
+    <div class="res-cta-links">
+        <a href="films.html" class="cta-btn cta-btn-dark">Browse Films</a>
+        <a href="index.html" class="cta-btn cta-btn-outline">Back to Home</a>
+    </div>
+</section>
+
+<!-- ── FOOTER (same as main page) ── -->
+<footer class="site-footer">
+    <div class="footer-main">
+        <div class="footer-brand">
+            <span class="footer-logo">RTC Heritage Portal</span>
+            <p>Documenting the living traditions, oral histories, and sacred wisdom of Bhutan's highland communities — for the generations to come.</p>
+        </div>
+        <div class="footer-social">
+            <h4>Follow Our Work</h4>
+            <div class="footer-social-links">
+                <a href="#" class="social-btn" aria-label="Facebook">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                    Facebook
+                </a>
+                <a href="#" class="social-btn" aria-label="Instagram">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+                    Instagram
+                </a>
+                <a href="#" class="social-btn" aria-label="YouTube">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="white"/></svg>
+                    YouTube
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <span class="footer-copy">© 2025 RTC Heritage Portal — Royal Thimphu College, Bhutan</span>
+        <nav class="footer-bottom-links">
+            <a href="vmo.html">VMO</a>
+            <a href="films.html">Films</a>
+            <a href="photoessay.html">Essays</a>
+            <a href="vignettes.html">Vignettes</a>
+            <a href="resources.html">Resources</a>
+        </nav>
+    </div>
+</footer>
+
+<script>
+    /* ── NAV SCRIPT (same pattern as all pages) ── */
+
+    // Hamburger
+    const hamburger = document.getElementById('hamburger');
+    const mainNav   = document.getElementById('main-nav');
+
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('open');
+        mainNav.classList.toggle('open');
+    });
+
+    // Desktop hover dropdowns with gap-bridge timer
+    document.querySelectorAll('.has-dropdown').forEach(li => {
+        const mega   = li.querySelector('.mega-dropdown');
+        const simple = li.querySelector('.dropdown');
+        const drop   = mega || simple;
+        if (!drop) return;
+
+        let timer = null;
+
+        li.addEventListener('mouseenter', () => {
+            if (window.innerWidth <= 900) return;
+            clearTimeout(timer);
+            document.querySelectorAll('.mega-dropdown, .dropdown').forEach(d => {
+                if (d !== drop) d.style.display = '';
+            });
+            drop.style.display = 'flex';
+        });
+
+        li.addEventListener('mouseleave', () => {
+            if (window.innerWidth <= 900) return;
+            timer = setTimeout(() => { drop.style.display = ''; }, 120);
+        });
+
+        drop.addEventListener('mouseenter', () => { clearTimeout(timer); });
+        drop.addEventListener('mouseleave', () => {
+            timer = setTimeout(() => { drop.style.display = ''; }, 120);
+        });
+    });
+
+    // Mobile dropdowns
+    document.querySelectorAll('.has-dropdown').forEach(li => {
+        li.addEventListener('click', e => {
+            if (window.innerWidth > 900) return;
+            const mega   = li.querySelector('.mega-dropdown');
+            const simple = li.querySelector('.dropdown');
+            const drop   = mega || simple;
+            const arrow  = li.querySelector('.arrow');
+            if (!drop) return;
+            const isOpen = drop.classList.contains('mobile-open');
+            document.querySelectorAll('.mega-dropdown.mobile-open, .dropdown.mobile-open')
+                .forEach(d => d.classList.remove('mobile-open'));
+            document.querySelectorAll('.arrow').forEach(a => a.style.transform = '');
+            if (!isOpen) {
+                drop.classList.add('mobile-open');
+                if (arrow) arrow.style.transform = 'rotate(180deg)';
+            }
+            e.preventDefault();
+        });
+    });
+
+    // Close nav on outside click
+    document.addEventListener('click', e => {
+        if (mainNav && hamburger &&
+            !mainNav.contains(e.target) &&
+            !hamburger.contains(e.target)) {
+            mainNav.classList.remove('open');
+            hamburger.classList.remove('open');
+            document.querySelectorAll('.mega-dropdown.mobile-open, .dropdown.mobile-open')
+                .forEach(d => d.classList.remove('mobile-open'));
+        }
+    });
+
+    // Search expand
+    const searchBtn     = document.getElementById('search-btn');
+    const searchWrapper = document.getElementById('search-wrapper');
+    const searchInput   = document.getElementById('search-input');
+
+    searchBtn.addEventListener('click', e => {
+        e.stopPropagation();
+        const expanded = searchWrapper.classList.toggle('expanded');
+        if (expanded) searchInput.focus();
+        else { searchInput.value = ''; searchInput.blur(); }
+    });
+
+    document.addEventListener('click', e => {
+        if (!searchWrapper.contains(e.target)) {
+            searchWrapper.classList.remove('expanded');
+            searchInput.value = '';
+        }
+    });
+
+    // Filter buttons (visual only — wire to real filtering if needed)
+    document.querySelectorAll('.res-filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.res-filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        });
+    });
+</script>
+
+</body>
+</html>

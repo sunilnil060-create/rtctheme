@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theme Environment — Highland Heritages of Bhutan</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="inner.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        .theme-hero {
+            position: relative;
+            width: 100%;
+            height: 60vh;
+            min-height: 420px;
+            overflow: hidden;
+            background: #0a0a0a;
+        }
+
+        .theme-hero-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.55;
+            transform: scale(1.04);
+            animation: heroZoom 10s ease-in-out forwards;
+        }
+
+        @keyframes heroZoom {
+            from { transform: scale(1.04); }
+            to   { transform: scale(1);    }
+        }
+
+        .theme-hero-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 8%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.55) 100%);
+        }
+
+        .theme-hero-tag {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 6px;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 20px;
+        }
+
+        .theme-hero-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4.5rem;
+            font-weight: 600;
+            color: #ffffff;
+            line-height: 1;
+            margin: 0 0 24px 0;
+            letter-spacing: 1px;
+            text-shadow: 0 4px 30px rgba(0,0,0,0.8);
+        }
+
+        .theme-hero-sub {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.65);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 300;
+        }
+
+        /* ── BACK BUTTON ── */
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: #000000;
+            padding: 28px 6%;
+            transition: opacity 0.3s ease;
+        }
+        .back-btn:hover { opacity: 0.5; }
+        .back-circle {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: 1px solid #000000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            transition: background 0.3s ease, color 0.3s ease;
+            flex-shrink: 0;
+        }
+        .back-btn:hover .back-circle { background: #000000; color: #ffffff; }
+        .back-text {
+            font-size: 0.58rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* ── INTRO ── */
+        .theme-intro {
+            max-width: 820px;
+            margin: 0 auto;
+            padding: 0 6% 60px 6%;
+            text-align: center;
+            border-bottom: 1px solid #e8e8e8;
+        }
+        .theme-intro h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.6rem;
+            font-weight: 600;
+            color: #000000;
+            margin: 0 0 20px 0;
+            line-height: 1.2;
+        }
+        .theme-intro p {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1rem;
+            color: #555555;
+            line-height: 1.9;
+        }
+
+        /* ── CONTENT TYPE SECTIONS ── */
+        .content-section {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 70px 6%;
+            border-bottom: 1px solid #e8e8e8;
+        }
+
+        .content-section:last-child {
+            border-bottom: none;
+            padding-bottom: 100px;
+        }
+
+        .section-label-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+
+        .section-type-tag {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.68rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: #ffffff;
+            background: #000000;
+            padding: 6px 16px;
+            border-radius: 999px;
+        }
+
+        .section-line {
+            flex: 1;
+            height: 1px;
+            background: #e0e0e0;
+        }
+
+        /* ── FEATURE CARD (large single card) ── */
+        .feature-content-card {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 48px;
+            align-items: center;
+        }
+
+        .feature-content-card.reverse {
+            direction: rtl;
+        }
+        .feature-content-card.reverse > * {
+            direction: ltr;
+        }
+
+        .feature-content-media {
+            width: 100%;
+            aspect-ratio: 16 / 10;
+            border-radius: 4px;
+            overflow: hidden;
+            border: 2px solid #000000;
+        }
+
+        .feature-content-media img,
+        .feature-content-media video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .feature-content-media:hover img,
+        .feature-content-media:hover video {
+            transform: scale(1.03);
+        }
+
+        /* .feature-content-text {} */
+
+        .feature-content-text h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: #000000;
+            margin: 0 0 16px 0;
+            line-height: 1.15;
+        }
+
+        .feature-content-text p {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.95rem;
+            color: #444444;
+            line-height: 1.85;
+            margin: 0 0 28px 0;
+        }
+
+        .feature-content-btn {
+            display: inline-block;
+            padding: 10px 26px;
+            background: #ffffff;
+            color: #000000;
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-radius: 999px;
+            text-decoration: none;
+            border: 2px solid #000000;
+            transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease;
+        }
+
+        .feature-content-btn:hover {
+            background: #000000;
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 768px) {
+            .theme-hero-title { font-size: 2.8rem; }
+            .feature-content-card { grid-template-columns: 1fr; gap: 24px; }
+            .feature-content-card.reverse { direction: ltr; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ── HEADER ── -->
+<header>
+    <div class="nav-container">
+        <a href="index.html" class="logo">RTC Heritage Portal</a>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+        <nav id="main-nav">
+            <ul class="nav-list">
+                <li class="has-dropdown mega-parent">
+                    <a href="#">Location, Theme & More <span class="arrow">▾</span></a>
+                    <div class="mega-dropdown">
+                        <div class="mega-col">
+                            <p class="mega-heading">Location</p>
+                            <a href="#">Haa Resources</a>
+                            <a href="#">Sephu Resources</a>
+                            <a href="#">Thimphu Resources</a>
+                        </div>
+                        <div class="mega-divider"></div>
+                        <div class="mega-col">
+    <p class="mega-heading">Theme</p>
+    <a href="index.html#feature-slide">Theme Environment</a>
+    <a href="index.html#features">Theme Culture / Identity</a>
+    <a href="index.html#features">Theme Cosmology</a>
+</div>
+                        <div class="mega-divider"></div>
+                        <div class="mega-col">
+                            <p class="mega-heading">More</p>
+                            <a href="#">Additional Resources</a>
+                            <a href="#">Interactive Map</a>
+                            <a href="#">Announcement</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="search-item">
+                    <div class="search-wrapper" id="search-wrapper">
+                        <button class="search-icon-btn" id="search-btn" aria-label="Search">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="11" cy="11" r="8"/>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                            </svg>
+                        </button>
+                        <input type="text" class="search-input" id="search-input" placeholder="Search...">
+                    </div>
+                </li>
+                <li class="has-dropdown">
+                    <a href="#">About <span class="arrow">▾</span></a>
+                    <ul class="dropdown">
+                        <li><a href="vmo.html">Vision</a></li>
+                        <li><a href="vmo.html">Mission</a></li>
+                        <li><a href="vmo.html">Objective</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+<!-- ── HERO ── -->
+<section class="theme-hero">
+    <img src="image/Bhutan_mountains.jpg" alt="Theme Environment" class="theme-hero-img">
+    <div class="theme-hero-overlay">
+        <span class="theme-hero-tag">Highland Heritages of Bhutan</span>
+        <h1 class="theme-hero-title">Theme Environment</h1>
+        <p class="theme-hero-sub">Land · Sky · Water · The Living World</p>
+    </div>
+</section>
+
+<nav class="breadcrumb">
+    <a href="index.html">Home</a>
+    <span class="bc-sep">›</span>
+    <a href="index.html#features">Theme</a>
+    <span class="bc-sep">›</span>
+    <span class="bc-current">Page Theme</span>
+</nav>
+
+<!-- ── INTRO ── -->
+<div class="theme-intro">
+    <h2>Where the Land and Its People Are One</h2>
+    <p>The highland environment of Bhutan is not a backdrop to human life — it is a participant in it. Glaciers, forests, rivers and high pastures shape every aspect of how communities eat, move, worship and relate to one another. This theme brings together one film, one photo essay and one vignette — each offering a different lens on the relationship between people and the natural world they inhabit.</p>
+</div>
+
+<!-- ════════════════════════════════
+     SECTION 1 — FILM
+════════════════════════════════ -->
+<div class="content-section">
+    <div class="section-label-row">
+        <span class="section-type-tag">Film</span>
+        <div class="section-line"></div>
+    </div>
+
+    <div class="feature-content-card">
+        <div class="feature-content-media">
+            <!-- Replace src with your actual film video file -->
+            <video autoplay muted loop playsinline>
+                <source src="image/Bhutan - Trekking to the 'hidden land' of Laya village.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="feature-content-text">
+            <h3>Voices of Laya</h3>
+            <p>A portrait of the Layap people set entirely within their high-altitude homeland — the yak pastures, glacial streams, and bamboo forests that define not just their livelihood but their entire cosmological orientation. The land here is not scenery; it is kinship.</p>
+            <p>Filmed across two seasonal migrations, this documentary follows three Layap families as they navigate the tension between a warming climate and centuries-old pastoral knowledge.</p>
+            <a href="films.html" class="feature-content-btn">View All Films</a>
+        </div>
+    </div>
+</div>
+
+<!-- ════════════════════════════════
+     SECTION 2 — PHOTO ESSAY
+════════════════════════════════ -->
+<div class="content-section">
+    <div class="section-label-row">
+        <span class="section-type-tag">Photo Essay</span>
+        <div class="section-line"></div>
+    </div>
+
+    <div class="feature-content-card reverse">
+        <div class="feature-content-media">
+            <img src="image/Bhutan_mountains.jpg" alt="Above the Cloud Line">
+        </div>
+        <div class="feature-content-text">
+            <h3>Above the Cloud Line</h3>
+            <p>High-altitude landscapes of the Lunana Gewog, where glacial lakes reflect a sky untouched by light pollution. Photographer Karma Wangchuk spent three weeks above 4,000 metres documenting the textures of an environment most Bhutanese have never seen.</p>
+            <p>These images ask a quiet question — what is lost when a glacier retreats, when a lake shrinks, when a pasture that sustained families for generations turns to rock?</p>
+            <a href="photoessay.html" class="feature-content-btn">View All Photo Essays</a>
+        </div>
+    </div>
+</div>
+
+<!-- ════════════════════════════════
+     SECTION 3 — VIGNETTE
+════════════════════════════════ -->
+<div class="content-section">
+    <div class="section-label-row">
+        <span class="section-type-tag">Vignette</span>
+        <div class="section-line"></div>
+    </div>
+
+    <div class="feature-content-card">
+        <div class="feature-content-media">
+            <img src="image/Glacial Lakes Bhutan.jpg" alt="When the Snow Comes Early">
+        </div>
+        <div class="feature-content-text">
+            <h3>When the Snow Comes Early</h3>
+            <p>A Laya herder recounts the winter of 2019 — when unexpected snow buried the pastureland two months ahead of schedule and changed a migration route that had been walked by his family for at least six generations.</p>
+            <p>Written in the first person from field notes gathered during the 2023 research visit, this vignette is a quiet account of adaptation — and of the grief that comes with it.</p>
+            <a href="vignettes.html" class="feature-content-btn">View All Vignettes</a>
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

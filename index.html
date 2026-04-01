@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Highland Heritages of Bhutan</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- PASTE THIS to replace your current <style>...</style> block in index.html -->
+<style>
+    /* ═══════════════════════════════════════
+       RTC SPLASH SCREEN
+       ═══════════════════════════════════════ */
+
+    #rtc-splash {
+        position: fixed;
+        inset: 0;
+        z-index: 999999;
+        /* Changed from green to classic black */
+        background: #000000;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0;
+
+        /* starts fully visible */
+        opacity: 1;
+        transition: opacity 0.7s ease;
+    }
+
+    /* when JS adds .fade-out, it fades away */
+    #rtc-splash.fade-out {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    /* hidden from the start if sessionStorage flag already set —
+       JS will add this class before paint to avoid any flash */
+    #rtc-splash.hidden {
+        display: none;
+    }
+
+    /* ── decorative ring behind logo ── */
+    .splash-ring {
+        /* Increased ring size to accommodate larger logo */
+        width: 160px;
+        height: 160px;
+        border-radius: 50%;
+        /* Changed border color to subtle white */
+        border: 1.5px solid rgba(255, 255, 255, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        margin-bottom: 2rem;
+        animation: splashRingPulse 2.5s ease infinite;
+    }
+    .splash-ring::before {
+        content: '';
+        position: absolute;
+        inset: -12px;
+        border-radius: 50%;
+        /* Changed border color to subtle white */
+        border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    @keyframes splashRingPulse {
+        /* Changed pulse color to subtle white */
+        0%, 100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.1); }
+        50%       { box-shadow: 0 0 0 18px rgba(255, 255, 255, 0); }
+    }
+
+    /* ── logo image inside ring ── */
+    .splash-logo {
+        /* Increased logo size from 90px to 110px */
+        width: 110px;
+        height: 110px;
+        object-fit: contain;
+        border-radius: 50%;
+        display: block;
+
+        opacity: 0;
+        transform: scale(0.85);
+        animation: splashLogoIn 0.65s 0.15s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    }
+    @keyframes splashLogoIn {
+        to { opacity: 1; transform: scale(1); }
+    }
+
+    /* ── text block ── */
+    .splash-text {
+        text-align: center;
+        max-width: 320px;
+        padding: 0 1.5rem;
+
+        opacity: 0;
+        transform: translateY(12px);
+        animation: splashTextIn 0.6s 0.4s ease forwards;
+    }
+    @keyframes splashTextIn {
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .splash-tag {
+        display: inline-block;
+        font-size: 0.58rem;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        /* Text color set to white */
+        color: #ffffff;
+        /* Background and border to subtle white */
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        padding: 0.28rem 0.8rem;
+        border-radius: 100px;
+        margin-bottom: 0.9rem;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .splash-name {
+        font-family: 'Poppins', sans-serif;
+        font-size: 1.05rem;
+        font-weight: 600;
+        /* Text color set to white */
+        color: #ffffff;
+        letter-spacing: 0.02em;
+        margin-bottom: 0.5rem;
+        line-height: 1.3;
+    }
+
+    .splash-desc {
+        font-family: 'Poppins', sans-serif;
+        font-size: 0.73rem;
+        font-weight: 300;
+        /* Text color set to translucent white */
+        color: rgba(255, 255, 255, 0.55);
+        line-height: 1.8;
+    }
+
+    /* ── progress bar at the bottom ── */
+    .splash-bar-wrap {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 2.5px;
+        /* Background set to subtle white */
+        background: rgba(255, 255, 255, 0.1);
+    }
+    .splash-bar-fill {
+        height: 100%;
+        width: 0%;
+        /* Progress bar color set to white */
+        background: #ffffff;
+        /* duration controlled by JS via --splash-ms custom property */
+        animation: splashBarGrow var(--splash-ms, 3000ms) 0.3s linear forwards;
+    }
+    @keyframes splashBarGrow {
+        to { width: 100%; }
+    }
+
+    /* ── "A Royal Thimphu College Initiative" footer line ── */
+    .splash-footer {
+        position: absolute;
+        bottom: 22px;
+        left: 0; right: 0;
+        text-align: center;
+        font-family: 'Poppins', sans-serif;
+        font-size: 0.6rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        /* Text color set to very subtle white */
+        color: rgba(255, 255, 255, 0.25);
+
+        opacity: 0;
+        animation: splashTextIn 0.5s 0.6s ease forwards;
+    }
+</style>
+</head>
+<body>
+
+<div id="rtc-splash">
+
+    <div class="splash-ring">
+        <img class="splash-logo" src="image/Logo.png" alt="Royal Thimphu College">
+    </div>
+
+    <div class="splash-text">
+        <span class="splash-tag">✦ Presenting</span>
+        <p class="splash-name">Royal Thimphu College</p>
+        <p class="splash-desc">
+            A liberal arts institution in Thimphu, Bhutan — dedicated to academic
+            excellence, cultural preservation, and community-led research across
+            the Himalayan highlands.
+        </p>
+    </div>
+
+    <p class="splash-footer">A Royal Thimphu College Initiative &nbsp;·&nbsp; Thimphu, Bhutan</p>
+
+    <div class="splash-bar-wrap">
+        <div class="splash-bar-fill"></div>
+    </div>
+
+</div>
+
+<script>
+(function () {
+    var SPLASH_DURATION = 4000; // ms the splash stays visible
+    var splash = document.getElementById('rtc-splash');
+
+    // If we've already shown the splash this browser session, hide immediately
+    if (sessionStorage.getItem('rtcSplashSeen')) {
+        splash.classList.add('hidden');
+        return; // nothing else to do
+    }
+
+    // First visit / hard refresh — show the splash
+    // Set the CSS variable so the progress bar matches the duration
+    splash.style.setProperty('--splash-ms', SPLASH_DURATION + 'ms');
+
+    // Mark as seen so it won't show again this session
+    sessionStorage.setItem('rtcSplashSeen', '1');
+
+    // After SPLASH_DURATION ms, fade it out then remove from DOM
+    setTimeout(function () {
+        splash.classList.add('fade-out');
+
+        // Remove from DOM after fade completes (0.7s transition)
+        setTimeout(function () {
+            splash.classList.add('hidden');
+        }, 720);
+
+    }, SPLASH_DURATION);
+})();
+</script>
+
+</head>
+
+<body>
+
+<header>
+    <div class="nav-container">
+       <a href="index.html" class="logo">RTC Heritage Portal</a>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+        <nav id="main-nav">
+            <ul class="nav-list">
+                <li class="has-dropdown mega-parent">
+                    <a href="#">Location, Theme & More <span class="arrow">▾</span></a>
+                    <div class="mega-dropdown">
+                        <div class="mega-col">
+                            <p class="mega-heading">Location</p>
+                            <a href="haa-resourea.html">Haa Resources</a>
+                            <a href="#sephu">Sephu Resources</a>
+                            <a href="#thimphu">Thimphu Resources</a>
+                        </div>
+                        <div class="mega-divider"></div>
+                        <div class="mega-col">
+                            <p class="mega-heading">Theme</p>
+                            <a href="#" data-theme="0">Page Theme</a>
+                            <a href="#" data-theme="1">Theme Cultural</a>
+                            <a href="#" data-theme="2">Theme Cosmetic</a>
+                        </div>
+                        <div class="mega-divider"></div>
+                        <div class="mega-col">
+                            <p class="mega-heading">More</p>
+                            <a href="resources.html">Additional Resources</a>
+                            <a href="#">Interactive Map</a>
+                            <a href="#">Announcement</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="search-item">
+                    <div class="search-wrapper" id="search-wrapper">
+                        <button class="search-icon-btn" id="search-btn" aria-label="Search">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="11" cy="11" r="8"/>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                            </svg>
+                        </button>
+                        <input type="text" class="search-input" id="search-input" placeholder="Search...">
+                    </div>
+                </li>
+                <!-- Language Toggle -->
+<li class="lang-item">
+    <div class="lang-wrapper" id="lang-wrapper">
+        <button class="lang-btn" id="lang-btn" aria-label="Change language">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+            </svg>
+            <span id="lang-label">EN</span>
+            <span class="arrow">▾</span>
+        </button>
+        <div class="lang-dropdown" id="lang-dropdown">
+            <button class="lang-option active" data-lang="en">
+                <span class="lang-code">EN</span>
+                <span class="lang-name">English</span>
+                <span class="lang-check">✓</span>
+            </button>
+            <button class="lang-option" data-lang="dz" disabled>
+                <span class="lang-code">DZ</span>
+                <span class="lang-name">རྫོང་ཁ</span>
+                <span class="lang-soon">Coming Soon</span>
+            </button>
+        </div>
+    </div>
+</li>
+                <li class="has-dropdown">
+                    <a href="vmo.html">About <span class="arrow">▾</span></a>
+                    <ul class="dropdown">
+                        <li><a href="vmo.html">Vision</a></li>
+                        <li><a href="vmo.html">Mission</a></li>
+                        <li><a href="vmo.html">Objective</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section class="slider-section">
+    <div class="slider-container">
+        <div class="slide active"></div>
+        <div class="slide"></div>
+        <div class="slide"></div>
+        <div class="slide"></div>
+        <div class="slider-overlay-text">
+            <span class="slider-tag">Highland Heritages of Bhutan</span>
+            <h1 class="slider-heading">Where the Mountains<br>Hold Memory</h1>
+            <p class="slider-subtext">Preserving the living traditions and sacred wisdom<br>of Bhutan's highland communities.</p>
+        </div>
+    </div>
+</section>
+
+<section class="video-section">
+    <div class="video-container">
+        <div class="story-text-box">
+            <h3>Experience Our Storytelling</h3>
+            <p>Listen to the oral histories and ancient legends passed down through generations of Bhutanese highlanders.</p>
+        </div>
+        <div class="video-wrapper">
+            <video controls poster="image/namads.jpeg">
+                <source src="image/AQPBd4f9xG1uJQHm9mvqDD3CxjiwTqgFL2smbXxAKavKMzD8IvKih31SCG1qAohS8WSCOhVbAJKb6E71Qj_0sUW-prxm5KKJ6nEKwZusD1lnPw.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
+</section>
+
+<!-- ── MEDIA GALLERY — pointer-events:none on video stops scroll capture ── -->
+<!-- ── MEDIA GALLERY HEADER ── -->
+<div class="media-gallery-header">
+    <span class="media-gallery-tag">Our Collections</span>
+    <h2 class="media-gallery-title">Explore the Archive</h2>
+    <p class="media-gallery-desc">Three distinct formats — each a different way of seeing highland Bhutan. From cinematic documentaries to intimate photo essays and on-the-ground ethnographic vignettes, every piece is rooted in community and place.</p>
+    <div class="media-gallery-pills">
+        <a href="films.html" class="mgp">Films</a>
+        <a href="photoessay.html" class="mgp">Photo Essays</a>
+        <a href="vignettes.html" class="mgp">Vignettes</a>
+    </div>
+</div>
+
+<!-- ── MEDIA GALLERY — pointer-events:none on video stops scroll capture ── -->
+<section class="media-gallery" id="media-gallery">
+
+    <div class="gallery-card" id="card-films">
+        <video class="gallery-bg-img" autoplay muted loop playsinline preload="auto" style="pointer-events:none;">
+            <source src="image/Exploring Merak & Sakteng in Bhutan's Far East.mp4" type="video/mp4">
+        </video>
+        <div class="gallery-info-box info-left">
+            <h3>Films</h3>
+            <p>Immersive documentary films capturing the living traditions, landscapes, and voices of Bhutan's highland communities.</p>
+            <a href="films.html" class="gallery-btn">Explore Films</a>
+        </div>
+    </div>
+
+    <div class="gallery-card" id="card-essay">
+        <img src="image/Bhutan-Ceremonial-procession-getting-ready.jpg" alt="Photo Essay" class="gallery-bg-img">
+        <div class="gallery-info-box info-right">
+            <h3>Photo Essay</h3>
+            <p>Curated visual narratives told through the lens of researchers and local photographers across the highlands.</p>
+            <a href="photoessay.html" class="gallery-btn">Explore Essays</a>
+        </div>
+    </div>
+
+    <div class="gallery-card" id="card-vignette">
+        <img src="image/Bhutan_mountains.jpg" alt="Ethnographic Vignettes" class="gallery-bg-img">
+        <div class="gallery-info-box info-left">
+            <h3>Ethnographic Vignettes</h3>
+            <p>Short written and visual sketches documenting everyday life, rituals, and cultural moments from highland Bhutan.</p>
+            <a href="vignettes.html" class="gallery-btn">Explore Vignettes</a>
+        </div>
+    </div>
+
+</section>
+
+<!-- ── FEATURES SLIDER — id="features" so ?theme= param can scroll here ── -->
+<section class="features-slider" id="features">
+
+    <div class="features-viewport">
+        <div class="features-track" id="featuresTrack">
+
+            <div class="feature-slide">
+                <div class="feature-img"><img src="image/culture.jpg" alt="Culture"></div>
+                <div class="feature-text">
+                    <span class="feature-label">Page Theme</span>
+                    <h2>Living Traditions of the Highlands</h2>
+                    <p>From sacred mask dances performed at ancient dzongs to the quiet art of butter lamp offerings at dawn — the highland communities of Bhutan carry a cultural universe within their daily lives.</p>
+                    <a href="theme-environment.html" class="feature-btn">View page theme</a>
+                </div>
+            </div>
+
+            <div class="feature-slide reverse">
+                <div class="feature-img"><img src="image/education.webp" alt="Education"></div>
+                <div class="feature-text">
+                    <span class="feature-label">Theme Cultural</span>
+                    <h2>Knowledge Rooted in the Mountains</h2>
+                    <p>Highland Bhutan holds centuries of indigenous knowledge — from reading weather through cloud patterns to medicinal plants found only above 3,000 metres. This wisdom is being woven into contemporary education.</p>
+                    <a href="theme-culture.html" class="feature-btn">View culture</a>
+                </div>
+            </div>
+
+            <div class="feature-slide">
+                <div class="feature-img"><img src="image/student.jpg" alt="Student Gallery"></div>
+                <div class="feature-text">
+                    <span class="feature-label">Theme Cosmetic</span>
+                    <h2>Seen Through Young Eyes</h2>
+                    <p>Students from Royal Thimphu College ventured into the highlands with cameras and notebooks — returning with photographs and stories that bridge academic research with personal discovery.</p>
+                    <a href="theme-cosmology.html" class="feature-btn">View cosmology</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <button class="features-arrow arrow-prev" id="featuresPrev">&#8249;</button>
+    <button class="features-arrow arrow-next" id="featuresNext">&#8250;</button>
+
+    <div class="features-dots">
+        <span class="dot active" data-index="0"></span>
+        <span class="dot" data-index="1"></span>
+        <span class="dot" data-index="2"></span>
+    </div>
+
+</section>
+<footer class="site-footer">
+    <div class="footer-main">
+
+        <div class="footer-brand">
+            <span class="footer-logo">RTC Heritage Portal</span>
+            <p>Documenting the living traditions, oral histories, and sacred wisdom of Bhutan's highland communities — for the generations to come.</p>
+        </div>
+
+        <div class="footer-social">
+            <h4>Follow Our Work</h4>
+            <div class="footer-social-links">
+                <a href="#" class="social-btn" aria-label="Facebook">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                    Facebook
+                </a>
+                <a href="#" class="social-btn" aria-label="Instagram">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+                    Instagram
+                </a>
+                <a href="#" class="social-btn" aria-label="YouTube">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="white"/></svg>
+                    YouTube
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        <span class="footer-copy">© 2025 RTC Heritage Portal — Royal Thimphu College, Bhutan</span>
+        <nav class="footer-bottom-links">
+            <a href="vmo.html">VMO</a>
+            <a href="films.html">Films</a>
+            <a href="photoessay.html">Essays</a>
+            <a href="vignettes.html">Vignettes</a>
+        </nav>
+    </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

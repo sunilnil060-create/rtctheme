@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theme Culture / Identity — Highland Heritages of Bhutan</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* ── THEME PAGE SHARED STYLES ── */
+        .theme-hero {
+            position: relative;
+            width: 100%;
+            height: 70vh;
+            min-height: 480px;
+            overflow: hidden;
+            background: #0a0a0a;
+        }
+
+        .theme-hero-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.55;
+            transform: scale(1.04);
+            animation: heroZoom 10s ease-in-out forwards;
+        }
+
+        @keyframes heroZoom {
+            from { transform: scale(1.04); }
+            to   { transform: scale(1);    }
+        }
+
+        .theme-hero-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 8%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.55) 100%);
+        }
+
+        .theme-hero-tag {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 6px;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 20px;
+        }
+
+        .theme-hero-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4.5rem;
+            font-weight: 600;
+            color: #ffffff;
+            line-height: 1;
+            margin: 0 0 24px 0;
+            letter-spacing: 1px;
+            text-shadow: 0 4px 30px rgba(0,0,0,0.8);
+        }
+
+        .theme-hero-sub {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.65);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 300;
+        }
+
+        /* ── BACK BUTTON ── */
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: #000000;
+            padding: 28px 6%;
+            transition: opacity 0.3s ease;
+        }
+
+        .back-btn:hover { opacity: 0.5; }
+
+        .back-circle {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: 1px solid #000000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            transition: background 0.3s ease, color 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .back-btn:hover .back-circle {
+            background: #000000;
+            color: #ffffff;
+        }
+
+        .back-text {
+            font-size: 0.58rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* ── INTRO BLOCK ── */
+        .theme-intro {
+            max-width: 820px;
+            margin: 0 auto;
+            padding: 0 6% 60px 6%;
+            text-align: center;
+            border-bottom: 1px solid #e8e8e8;
+        }
+
+        .theme-intro h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.6rem;
+            font-weight: 600;
+            color: #000000;
+            margin: 0 0 20px 0;
+            line-height: 1.2;
+        }
+
+        .theme-intro p {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1rem;
+            color: #555555;
+            line-height: 1.9;
+            margin: 0;
+        }
+
+        /* ── CONTENT SECTIONS ── */
+        .theme-body {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 60px 6% 100px 6%;
+        }
+
+        .theme-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            margin-bottom: 90px;
+        }
+
+        .theme-section.reverse {
+            direction: rtl;
+        }
+
+        .theme-section.reverse > * {
+            direction: ltr;
+        }
+
+        .theme-section-img {
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            object-fit: cover;
+            border-radius: 4px;
+            border: 2px solid #000000;
+        }
+
+        
+
+        .theme-section-label {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.68rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: #888888;
+            display: block;
+            margin-bottom: 14px;
+        }
+
+        .theme-section-text h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.4rem;
+            font-weight: 600;
+            color: #000000;
+            margin: 0 0 18px 0;
+            line-height: 1.15;
+        }
+
+        .theme-section-text p {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.95rem;
+            color: #444444;
+            line-height: 1.85;
+            margin: 0 0 14px 0;
+        }
+
+        /* ── QUOTE BLOCK ── */
+        .theme-quote {
+            background: #000000;
+            color: #ffffff;
+            padding: 60px 8%;
+            text-align: center;
+            margin: 0 0 90px 0;
+        }
+
+        .theme-quote blockquote {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 400;
+            font-style: italic;
+            line-height: 1.5;
+            margin: 0 0 20px 0;
+            color: #ffffff;
+        }
+
+        .theme-quote cite {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: rgba(255,255,255,0.5);
+            font-style: normal;
+        }
+
+        /* ── FULL WIDTH IMAGE ── */
+        .theme-fullimg {
+            width: 100%;
+            max-height: 480px;
+            object-fit: cover;
+            display: block;
+            margin-bottom: 90px;
+            border-top: 2px solid #000;
+            border-bottom: 2px solid #000;
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 768px) {
+            .theme-hero-title { font-size: 2.8rem; }
+            .theme-section { grid-template-columns: 1fr; gap: 28px; }
+            .theme-section.reverse { direction: ltr; }
+            .theme-quote blockquote { font-size: 1.4rem; }
+        }
+        .breadcrumb {
+    position: sticky;
+    top: 57px; /* adjust to match your header height */
+    z-index: 900;
+    background: #fff;
+    border-bottom: 1px solid #ececec;
+    padding: 10px 8%;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.breadcrumb a {
+    color: #888;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+.breadcrumb a:hover { color: #000; }
+.bc-sep { color: #ccc; font-size: 0.8rem; }
+.bc-current { color: #000; }
+    </style>
+</head>
+<body>
+
+<!-- ── HEADER (same as index) ── -->
+<header>
+    <div class="nav-container">
+        <a href="index.html" class="logo">RTC Heritage Portal</a>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+        <nav id="main-nav">
+            <ul class="nav-list">
+                <li class="has-dropdown mega-parent">
+                    <a href="#">Location, Theme & More <span class="arrow">▾</span></a>
+                    <div class="mega-dropdown">
+                        <div class="mega-col">
+                            <p class="mega-heading">Location</p>
+                            <a href="haa-resourea.html">Haa Resources</a>
+                            <a href="#">Sephu Resources</a>
+                            <a href="#">Thimphu Resources</a>
+                        </div>
+                        <div class="mega-divider"></div>
+                        <div class="mega-col">
+    <p class="mega-heading">Theme</p>
+    <a href="index.html#features">Theme Environment</a>
+    <a href="index.html#features">Theme Culture / Identity</a>
+    <a href="index.html#features">Theme Cosmology</a>
+</div>
+                        <div class="mega-divider"></div>
+                        <div class="mega-col">
+                            <p class="mega-heading">More</p>
+                            <a href="resources.html">Additional Resources</a>
+                            <a href="#">Interactive Map</a>
+                            <a href="#">Announcement</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="search-item">
+                    <div class="search-wrapper" id="search-wrapper">
+                        <button class="search-icon-btn" id="search-btn" aria-label="Search">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="11" cy="11" r="8"/>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                            </svg>
+                        </button>
+                        <input type="text" class="search-input" id="search-input" placeholder="Search...">
+                    </div>
+                </li>
+                <li class="has-dropdown">
+                    <a href="#">About <span class="arrow">▾</span></a>
+                    <ul class="dropdown">
+                        <li><a href="vmo.html">Vision</a></li>
+                        <li><a href="vmo.html">Mission</a></li>
+                        <li><a href="vmo.html">Objective</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<!-- ── HERO ── -->
+<section class="theme-hero">
+    <img src="image/culture.jpg" alt="Theme Culture" class="theme-hero-img">
+    <div class="theme-hero-overlay">
+        <span class="theme-hero-tag">Highland Heritages of Bhutan</span>
+        <h1 class="theme-hero-title">Culture &amp; Identity</h1>
+        <p class="theme-hero-sub">Who We Are · Where We Come From · How We Live</p>
+    </div>
+</section>
+
+<nav class="breadcrumb">
+    <a href="index.html">Home</a>
+    <span class="bc-sep">›</span>
+    <a href="index.html#features">Theme</a>
+    <span class="bc-sep">›</span>
+    <span class="bc-current">Theme Culture</span>
+</nav>
+
+
+<!-- ── INTRO ── -->
+<div class="theme-intro">
+    <h2>Identity Woven Into Every Thread, Ritual and Song</h2>
+    <p>In the highlands of Bhutan, culture is not a museum exhibit — it is a living, breathing practice embedded in the way people dress, speak, celebrate, grieve, and raise their children. This theme explores how highland communities construct and maintain their identity across generations, how tradition adapts under pressure, and what it means to belong to a place so remote it has its own sky.</p>
+</div>
+
+<!-- ── BODY ── -->
+<div class="theme-body">
+
+    <!-- Section 1 -->
+    <div class="theme-section">
+        <img src="image/culture.jpg" alt="Dress and Identity" class="theme-section-img">
+        <div class="theme-section-text">
+            <span class="theme-section-label">Dress & Material Culture</span>
+            <h3>The Kira and the Gho — Wearing Identity</h3>
+            <p>In Bhutan, national dress is not merely ceremonial — it is constitutionally mandated in public spaces and deeply personal in private life. The <em>kira</em> worn by women and the <em>gho</em> worn by men are woven with regional and clan identities that a trained eye can read like a language.</p>
+            <p>Highland communities like the Layap and Brokpa wear distinctive variations — the Layap women's conical bamboo hats and short jackets signal a cultural boundary that no map fully captures. These garments are made, worn, repaired and passed down as heirlooms of belonging.</p>
+        </div>
+    </div>
+
+    <!-- Section 2 -->
+    <div class="theme-section reverse">
+        <img src="image/ritual.jpeg" alt="Ritual and Ceremony" class="theme-section-img">
+        <div class="theme-section-text">
+            <span class="theme-section-label">Ritual & Ceremony</span>
+            <h3>The Sacred Calendar — Time as Cultural Practice</h3>
+            <p>Highland Bhutanese communities organise their year around a sacred calendar of festivals, agricultural milestones, and protective rituals. The <em>Tsechu</em> — held annually at dzongs and monasteries — is not simply entertainment but a communal act of spiritual renewal.</p>
+            <p>Cham dancers in elaborate masks embody deities and demons, enacting cosmic stories that reinforce moral order. Attending these festivals is an assertion of identity: to be present is to belong. Absence, in some communities, carries social consequence.</p>
+        </div>
+    </div>
+
+    <!-- Quote -->
+    <div class="theme-quote">
+        <blockquote>"We do not perform our culture for others. We perform it for ourselves — to remember who we are when everything around us is changing."</blockquote>
+        <cite>— Elder, Laya Village, 2023</cite>
+    </div>
+
+    <!-- Full width image -->
+    <img src="image/Bhutan-Ceremonial-procession-getting-ready.jpg" alt="Ceremonial Procession" class="theme-fullimg">
+
+    <!-- Section 3 -->
+    <div class="theme-section">
+        <img src="image/namads.jpeg" alt="Language and Oral Tradition" class="theme-section-img">
+        <div class="theme-section-text">
+            <span class="theme-section-label">Language & Oral Tradition</span>
+            <h3>Voices Carrying Centuries — Oral Heritage Under Threat</h3>
+            <p>Many highland communities speak languages and dialects with no written form — Layakha, Brokkat, and Khengkha are among the most endangered. These languages carry within them ecological knowledge, relational ethics, and cosmological frameworks that cannot be translated without loss.</p>
+            <p>Oral storytelling traditions — sung histories, riddles, proverbs, and lullabies — are the primary archive of highland identity. When the last fluent speaker of a dialect passes, an entire way of understanding the world disappears with them. This project is committed to recording, preserving and transmitting these voices.</p>
+        </div>
+    </div>
+
+    <!-- Section 4 -->
+    <div class="theme-section reverse">
+        <img src="image/education.webp" alt="Youth and Identity" class="theme-section-img">
+        <div class="theme-section-text">
+            <span class="theme-section-label">Youth & Continuity</span>
+            <h3>Between Two Worlds — Young People Navigating Tradition</h3>
+            <p>Highland youth today stand at a crossroads. Smartphones, formal schooling, migration to urban centres, and exposure to global media are reshaping the ways young people understand themselves and their communities.</p>
+            <p>Yet many students from Royal Thimphu College who participated in this project returned from fieldwork changed — not by what they found strange, but by what they found familiar. The highlands, for many, represent a memory of identity that urbanisation had begun to blur. Culture, it turns out, is also a direction — not just a past.</p>
+        </div>
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
