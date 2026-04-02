@@ -95,30 +95,37 @@ window.onload = function () {
         });
     }
 
-    /* ── MOBILE DROPDOWNS ── */
-    document.querySelectorAll('.has-dropdown').forEach(function (item) {
-        item.addEventListener('click', function (e) {
-            if (window.innerWidth <= 900) {
-                var mega     = item.querySelector('.mega-dropdown');
-                var simple   = item.querySelector('.dropdown');
-                var dropdown = mega || simple;
-                var arrow    = item.querySelector('.arrow');
-                if (!dropdown) return;
-
-                var isOpen = dropdown.classList.contains('mobile-open');
-                document.querySelectorAll('.mega-dropdown.mobile-open, .dropdown.mobile-open')
-                    .forEach(function (d) { d.classList.remove('mobile-open'); });
-                document.querySelectorAll('.arrow')
-                    .forEach(function (a) { a.style.transform = ''; });
-
-                if (!isOpen) {
-                    dropdown.classList.add('mobile-open');
-                    if (arrow) arrow.style.transform = 'rotate(180deg)';
-                }
-                e.preventDefault();
+  document.querySelectorAll('.has-dropdown').forEach(function (item) {
+    item.addEventListener('click', function (e) {
+        if (window.innerWidth <= 900) {
+            // If the click came from a real <a> link (not the toggle row itself), let it navigate
+            var clickedLink = e.target.closest('a');
+            var toggleLink  = item.querySelector(':scope > a');
+            if (clickedLink && clickedLink !== toggleLink) {
+                // It's a child nav link — allow normal navigation
+                return;
             }
-        });
+
+            var mega     = item.querySelector('.mega-dropdown');
+            var simple   = item.querySelector('.dropdown');
+            var dropdown = mega || simple;
+            var arrow    = item.querySelector('.arrow');
+            if (!dropdown) return;
+
+            var isOpen = dropdown.classList.contains('mobile-open');
+            document.querySelectorAll('.mega-dropdown.mobile-open, .dropdown.mobile-open')
+                .forEach(function (d) { d.classList.remove('mobile-open'); });
+            document.querySelectorAll('.arrow')
+                .forEach(function (a) { a.style.transform = ''; });
+
+            if (!isOpen) {
+                dropdown.classList.add('mobile-open');
+                if (arrow) arrow.style.transform = 'rotate(180deg)';
+            }
+            e.preventDefault(); // only blocks the parent toggle, not child links
+        }
     });
+});
 
     /* ── CLOSE NAV ON OUTSIDE CLICK ── */
     document.addEventListener('click', function (e) {
