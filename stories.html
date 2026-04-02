@@ -150,6 +150,29 @@
   .hs3-card.hs3-flip .hs3-text-line,.hs3-card.hs3-flip .hs3-text-link{align-self:flex-start}
   .hs3-img-row,.hs3-card.hs3-flip .hs3-img-row{justify-content:center}
 }
+.breadcrumb {
+    position: sticky;
+    top: 57px; /* adjust to match your header height */
+    z-index: 900;
+    background: #fff;
+    border-bottom: 1px solid #ececec;
+    padding: 10px 8%;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.breadcrumb a {
+    color: #888;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+.breadcrumb a:hover { color: #000; }
+.bc-sep { color: #ccc; font-size: 0.8rem; }
+.bc-current { color: #000; }
 </style>
 </head>
 <body>
@@ -221,6 +244,13 @@
         </nav>
     </div>
 </header>
+ <nav class="breadcrumb" id="bc-films">
+        <a href="index.html">Home</a>
+        <span class="bc-sep">›</span>
+        <a href="index.html#stories-teaser">stories-teaser</a>
+        <span class="bc-sep">›</span>
+        <span class="bc-current">Story Telling</span>
+    </nav>
 
 <section class="hs3" id="hs3Story">
 
