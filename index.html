@@ -446,6 +446,180 @@
     </div>
 
 </section>
+    <style>
+/* ══ STORIES TEASER (homepage only) ══ */
+.stories-teaser{
+  position:relative;
+  width:100%;
+  min-height:520px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  font-family:'Outfit','DM Sans',sans-serif;
+}
+
+/* Background photo */
+.stories-teaser-bg{
+  position:absolute;inset:0;
+  background-image:url('image/Bhutan_mountains.jpg');
+  background-size:cover;
+  background-position:center;
+  background-attachment:fixed;
+  z-index:0;
+}
+/* Dark gradient overlay so text pops */
+.stories-teaser-bg::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(
+    135deg,
+    rgba(7,8,10,0.78) 0%,
+    rgba(7,8,10,0.52) 50%,
+    rgba(7,8,10,0.72) 100%
+  );
+  z-index:1;
+}
+
+/* Content layer */
+.stories-teaser-inner{
+  position:relative;z-index:3;
+  text-align:center;
+  padding:5rem 2rem;
+  max-width:640px;
+}
+
+/* Floating tag pill */
+.stories-teaser-tag{
+  display:inline-block;
+  font-size:0.56rem;letter-spacing:.32em;text-transform:uppercase;
+  color:#c9a86c;
+  border:1px solid rgba(201,168,108,0.5);
+  background:rgba(0,0,0,0.35);
+  padding:.3rem 1.1rem;border-radius:100px;
+  margin-bottom:1.4rem;
+  animation:stFloat1 5s ease-in-out infinite;
+  will-change:transform;
+}
+
+/* Main heading */
+.stories-teaser-inner h2{
+  font-family:'Bebas Neue','Georgia',serif;
+  font-size:clamp(2.6rem,6vw,4.2rem);
+  font-weight:400;color:#f0e8d6;
+  letter-spacing:.08em;line-height:1.05;
+  margin-bottom:1rem;
+  text-shadow:0 6px 24px rgba(0,0,0,0.6);
+  animation:stFloat2 6.5s ease-in-out infinite;
+  will-change:transform;
+}
+
+/* Subtext */
+.stories-teaser-inner p{
+  font-size:.88rem;
+  color:rgba(232,224,208,0.85);
+  line-height:1.95;max-width:400px;margin:0 auto 2.2rem;
+  animation:stFloat3 7.5s ease-in-out infinite;
+  will-change:transform;
+}
+
+/* CTA button */
+.stories-teaser-btn{
+  display:inline-flex;align-items:center;gap:.55rem;
+  font-family:'Outfit',sans-serif;
+  font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;
+  color:#07080a;
+  background:#c9a86c;
+  border:none;
+  padding:.85rem 2.2rem;
+  border-radius:2px;
+  text-decoration:none;
+  cursor:pointer;
+  transition:background .3s, transform .3s, box-shadow .3s;
+  box-shadow:0 4px 24px rgba(201,168,108,0.3);
+  font-weight:600;
+}
+.stories-teaser-btn:hover{
+  background:#f0d898;
+  transform:translateY(-3px);
+  box-shadow:0 8px 32px rgba(201,168,108,0.45);
+}
+/* Arrow icon inside button */
+.stories-teaser-btn svg{
+  transition:transform .3s;
+}
+.stories-teaser-btn:hover svg{
+  transform:translateX(4px);
+}
+
+/* Floating animations — same spirit as the full section */
+@keyframes stFloat1{
+  0%,100%{transform:translate(0,0)}
+  25%{transform:translate(5px,-12px)}
+  60%{transform:translate(9px,-5px)}
+  80%{transform:translate(2px,-16px)}
+}
+@keyframes stFloat2{
+  0%,100%{transform:translate(0,0) rotate(0)}
+  20%{transform:translate(-7px,-18px) rotate(-.25deg)}
+  55%{transform:translate(-12px,-8px) rotate(-.45deg)}
+  78%{transform:translate(-4px,-22px) rotate(-.18deg)}
+}
+@keyframes stFloat3{
+  0%,100%{transform:translate(0,0)}
+  35%{transform:translate(8px,-14px)}
+  65%{transform:translate(3px,-20px)}
+}
+
+/* Small chapter count decorations */
+.stories-teaser-meta{
+  display:flex;align-items:center;justify-content:center;gap:1.6rem;
+  margin-bottom:2rem;
+  flex-wrap:wrap;
+}
+.stories-teaser-meta-item{
+  display:flex;align-items:center;gap:.5rem;
+  font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;
+  color:rgba(232,224,208,0.5);
+}
+.stories-teaser-meta-dot{
+  width:3px;height:3px;border-radius:50%;
+  background:rgba(201,168,108,0.5);
+}
+
+@media(max-width:540px){
+  .stories-teaser-inner h2{font-size:2.4rem}
+  .stories-teaser{min-height:440px}
+}
+</style>
+
+<section class="stories-teaser" id="stories-teaser">
+  <div class="stories-teaser-bg"></div>
+
+  <div class="stories-teaser-inner">
+    <span class="stories-teaser-tag">✦ A Living Archive · Royal Thimphu College</span>
+
+    <h2>Stories from<br>the Highlands</h2>
+
+    <div class="stories-teaser-meta">
+      <span class="stories-teaser-meta-item">Five Chapters</span>
+      <span class="stories-teaser-meta-dot"></span>
+      <span class="stories-teaser-meta-item">Film · Essay · Vignette</span>
+      <span class="stories-teaser-meta-dot"></span>
+      <span class="stories-teaser-meta-item">Highland Bhutan</span>
+    </div>
+
+    <p>Highland Bhutan's living memory — carried through song, ritual, and the wisdom of the land. Five voices, five chapters, one unbroken thread.</p>
+
+    <a href="stories.html" class="stories-teaser-btn">
+      Begin the Stories
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="5" y1="12" x2="19" y2="12"/>
+        <polyline points="12 5 19 12 12 19"/>
+      </svg>
+    </a>
+  </div>
+</section>
+
 <footer class="site-footer">
     <div class="footer-main">
 
