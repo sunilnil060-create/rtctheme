@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Highland Heritages of Bhutan</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Raleway:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- PASTE THIS to replace your current <style>...</style> block in index.html -->
 <style>
     /* ═══════════════════════════════════════
@@ -206,7 +205,7 @@
 
 <script>
 (function () {
-    var SPLASH_DURATION = 4000; // ms the splash stays visible
+    var SPLASH_DURATION = 3000; // ms the splash stays visible
     var splash = document.getElementById('rtc-splash');
 
     // If we've already shown the splash this browser session, hide immediately
@@ -356,11 +355,11 @@
     <span class="media-gallery-tag">Our Collections</span>
     <h2 class="media-gallery-title">Explore the Archive</h2>
     <p class="media-gallery-desc">Three distinct formats — each a different way of seeing highland Bhutan. From cinematic documentaries to intimate photo essays and on-the-ground ethnographic vignettes, every piece is rooted in community and place.</p>
-    <div class="media-gallery-pills">
-        <a href="films.html" class="mgp">Films</a>
-        <a href="photoessay.html" class="mgp">Photo Essays</a>
-        <a href="vignettes.html" class="mgp">Vignettes</a>
-    </div>
+    <div style="display:flex; flex-direction:row; gap:20px; justify-content:center; align-items:center; flex-wrap:nowrap;">
+    <a href="films.html" style="display:inline-block; padding:7px 18px; border:1px solid #bbb; border-radius:999px; font-size:0.72rem; font-weight:700; text-transform:uppercase; letter-spacing:1.2px; color:#333; text-decoration:none; white-space:nowrap;">Films</a>
+    <a href="photoessay.html" style="display:inline-block; padding:7px 18px; border:1px solid #bbb; border-radius:999px; font-size:0.72rem; font-weight:700; text-transform:uppercase; letter-spacing:1.2px; color:#333; text-decoration:none; white-space:nowrap;">Photo Essays</a>
+    <a href="vignettes.html" style="display:inline-block; padding:7px 18px; border:1px solid #bbb; border-radius:999px; font-size:0.72rem; font-weight:700; text-transform:uppercase; letter-spacing:1.2px; color:#333; text-decoration:none; white-space:nowrap;">Vignettes</a>
+</div>
 </div>
 
 <!-- ── MEDIA GALLERY — pointer-events:none on video stops scroll capture ── -->
@@ -446,7 +445,13 @@
     </div>
 
 </section>
-    <style>
+<!-- ════════════════════════════════════════════
+     PASTE THIS INTO index.html
+     — replaces the big <section class="hs3"> block —
+     — place it just above <footer class="site-footer"> —
+════════════════════════════════════════════ -->
+
+<style>
 /* ══ STORIES TEASER (homepage only) ══ */
 .stories-teaser{
   position:relative;
@@ -620,6 +625,7 @@
   </div>
 </section>
 
+<!-- END STORIES TEASER — footer follows below -->
 <footer class="site-footer">
     <div class="footer-main">
 
@@ -657,6 +663,8 @@
             <a href="vignettes.html">Vignettes</a>
         </nav>
     </div>
+
+
 </footer>
 
 <script src="script.js"></script>
