@@ -5,9 +5,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Highland Heritages of Bhutan</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Raleway:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- PASTE THIS to replace your current <style>...</style> block in index.html -->
 <style>
+    /* ═══════════════════════════════════════
+   CONSISTENT SECTION SPACING
+   ═══════════════════════════════════════ */
+
+:root {
+    --section-padding-y: 100px;
+    --section-padding-x: 6%;
+}
+
+section,
+.media-gallery-header,
+.site-footer .footer-main {
+    padding-top: var(--section-padding-y);
+    padding-bottom: var(--section-padding-y);
+    padding-left: var(--section-padding-x);
+    padding-right: var(--section-padding-x);
+}
+
+/* Exceptions — sections that must stay full-bleed or have their own rules */
+.slider-section,
+.slider-section .slider-container {
+    padding: 0 !important;
+}
+
+@media (max-width: 900px) {
+    :root {
+        --section-padding-y: 64px;
+        --section-padding-x: 5%;
+    }
+}
+
+@media (max-width: 768px) {
+    :root {
+        --section-padding-y: 48px;
+        --section-padding-x: 5%;
+    }
+}
     /* ═══════════════════════════════════════
        RTC SPLASH SCREEN
        ═══════════════════════════════════════ */
@@ -105,7 +142,7 @@
         display: inline-block;
         font-size: 0.58rem;
         letter-spacing: 0.22em;
-        text-transform: uppercase;
+        /* text-transform: uppercase; */
         /* Text color set to white */
         color: #ffffff;
         /* Background and border to subtle white */
@@ -118,7 +155,7 @@
     }
 
     .splash-name {
-        font-family: 'Poppins', sans-serif;
+        font-family: 'Raleway', sans-serif;
         font-size: 1.05rem;
         font-weight: 600;
         /* Text color set to white */
@@ -129,7 +166,7 @@
     }
 
     .splash-desc {
-        font-family: 'Poppins', sans-serif;
+        font-family: 'Raleway', sans-serif;
         font-size: 0.73rem;
         font-weight: 300;
         /* Text color set to translucent white */
@@ -308,13 +345,16 @@
     </div>
 </li>
                 <li class="has-dropdown">
-                    <a href="vmo.html">About <span class="arrow">▾</span></a>
-                    <ul class="dropdown">
-                        <li><a href="vmo.html">Vision</a></li>
-                        <li><a href="vmo.html">Mission</a></li>
-                        <li><a href="vmo.html">Objective</a></li>
-                    </ul>
-                </li>
+    <a href="vmo.html">About <span class="arrow">▾</span></a>
+    <ul class="dropdown">
+        <li><a href="vmo.html">Vision</a></li>
+        <li><a href="vmo.html">Mission</a></li>
+        <li><a href="vmo.html">Objective</a></li>
+    </ul>
+</li>
+<li>
+    <a href="lesson-plan.html">Lesson Plans</a>
+</li>
             </ul>
         </nav>
     </div>
@@ -352,13 +392,12 @@
 <!-- ── MEDIA GALLERY — pointer-events:none on video stops scroll capture ── -->
 <!-- ── MEDIA GALLERY HEADER ── -->
 <div class="media-gallery-header">
-    <span class="media-gallery-tag">Our Collections</span>
     <h2 class="media-gallery-title">Explore the Archive</h2>
     <p class="media-gallery-desc">Three distinct formats — each a different way of seeing highland Bhutan. From cinematic documentaries to intimate photo essays and on-the-ground ethnographic vignettes, every piece is rooted in community and place.</p>
-    <div style="display:flex; flex-direction:row; gap:20px; justify-content:center; align-items:center; flex-wrap:nowrap;">
-    <a href="films.html" style="display:inline-block; padding:7px 18px; border:1px solid #bbb; border-radius:999px; font-size:0.72rem; font-weight:700; text-transform:uppercase; letter-spacing:1.2px; color:#333; text-decoration:none; white-space:nowrap;">Films</a>
-    <a href="photoessay.html" style="display:inline-block; padding:7px 18px; border:1px solid #bbb; border-radius:999px; font-size:0.72rem; font-weight:700; text-transform:uppercase; letter-spacing:1.2px; color:#333; text-decoration:none; white-space:nowrap;">Photo Essays</a>
-    <a href="vignettes.html" style="display:inline-block; padding:7px 18px; border:1px solid #bbb; border-radius:999px; font-size:0.72rem; font-weight:700; text-transform:uppercase; letter-spacing:1.2px; color:#333; text-decoration:none; white-space:nowrap;">Vignettes</a>
+    <div class="media-gallery-pills">
+    <a href="films.html" class="mgp">Films</a>
+    <a href="photoessay.html" class="mgp">Photo Essays</a>
+    <a href="vignettes.html" class="mgp">Vignettes</a>
 </div>
 </div>
 
@@ -452,6 +491,43 @@
 ════════════════════════════════════════════ -->
 
 <style>
+    /* ═══════════════════════════════════════
+   CONSISTENT SECTION SPACING
+   ═══════════════════════════════════════ */
+
+:root {
+    --section-padding-y: 100px;
+    --section-padding-x: 6%;
+}
+
+section,
+.media-gallery-header,
+.site-footer .footer-main {
+    padding-top: var(--section-padding-y);
+    padding-bottom: var(--section-padding-y);
+    padding-left: var(--section-padding-x);
+    padding-right: var(--section-padding-x);
+}
+
+/* Exceptions — sections that must stay full-bleed or have their own rules */
+.slider-section,
+.slider-section .slider-container {
+    padding: 0 !important;
+}
+
+@media (max-width: 900px) {
+    :root {
+        --section-padding-y: 64px;
+        --section-padding-x: 5%;
+    }
+}
+
+@media (max-width: 768px) {
+    :root {
+        --section-padding-y: 48px;
+        --section-padding-x: 5%;
+    }
+}
 /* ══ STORIES TEASER (homepage only) ══ */
 .stories-teaser{
   position:relative;
@@ -461,7 +537,7 @@
   align-items:center;
   justify-content:center;
   overflow:hidden;
-  font-family:'Outfit','DM Sans',sans-serif;
+  font-family: 'Raleway', sans-serif;
 }
 
 /* Background photo */
@@ -508,7 +584,7 @@
 
 /* Main heading */
 .stories-teaser-inner h2{
-  font-family:'Bebas Neue','Georgia',serif;
+  font-family: 'Raleway', sans-serif;
   font-size:clamp(2.6rem,6vw,4.2rem);
   font-weight:400;color:#f0e8d6;
   letter-spacing:.08em;line-height:1.05;
@@ -530,7 +606,7 @@
 /* CTA button */
 .stories-teaser-btn{
   display:inline-flex;align-items:center;gap:.55rem;
-  font-family:'Outfit',sans-serif;
+  font-family: 'Raleway', sans-serif;
   font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;
   color:#07080a;
   background:#c9a86c;
