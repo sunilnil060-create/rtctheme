@@ -95,7 +95,7 @@ window.onload = function () {
         });
     }
 
-  document.querySelectorAll('.has-dropdown').forEach(function (item) {
+   document.querySelectorAll('.has-dropdown').forEach(function (item) {
     item.addEventListener('click', function (e) {
         if (window.innerWidth <= 900) {
             // If the click came from a real <a> link (not the toggle row itself), let it navigate
