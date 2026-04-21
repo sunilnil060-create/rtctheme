@@ -638,7 +638,7 @@ mark.search-highlight {
 
 /* Slide images */
 .slide:nth-child(1) { 
-    background-image: url('image/gasa-dzong-lo-res.avif'); 
+    background-image: url('image/people-walking-mountain-road-alps-austria-people-walking-mountain-road-cable-car-station-goldeck-alps-103790769.webp'); 
 }
 
 .slide:nth-child(2) { 
@@ -646,11 +646,11 @@ mark.search-highlight {
 }
 
 .slide:nth-child(3) { 
-    background-image: url('image/img.jpeg'); 
+    background-image: url('image/gasa-dzong-lo-res.avif'); 
 }
 
 .slide:nth-child(4) { 
-    background-image: url('image/Dagala-Thousand-Lakes-Trekking-Tour.jpg'); 
+    background-image: url('image/mountain-view-pictures-d9hmsfhux2ybe1i6.jpg'); 
 }
 
 .slider-overlay-text {
