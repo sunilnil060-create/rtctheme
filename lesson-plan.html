@@ -4,20 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lesson Plans — Highland Heritages of Bhutan</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&display=swap" rel="stylesheet">
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; }
-        body { font-family: 'DM Sans', sans-serif; background: #fff; color: #000; }
+        body { font-family: 'Raleway', sans-serif; background: #fff; color: #000; }
         a { text-decoration: none; color: inherit; }
 
         /* HEADER */
         header { position: sticky; top: 0; z-index: 1000; background: #fff; padding: 18px 8%; border-bottom: 1px solid #e8e8e8; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
         .nav-container { display: flex; justify-content: space-between; align-items: center; position: relative; }
-        .logo { font-size: 1.4rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; flex-shrink: 0; }
+        .logo { font-family: 'Raleway', sans-serif; font-size: 1.4rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; flex-shrink: 0; }
         .nav-list { list-style: none; display: flex; align-items: center; gap: 28px; margin: 0; padding: 0; }
         .nav-list > li { position: relative; }
-        .nav-list > li > a { font-weight: 600; font-size: 0.82rem; text-transform: uppercase; letter-spacing: 1.2px; transition: opacity 0.3s; display: flex; align-items: center; gap: 5px; white-space: nowrap; }
+        .nav-list > li > a { font-family: 'Raleway', sans-serif; font-weight: 600; font-size: 0.82rem; text-transform: uppercase; letter-spacing: 1.2px; transition: opacity 0.3s; display: flex; align-items: center; gap: 5px; white-space: nowrap; }
         .nav-list > li > a:hover { opacity: 0.45; }
         .arrow { font-size: 0.68rem; transition: transform 0.3s; display: inline-block; }
         .has-dropdown:hover .arrow { transform: rotate(180deg); }
@@ -25,7 +25,7 @@
         .dropdown::before { content: ''; position: absolute; top: -7px; left: 50%; transform: translateX(-50%); border-left: 7px solid transparent; border-right: 7px solid transparent; border-bottom: 7px solid #e0e0e0; }
         .dropdown::after  { content: ''; position: absolute; top: -5px; left: 50%; transform: translateX(-50%); border-left: 6px solid transparent; border-right: 6px solid transparent; border-bottom: 6px solid #fff; }
         .has-dropdown:hover .dropdown { display: flex; }
-        .dropdown li a { display: block; padding: 8px 16px; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; border-radius: 8px; transition: background 0.2s; white-space: nowrap; }
+        .dropdown li a { font-family: 'Raleway', sans-serif; display: block; padding: 8px 16px; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; border-radius: 8px; transition: background 0.2s; white-space: nowrap; }
         .dropdown li a:hover { background: #f4f4f4; }
         .mega-dropdown { display: none; position: absolute; top: calc(100% + 14px); left: 0; background: #fff; border: 1.5px solid #e0e0e0; border-radius: 16px; box-shadow: 0 12px 40px rgba(0,0,0,0.13); padding: 24px 20px; flex-direction: row; gap: 0; z-index: 2000; min-width: 520px; }
         .mega-dropdown::before { content: ''; position: absolute; top: -7px; left: 36px; border-left: 7px solid transparent; border-right: 7px solid transparent; border-bottom: 7px solid #e0e0e0; }
@@ -34,15 +34,15 @@
         .mega-col { display: flex; flex-direction: column; gap: 2px; flex: 1; padding: 0 16px; }
         .mega-col:first-child { padding-left: 4px; }
         .mega-col:last-child  { padding-right: 4px; }
-        .mega-heading { font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; color: #888; margin: 0 0 10px 8px; }
-        .mega-col a { display: block; padding: 8px 12px; font-size: 0.82rem; font-weight: 600; border-radius: 8px; transition: background 0.2s; white-space: nowrap; }
+        .mega-heading { font-family: 'Raleway', sans-serif; font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; color: #888; margin: 0 0 10px 8px; }
+        .mega-col a { font-family: 'Raleway', sans-serif; display: block; padding: 8px 12px; font-size: 0.82rem; font-weight: 600; border-radius: 8px; transition: background 0.2s; white-space: nowrap; }
         .mega-col a:hover { background: #f4f4f4; }
         .mega-divider { width: 1px; background: #eee; margin: 0 4px; align-self: stretch; }
         .search-item { list-style: none; }
         .search-wrapper { display: flex; align-items: center; background: #f4f4f4; border-radius: 999px; padding: 6px 10px; transition: width 0.35s, background 0.2s; overflow: hidden; width: 36px; }
         .search-wrapper.expanded { width: 200px; background: #f0f0f0; }
         .search-icon-btn { background: none; border: none; cursor: pointer; padding: 0; display: flex; align-items: center; flex-shrink: 0; }
-        .search-input { border: none; background: transparent; outline: none; font-size: 0.82rem; width: 0; padding: 0; transition: width 0.35s, padding 0.35s; font-family: inherit; }
+        .search-input { font-family: 'Raleway', sans-serif; border: none; background: transparent; outline: none; font-size: 0.82rem; width: 0; padding: 0; transition: width 0.35s, padding 0.35s; }
         .search-wrapper.expanded .search-input { width: 140px; padding: 0 0 0 8px; }
         .hamburger { display: none; flex-direction: column; justify-content: center; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; z-index: 1100; }
         .hamburger span { display: block; width: 24px; height: 2px; background: #000; border-radius: 2px; transition: all 0.3s; }
@@ -51,7 +51,7 @@
         .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
         /* BREADCRUMB */
-        .breadcrumb { position: sticky; top: 57px; z-index: 900; background: #fff; border-bottom: 1px solid #ececec; padding: 10px 8%; display: flex; align-items: center; gap: 8px; font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+        .breadcrumb { position: sticky; top: 57px; z-index: 900; background: #fff; border-bottom: 1px solid #ececec; padding: 10px 8%; display: flex; align-items: center; gap: 8px; font-family: 'Raleway', sans-serif; font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
         .breadcrumb a { color: #888; text-decoration: none; transition: color 0.2s; }
         .breadcrumb a:hover { color: #000; }
         .bc-sep { color: #ccc; font-size: 0.8rem; }
@@ -59,16 +59,16 @@
 
         /* INTRO */
         .inner-intro { max-width: 760px; margin: 0 auto; padding: 40px 6% 48px; text-align: center; }
-        .inner-intro h2 { font-family: 'Cormorant Garamond', serif; font-size: 2.4rem; font-weight: 600; line-height: 1.2; margin-bottom: 16px; }
-        .inner-intro p { font-size: 0.95rem; color: #555; line-height: 1.9; }
+        .inner-intro h2 { font-family: 'Raleway', sans-serif; font-size: 2.4rem; font-weight: 600; line-height: 1.2; margin-bottom: 16px; }
+        .inner-intro p { font-family: 'Raleway', sans-serif; font-size: 0.95rem; color: #555; line-height: 1.9; }
 
         /* FILTER */
         .filter-bar { padding: 0 6% 32px; }
         .filter-dropdown-wrap { position: relative; display: inline-block; }
-        .filter-trigger { background: none; border: 1px solid #000; padding: 8px 20px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; font-family: 'DM Sans', sans-serif; display: flex; align-items: center; gap: 8px; }
+        .filter-trigger { font-family: 'Raleway', sans-serif; background: none; border: 1px solid #000; padding: 8px 20px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; display: flex; align-items: center; gap: 8px; }
         .filter-menu { display: none; position: absolute; top: 100%; left: 0; background: #fff; border: 1px solid #e8e8e8; border-top: 2px solid #000; min-width: 200px; z-index: 100; }
         .filter-dropdown-wrap:hover .filter-menu { display: block; }
-        .filter-option { display: block; padding: 11px 18px; font-size: 0.8rem; transition: background 0.2s; cursor: pointer; text-decoration: none; color: #000; }
+        .filter-option { font-family: 'Raleway', sans-serif; display: block; padding: 11px 18px; font-size: 0.8rem; transition: background 0.2s; cursor: pointer; text-decoration: none; color: #000; }
         .filter-option:hover, .filter-option.active { background: #f5f5f5; font-weight: 600; }
 
         /* LESSON CARDS */
@@ -82,22 +82,22 @@
         .lesson-card-header.color-4 { background: #f0e8e8; }
         .lesson-card-header.color-5 { background: #ede8f0; }
         .lesson-card-header.color-6 { background: #f0ece8; }
-        .lesson-tag { display: inline-block; font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; padding: 4px 10px; border-radius: 999px; background: rgba(0,0,0,0.08); color: #333; margin-bottom: 12px; }
-        .lesson-card-header h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-weight: 600; line-height: 1.25; color: #111; margin-bottom: 8px; }
-        .lesson-card-header p { font-size: 0.8rem; color: #555; line-height: 1.6; }
+        .lesson-tag { font-family: 'Raleway', sans-serif; display: inline-block; font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; padding: 4px 10px; border-radius: 999px; background: rgba(0,0,0,0.08); color: #333; margin-bottom: 12px; }
+        .lesson-card-header h4 { font-family: 'Raleway', sans-serif; font-size: 1.25rem; font-weight: 600; line-height: 1.25; color: #111; margin-bottom: 8px; }
+        .lesson-card-header p { font-family: 'Raleway', sans-serif; font-size: 0.8rem; color: #555; line-height: 1.6; }
         .lesson-meta { display: flex; gap: 16px; padding: 14px 22px; border-bottom: 1px solid #f0f0f0; flex-wrap: wrap; }
-        .lesson-meta-item { display: flex; align-items: center; gap: 5px; font-size: 0.72rem; color: #777; font-weight: 500; }
+        .lesson-meta-item { font-family: 'Raleway', sans-serif; display: flex; align-items: center; gap: 5px; font-size: 0.72rem; color: #777; font-weight: 500; }
         .lesson-meta-item svg { flex-shrink: 0; }
         .lesson-pdf-preview { background: #f8f8f8; border-top: 1px solid #eee; border-bottom: 1px solid #eee; padding: 14px 22px; display: flex; align-items: center; gap: 12px; }
         .pdf-icon { width: 36px; height: 42px; background: #fff; border: 1px solid #ddd; border-radius: 4px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; position: relative; }
-        .pdf-icon::after { content: 'PDF'; font-size: 0.5rem; font-weight: 800; color: #c0392b; letter-spacing: 0.5px; }
+        .pdf-icon::after { content: 'PDF'; font-family: 'Raleway', sans-serif; font-size: 0.5rem; font-weight: 800; color: #c0392b; letter-spacing: 0.5px; }
         .pdf-icon::before { content: ''; position: absolute; top: 0; right: 0; border-left: 8px solid #f8f8f8; border-bottom: 8px solid #ddd; width: 0; height: 0; }
-        .pdf-filename { font-size: 0.75rem; color: #444; font-weight: 500; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-        .pdf-size { font-size: 0.68rem; color: #999; flex-shrink: 0; }
+        .pdf-filename { font-family: 'Raleway', sans-serif; font-size: 0.75rem; color: #444; font-weight: 500; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .pdf-size { font-family: 'Raleway', sans-serif; font-size: 0.68rem; color: #999; flex-shrink: 0; }
         .lesson-actions { padding: 14px 22px 18px; display: flex; gap: 10px; margin-top: auto; }
-        .btn-download { flex: 1; display: flex; align-items: center; justify-content: center; gap: 7px; padding: 10px 16px; background: #000; color: #fff; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; border-radius: 4px; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: background 0.2s, transform 0.15s; }
+        .btn-download { font-family: 'Raleway', sans-serif; flex: 1; display: flex; align-items: center; justify-content: center; gap: 7px; padding: 10px 16px; background: #000; color: #fff; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; border-radius: 4px; border: none; cursor: pointer; transition: background 0.2s, transform 0.15s; }
         .btn-download:hover { background: #222; transform: translateY(-1px); }
-        .btn-preview { display: flex; align-items: center; justify-content: center; gap: 7px; padding: 10px 16px; background: #fff; color: #000; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; border-radius: 4px; border: 1px solid #ddd; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: background 0.2s, border-color 0.2s; white-space: nowrap; }
+        .btn-preview { font-family: 'Raleway', sans-serif; display: flex; align-items: center; justify-content: center; gap: 7px; padding: 10px 16px; background: #fff; color: #000; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; border-radius: 4px; border: 1px solid #ddd; cursor: pointer; transition: background 0.2s, border-color 0.2s; white-space: nowrap; }
         .btn-preview:hover { background: #f5f5f5; border-color: #999; }
 
         /* PDF LIGHTBOX */
@@ -105,23 +105,23 @@
         .pdf-lightbox.open { display: flex; }
         .pdf-modal { background: #fff; border-radius: 8px; width: 100%; max-width: 860px; max-height: 90vh; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 24px 80px rgba(0,0,0,0.4); }
         .pdf-modal-header { display: flex; align-items: center; justify-content: space-between; padding: 16px 22px; border-bottom: 1px solid #eee; flex-shrink: 0; }
-        .pdf-modal-title { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 600; }
+        .pdf-modal-title { font-family: 'Raleway', sans-serif; font-size: 1.1rem; font-weight: 600; }
         .pdf-modal-actions { display: flex; align-items: center; gap: 10px; }
-        .pdf-modal-close { width: 32px; height: 32px; border-radius: 50%; border: 1px solid #ddd; background: none; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; color: #555; transition: background 0.2s; }
+        .pdf-modal-close { font-family: 'Raleway', sans-serif; width: 32px; height: 32px; border-radius: 50%; border: 1px solid #ddd; background: none; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; color: #555; transition: background 0.2s; }
         .pdf-modal-close:hover { background: #f4f4f4; }
         .pdf-modal-body { flex: 1; overflow: hidden; display: flex; flex-direction: column; background: #f0f0f0; }
         .pdf-placeholder { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; padding: 40px; text-align: center; }
-        .pdf-placeholder-icon { width: 72px; height: 84px; background: #fff; border: 2px solid #ddd; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; font-weight: 800; color: #c0392b; letter-spacing: 1px; position: relative; }
+        .pdf-placeholder-icon { width: 72px; height: 84px; background: #fff; border: 2px solid #ddd; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-family: 'Raleway', sans-serif; font-size: 1.1rem; font-weight: 800; color: #c0392b; letter-spacing: 1px; position: relative; }
         .pdf-placeholder-icon::before { content: ''; position: absolute; top: -1px; right: -1px; border-left: 16px solid #f0f0f0; border-bottom: 16px solid #ddd; }
-        .pdf-placeholder h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 600; }
-        .pdf-placeholder p { font-size: 0.85rem; color: #666; line-height: 1.7; max-width: 380px; }
+        .pdf-placeholder h3 { font-family: 'Raleway', sans-serif; font-size: 1.4rem; font-weight: 600; }
+        .pdf-placeholder p { font-family: 'Raleway', sans-serif; font-size: 0.85rem; color: #666; line-height: 1.7; max-width: 380px; }
         .pdf-placeholder .btn-download { display: inline-flex; flex: none; padding: 12px 28px; }
         .pdf-iframe { width: 100%; flex: 1; border: none; display: none; }
 
         /* NOTICE */
         .notice-bar { background: #f5f3ef; border-bottom: 1px solid #e0dbd3; padding: 14px 6%; display: flex; align-items: flex-start; gap: 12px; }
         .notice-bar svg { flex-shrink: 0; margin-top: 2px; }
-        .notice-bar p { font-size: 0.82rem; color: #555; line-height: 1.6; }
+        .notice-bar p { font-family: 'Raleway', sans-serif; font-size: 0.82rem; color: #555; line-height: 1.6; }
         .notice-bar strong { color: #222; }
 
         @media (max-width: 900px) {
@@ -180,8 +180,8 @@
                         <div class="mega-divider"></div>
                         <div class="mega-col">
                             <p class="mega-heading">More</p>
-                            <a href="#">Additional Resources</a>
-                            <a href="#">Interactive Map</a>
+                            <a href="resources.html">Additional Resources</a>
+                            <a href="interactive-map.html">Interactive Map</a>
                             <a href="#">Announcement</a>
                         </div>
                     </div>
@@ -207,13 +207,9 @@
     </div>
 </header>
 
-<!-- DYNAMIC BREADCRUMB — parent label/href set by JS below -->
 <nav class="breadcrumb">
     <a href="index.html">Home</a>
-    <span class="bc-sep">›</span>
-    <a href="index.html#media-gallery">Media Gallery</a>
-    <span class="bc-sep">›</span>
-    <a href="#" id="bc-parent">Films</a>
+    
     <span class="bc-sep">›</span>
     <span class="bc-current">Lesson Plans</span>
 </nav>
