@@ -63,19 +63,19 @@
            FEATURED SLIDER
         ══════════════════════════════ */
         .featured-section {
-    background: #f8f7f5;
-    padding: 0 6% 16px;
-    overflow: hidden;
-    height: calc(100vh - 57px - 41px); /* subtract header + breadcrumb */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
+            background: #f8f7f5;
+            padding: 0 6% 16px;
+            overflow: hidden;
+            height: calc(100vh - 57px - 41px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
         .featured-label-row {
             display: flex;
             align-items: center;
             gap: 14px;
-            padding: 12px 0 12px; /* was 32px 0 28px */
+            padding: 12px 0 12px;
         }
         .featured-label-row span {
             font-size: 0.62rem;
@@ -238,7 +238,6 @@
             border-radius: 2px;
         }
 
-        /* Slider dots */
         .slider-dots {
             display: flex;
             align-items: center;
@@ -261,11 +260,34 @@
         }
 
         /* ══════════════════════════════
+           SIDEBAR BACKDROP (mobile)
+        ══════════════════════════════ */
+        .sidebar-backdrop {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.45);
+            z-index: 1400;
+        }
+        .sidebar-backdrop.visible { display: block; }
+
+        /* ══════════════════════════════
            MAIN LAYOUT
         ══════════════════════════════ */
         .films-layout { display: flex; align-items: flex-start; padding: 0 6% 80px; gap: 0; position: relative; }
 
-        .filter-sidebar { width: 0; flex-shrink: 0; overflow: hidden; opacity: 0; transform: translateX(-24px); transition: width 0.5s cubic-bezier(0.4,0,0.2,1), opacity 0.4s ease, transform 0.5s cubic-bezier(0.4,0,0.2,1); position: sticky; top: 141px; max-height: calc(100vh - 141px); }
+        /* SIDEBAR — desktop: pushes content. Mobile: fixed overlay */
+        .filter-sidebar {
+            width: 0;
+            flex-shrink: 0;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateX(-24px);
+            transition: width 0.5s cubic-bezier(0.4,0,0.2,1), opacity 0.4s ease, transform 0.5s cubic-bezier(0.4,0,0.2,1);
+            position: sticky;
+            top: 141px;
+            max-height: calc(100vh - 141px);
+        }
         .filter-sidebar.open { width: 240px; opacity: 1; transform: translateX(0); }
         .filter-sidebar-inner { width: 240px; padding: 0 24px 0 0; }
         .filter-sidebar-title { font-size: 0.65rem; font-weight: 800; text-transform: uppercase; letter-spacing: 3px; color: #aaa; margin-bottom: 16px; padding-bottom: 10px; border-bottom: 1px solid #ececec; white-space: nowrap; }
@@ -293,9 +315,11 @@
         .filter-toggle-btn.open .filter-active-dot { background: #fff; }
         .filter-active-dot.visible { display: block; }
 
-        .cards-area { flex: 1; min-width: 0; padding-top: 28px; transition: all 0.5s cubic-bezier(0.4,0,0.2,1); }
-        .inner-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; transition: grid-template-columns 0.5s ease, gap 0.5s ease; }
-        .filter-sidebar.open ~ .cards-area .inner-cards { grid-template-columns: repeat(2, 1fr); }
+        /* CARDS AREA — always takes full available width */
+        .cards-area { flex: 1; min-width: 0; padding-top: 28px; }
+
+        /* GRID — always responsive, never affected by sidebar state */
+        .inner-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
 
         .film-card { cursor: pointer; border-radius: 4px; overflow: hidden; background: #000; transition: transform 0.3s, box-shadow 0.3s, opacity 0.4s; }
         .film-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.18); }
@@ -346,15 +370,20 @@
         .lightbox-desc h3 { font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: 8px; }
         .lightbox-desc p { font-size: 0.88rem; color: rgba(255,255,255,0.65); line-height: 1.8; }
 
+        /* ══════════════════════════════
+           RESPONSIVE
+        ══════════════════════════════ */
+        @media (max-width: 1100px) {
+            .inner-cards { grid-template-columns: repeat(2, 1fr); }
+        }
+
         @media (max-width: 900px) {
+            /* Slider */
             .slide { grid-template-columns: 1fr; gap: 24px; }
             .slide-img-wrap { height: 260px; }
             .slide-title { font-size: 1.5rem; }
-            .inner-cards { grid-template-columns: repeat(2,1fr); }
-            .inner-cards.filtered-view .film-card { grid-template-columns: 1fr; }
-            .inner-cards.filtered-view .film-card:nth-child(even) .film-card-thumb { order: 1; }
-            .inner-cards.filtered-view .film-card:nth-child(even) .film-card-info  { order: 2; }
-            .inner-cards.filtered-view .film-card-info { padding: 28px 0 0 0 !important; }
+
+            /* Nav */
             .hamburger { display: flex; }
             #main-nav { display: none; position: absolute; top: calc(100% + 18px); left: 0; right: 0; background: #fff; border: 1.5px solid #e0e0e0; border-radius: 16px; box-shadow: 0 8px 32px rgba(0,0,0,0.12); padding: 16px 0; z-index: 999; }
             #main-nav.open { display: block; }
@@ -373,12 +402,63 @@
             .search-item { padding: 8px 16px; width: 100%; }
             .search-wrapper { width: 100% !important; }
             .search-input { width: 100% !important; padding: 0 0 0 8px !important; }
+
+            /* Filter sidebar — fixed overlay on mobile */
+            .filter-sidebar {
+                position: fixed;
+                top: 0;
+                left: 0;
+                height: 100vh;
+                max-height: 100vh;
+                z-index: 1500;
+                background: #fff;
+                border-right: 1px solid #e0e0e0;
+                box-shadow: 4px 0 28px rgba(0,0,0,0.14);
+                padding-top: 60px;
+                width: 260px !important;
+                opacity: 1 !important;
+                transform: translateX(-100%) !important;
+                transition: transform 0.4s cubic-bezier(0.4,0,0.2,1) !important;
+                overflow-y: auto;
+            }
+            .filter-sidebar.open {
+                transform: translateX(0) !important;
+            }
+            .filter-sidebar-inner { width: 100%; padding: 0 20px; }
+
+            /* Close button inside sidebar on mobile */
+            .sidebar-close-btn {
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+                position: absolute;
+                top: 16px;
+                right: 16px;
+            }
+
+            /* Cards grid */
+            .inner-cards { grid-template-columns: repeat(2, 1fr); }
+
+            /* Filtered view adjustments */
+            .inner-cards.filtered-view .film-card { grid-template-columns: 1fr; }
+            .inner-cards.filtered-view .film-card:nth-child(even) .film-card-thumb { order: 1; }
+            .inner-cards.filtered-view .film-card:nth-child(even) .film-card-info  { order: 2; }
+            .inner-cards.filtered-view .film-card-info { padding: 28px 0 0 0 !important; }
+            .inner-cards.filtered-view .film-card-thumb { min-height: 260px; }
+            .inner-cards.filtered-view .film-card-info h4 { font-size: 1.6rem; }
         }
+
         @media (max-width: 600px) {
+            .inner-intro h2 { font-size: 1.6rem; }
             .inner-cards { grid-template-columns: 1fr; }
             .lightbox-overlay { padding: 12px; }
             .inner-cards.filtered-view .film-card-thumb { min-height: 220px; }
+            .inner-cards.filtered-view .film-card-info h4 { font-size: 1.3rem; }
+            .featured-section { height: auto; padding: 24px 6%; }
         }
+
+        /* Hide close button on desktop */
+        .sidebar-close-btn { display: none; }
     </style>
 </head>
 <body>
@@ -390,7 +470,7 @@
         <nav id="main-nav">
             <ul class="nav-list">
                 <li class="has-dropdown mega-parent">
-                    <a href="#">Location, Theme & More <span class="arrow">▾</span></a>
+                    <a href="#">Location, Theme &amp; More <span class="arrow">▾</span></a>
                     <div class="mega-dropdown">
                         <div class="mega-col">
                             <p class="mega-heading">Location</p>
@@ -571,9 +651,16 @@
     </button>
 </div>
 
+<!-- SIDEBAR BACKDROP (mobile tap-to-close) -->
+<div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
 <!-- MAIN LAYOUT -->
 <div class="films-layout">
     <aside class="filter-sidebar" id="filterSidebar">
+        <!-- Mobile close button -->
+        <button class="sidebar-close-btn" id="sidebarCloseBtn" aria-label="Close filters">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
         <div class="filter-sidebar-inner">
             <p class="filter-sidebar-title">Filter by location</p>
             <div class="filter-check-item" data-category="haa">
@@ -651,7 +738,7 @@
 
 <script>
 (function () {
-    /* NAV */
+    /* ── NAV ── */
     var hamburger=document.getElementById('hamburger'),mainNav=document.getElementById('main-nav'),searchBtn=document.getElementById('search-btn'),searchWrapper=document.getElementById('search-wrapper'),searchInput=document.getElementById('search-input');
     document.querySelectorAll('.has-dropdown').forEach(function(item){
         var drop=item.querySelector('.mega-dropdown')||item.querySelector('.dropdown');if(!drop)return;var t;
@@ -677,55 +764,83 @@
     });
     document.addEventListener('click',function(e){if(mainNav&&hamburger&&!mainNav.contains(e.target)&&!hamburger.contains(e.target)){mainNav.classList.remove('open');hamburger.classList.remove('open');document.querySelectorAll('.mega-dropdown.mobile-open,.dropdown.mobile-open').forEach(function(d){d.classList.remove('mobile-open');});}});
 
-// SLIDER
-var track = document.getElementById('sliderTrack');
-var slides = document.querySelectorAll('.slide');
-var TOTAL = slides.length;
-var current = 0;
-var autoTimer;
+    /* ── SLIDER ── */
+    var track=document.getElementById('sliderTrack');
+    var TOTAL=document.querySelectorAll('.slide').length;
+    var current=0,autoTimer;
+    function goTo(idx){current=(idx+TOTAL)%TOTAL;track.style.transform='translateX(-'+(current*100)+'%)';document.querySelectorAll('.slider-dot').forEach(function(d,i){d.classList.toggle('active',i===current);});}
+    function next(){goTo(current+1);}
+    function startAuto(){clearInterval(autoTimer);autoTimer=setInterval(next,4000);}
+    document.querySelectorAll('.slider-dot').forEach(function(dot,i){dot.addEventListener('click',function(){goTo(i);startAuto();});});
+    goTo(0);startAuto();
 
-function goTo(idx) {
-  current = (idx + TOTAL) % TOTAL;
-  track.style.transform = 'translateX(-' + (current * 100) + '%)';
-  document.querySelectorAll('.slider-dot').forEach(function(d, i) {
-    d.classList.toggle('active', i === current);
-  });
-}
-
-function next() { goTo(current + 1); }
-
-function startAuto() {
-  clearInterval(autoTimer);
-  autoTimer = setInterval(next, 4000);
-}
-
-document.querySelectorAll('.slider-dot').forEach(function(dot, i) {
-  dot.addEventListener('click', function() {
-    goTo(i);
-    startAuto(); // reset timer on manual click
-  });
-});
-
-goTo(0);
-startAuto();
-    /* FILTER */
-    var filterBtn=document.getElementById('filterToggleBtn'),sidebar=document.getElementById('filterSidebar'),filterDot=document.getElementById('filterDot'),innerCards=document.getElementById('innerCards'),filterClear=document.getElementById('filterClear');
-    var allCards=document.querySelectorAll('.film-card'),checkItems=document.querySelectorAll('.filter-check-item');
+    /* ── FILTER SIDEBAR ── */
+    var filterBtn=document.getElementById('filterToggleBtn');
+    var sidebar=document.getElementById('filterSidebar');
+    var backdrop=document.getElementById('sidebarBackdrop');
+    var filterDot=document.getElementById('filterDot');
+    var innerCards=document.getElementById('innerCards');
+    var filterClear=document.getElementById('filterClear');
+    var sidebarCloseBtn=document.getElementById('sidebarCloseBtn');
+    var allCards=document.querySelectorAll('.film-card');
+    var checkItems=document.querySelectorAll('.filter-check-item');
     var sidebarOpen=false,activeFilter=null;
-    filterBtn.addEventListener('click',function(e){e.stopPropagation();sidebarOpen=!sidebarOpen;filterBtn.classList.toggle('open',sidebarOpen);sidebar.classList.toggle('open',sidebarOpen);});
+
+    function isMobile(){ return window.innerWidth<=900; }
+
+    function openSidebar(){
+        sidebarOpen=true;
+        filterBtn.classList.add('open');
+        sidebar.classList.add('open');
+        if(isMobile()){
+            backdrop.classList.add('visible');
+            document.body.style.overflow='hidden';
+            if(sidebarCloseBtn) sidebarCloseBtn.style.display='flex';
+        }
+    }
+
+    function closeSidebar(){
+        sidebarOpen=false;
+        filterBtn.classList.remove('open');
+        sidebar.classList.remove('open');
+        backdrop.classList.remove('visible');
+        document.body.style.overflow='';
+        if(sidebarCloseBtn) sidebarCloseBtn.style.display='none';
+    }
+
+    filterBtn.addEventListener('click',function(e){e.stopPropagation();sidebarOpen?closeSidebar():openSidebar();});
+    backdrop.addEventListener('click',closeSidebar);
+    if(sidebarCloseBtn){sidebarCloseBtn.addEventListener('click',closeSidebar);}
+
+    /* Re-check on resize — close mobile overlay if resizing to desktop */
+    window.addEventListener('resize',function(){
+        if(!isMobile()&&sidebarOpen){
+            backdrop.classList.remove('visible');
+            document.body.style.overflow='';
+        } else if(isMobile()&&sidebarOpen){
+            backdrop.classList.add('visible');
+        }
+    });
+
     checkItems.forEach(function(item){
         item.addEventListener('click',function(){
             var cat=item.dataset.category;
             if(activeFilter===cat){activeFilter=null;item.classList.remove('checked');showAll();filterDot.classList.remove('visible');return;}
-            checkItems.forEach(function(i){i.classList.remove('checked');});item.classList.add('checked');activeFilter=cat;filterDot.classList.add('visible');applyFilter(cat);
+            checkItems.forEach(function(i){i.classList.remove('checked');});
+            item.classList.add('checked');activeFilter=cat;filterDot.classList.add('visible');
+            applyFilter(cat);
+            if(isMobile()) closeSidebar();
         });
     });
+
     filterClear.addEventListener('click',function(){activeFilter=null;checkItems.forEach(function(i){i.classList.remove('checked');});filterDot.classList.remove('visible');showAll();});
+
     function showAll(){innerCards.classList.remove('filtered-view');allCards.forEach(function(c){c.classList.remove('hidden');});}
     function applyFilter(cat){innerCards.classList.add('filtered-view');allCards.forEach(function(c){c.classList.toggle('hidden',c.dataset.category!==cat);});}
+
     allCards.forEach(function(c){c.style.cursor='pointer';c.addEventListener('click',function(){openLightbox(c);});});
 
-    /* LIGHTBOX */
+    /* ── LIGHTBOX ── */
     var overlay=document.getElementById('lightbox'),lbVideo=document.getElementById('lbVideo'),lbWrap=document.getElementById('lbVideoWrap'),lbFilled=document.getElementById('lbFilled'),lbTime=document.getElementById('lbTime'),lbPlayBtn=document.getElementById('lbPlayBtn'),lbMuteBtn=document.getElementById('lbMuteBtn'),lbTrack=document.getElementById('lbTrack');
     var PLAY_ICON='<svg viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg>';
     var PAUSE_ICON='<svg viewBox="0 0 24 24" fill="white"><rect x="5" y="3" width="4" height="18" rx="1"/><rect x="15" y="3" width="4" height="18" rx="1"/></svg>';
