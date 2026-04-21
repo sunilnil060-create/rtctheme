@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Additional Resources | RTC Heritage Portal</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Raleway:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
 
         * {
@@ -16,12 +16,12 @@
 
         body {
             margin: 0;
-            font-family: 'DM Sans', sans-serif;
+            font-family: 'Raleway', sans-serif;
             background: #ffffff;
             color: #000000;
         }
 
-        /* ── DROPDOWN HOVER GAP FIX (same as vmo.html) ── */
+        /* ── DROPDOWN HOVER GAP FIX ── */
         .dropdown      { top: calc(100% + 2px) !important; }
         .mega-dropdown { top: calc(100% + 2px) !important; }
         .has-dropdown > a { position: relative; }
@@ -48,19 +48,20 @@
         }
 
         .res-hero-left .res-tag {
-            font-size: 0.68rem;
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.62rem;
             font-weight: 800;
             text-transform: uppercase;
-            letter-spacing: 5px;
-            color: #888888;
+            letter-spacing: 0.28em;
+            color: #bbb;
             display: block;
             margin-bottom: 20px;
         }
 
         .res-hero-left h1 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 5.2rem;
-            font-weight: 600;
+            font-family: 'Raleway', sans-serif;
+            font-size: clamp(2.8rem, 6vw, 5rem);
+            font-weight: 700;
             color: #000000;
             margin: 0;
             line-height: 0.92;
@@ -72,7 +73,10 @@
         }
 
         .res-hero-right p {
-            font-size: 1rem;
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.88rem;
+            font-weight: 300;
+            letter-spacing: 0.08em;
             color: #555555;
             line-height: 1.85;
             margin: 0 0 32px 0;
@@ -90,19 +94,20 @@
         }
 
         .res-stat-num {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2.6rem;
-            font-weight: 700;
+            font-family: 'Raleway', sans-serif;
+            font-size: 2rem;
+            font-weight: 600;
             color: #000000;
             line-height: 1;
         }
 
         .res-stat-label {
-            font-size: 0.65rem;
-            font-weight: 700;
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.62rem;
+            font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            color: #888888;
+            letter-spacing: 0.18em;
+            color: rgba(0,0,0,0.45);
         }
 
         @media (max-width: 900px) {
@@ -116,22 +121,26 @@
 
         /* ── BREADCRUMB ── */
         .breadcrumb {
-            padding: 18px 8%;
-            border-bottom: 1px solid #e8e8e8;
+            position: sticky;
+            top: 57px;
+            z-index: 900;
+            background: #fff;
+            border-bottom: 1px solid #ececec;
+            padding: 9px 8%;
             display: flex;
             align-items: center;
             gap: 8px;
-            font-size: 0.76rem;
-            color: #888888;
-            font-weight: 500;
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.62rem;
+            font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.18em;
         }
 
-        .breadcrumb a { color: #888888; text-decoration: none; transition: color 0.2s; }
-        .breadcrumb a:hover { color: #000000; }
-        .breadcrumb .sep { color: #cccccc; }
-        .breadcrumb .current { color: #000000; font-weight: 700; }
+        .breadcrumb a { color: #bbb; text-decoration: none; transition: color 0.2s; }
+        .breadcrumb a:hover { color: #000; }
+        .breadcrumb .sep { color: #ddd; font-size: 0.75rem; }
+        .breadcrumb .current { color: #000; font-weight: 700; }
 
         /* ── FILTER TABS ── */
         .res-filter {
@@ -148,13 +157,13 @@
             border-radius: 999px;
             background: transparent;
             color: #000000;
-            font-size: 0.72rem;
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.65rem;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
+            letter-spacing: 0.18em;
             cursor: pointer;
             transition: background 0.25s, color 0.25s;
-            font-family: 'DM Sans', sans-serif;
             margin-bottom: 16px;
         }
 
@@ -164,18 +173,19 @@
             color: #ffffff;
         }
 
-        /* ── FEATURED RESOURCE (large card) ── */
+        /* ── FEATURED RESOURCE ── */
         .res-featured {
             padding: 64px 8%;
             border-bottom: 1px solid #e8e8e8;
         }
 
         .res-featured-label {
-            font-size: 0.65rem;
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.58rem;
             font-weight: 800;
             text-transform: uppercase;
-            letter-spacing: 4px;
-            color: #888888;
+            letter-spacing: 0.28em;
+            color: #bbb;
             display: block;
             margin-bottom: 28px;
         }
@@ -184,7 +194,6 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             border: 2px solid #000000;
-            border-radius: 0;
             overflow: hidden;
         }
 
@@ -217,10 +226,11 @@
             left: 24px;
             background: #ffffff;
             color: #000000;
-            font-size: 0.65rem;
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.58rem;
             font-weight: 800;
             text-transform: uppercase;
-            letter-spacing: 3px;
+            letter-spacing: 0.28em;
             padding: 8px 16px;
         }
 
@@ -232,18 +242,19 @@
         }
 
         .res-featured-body .res-type {
-            font-size: 0.65rem;
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.58rem;
             font-weight: 800;
             text-transform: uppercase;
-            letter-spacing: 4px;
-            color: #888888;
+            letter-spacing: 0.28em;
+            color: #bbb;
             display: block;
             margin-bottom: 16px;
         }
 
         .res-featured-body h2 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2.8rem;
+            font-family: 'Raleway', sans-serif;
+            font-size: 2.2rem;
             font-weight: 600;
             color: #000000;
             margin: 0 0 20px;
@@ -251,7 +262,10 @@
         }
 
         .res-featured-body p {
-            font-size: 0.95rem;
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.88rem;
+            font-weight: 300;
+            letter-spacing: 0.08em;
             color: #555555;
             line-height: 1.85;
             margin: 0 0 32px;
@@ -271,15 +285,17 @@
         }
 
         .res-meta-label {
-            font-size: 0.6rem;
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.58rem;
             font-weight: 800;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            color: #aaaaaa;
+            letter-spacing: 0.28em;
+            color: #bbb;
         }
 
         .res-meta-value {
-            font-size: 0.82rem;
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.78rem;
             font-weight: 600;
             color: #000000;
         }
@@ -291,20 +307,18 @@
             padding: 14px 28px;
             background: #000000;
             color: #ffffff;
-            font-size: 0.72rem;
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.65rem;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 0.18em;
             text-decoration: none;
             border: 2px solid #000000;
             align-self: flex-start;
             transition: background 0.3s, color 0.3s;
         }
 
-        .res-download-btn:hover {
-            background: #333333;
-        }
-
+        .res-download-btn:hover { background: #333333; }
         .res-download-btn svg { flex-shrink: 0; }
 
         @media (max-width: 900px) {
@@ -328,18 +342,20 @@
         }
 
         .res-grid-header h2 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2.4rem;
+            font-family: 'Raleway', sans-serif;
+            font-size: 2.2rem;
             font-weight: 600;
             margin: 0;
+            line-height: 1.1;
         }
 
         .res-grid-header span {
-            font-size: 0.72rem;
-            font-weight: 700;
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.62rem;
+            font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            color: #888888;
+            letter-spacing: 0.18em;
+            color: #bbb;
         }
 
         .res-grid {
@@ -364,7 +380,6 @@
 
         .res-card:nth-child(3n) { border-right: none; }
         .res-card:nth-last-child(-n+3) { border-bottom: none; }
-
         .res-card:hover { background: #f8f8f8; }
 
         .res-card-icon {
@@ -380,37 +395,37 @@
             transition: background 0.3s, color 0.3s;
         }
 
-        .res-card:hover .res-card-icon {
-            background: #000000;
-        }
-
-        .res-card:hover .res-card-icon svg {
-            stroke: #ffffff;
-        }
+        .res-card:hover .res-card-icon { background: #000000; }
+        .res-card:hover .res-card-icon svg { stroke: #ffffff; }
 
         .res-card-type {
-            font-size: 0.6rem;
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.58rem;
             font-weight: 800;
             text-transform: uppercase;
-            letter-spacing: 3px;
-            color: #888888;
+            letter-spacing: 0.28em;
+            color: #bbb;
             display: block;
             margin-bottom: 10px;
         }
 
         .res-card h3 {
-            font-size: 1rem;
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.88rem;
             font-weight: 700;
             margin: 0 0 12px;
-            line-height: 1.3;
+            line-height: 1.35;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.08em;
+            color: #000;
         }
 
         .res-card p {
-            font-size: 0.85rem;
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 400;
             color: #666666;
-            line-height: 1.7;
+            line-height: 1.75;
             margin: 0 0 24px;
             flex-grow: 1;
         }
@@ -423,10 +438,11 @@
         }
 
         .res-card-tag {
-            font-size: 0.6rem;
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.58rem;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 0.18em;
             background: #000000;
             color: #ffffff;
             padding: 5px 12px;
@@ -463,17 +479,20 @@
         }
 
         .res-pubs-section > h2 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2.4rem;
+            font-family: 'Raleway', sans-serif;
+            font-size: 2.2rem;
             font-weight: 600;
             margin: 0 0 8px;
+            line-height: 1.1;
         }
 
         .res-pubs-section > p {
-            font-size: 0.9rem;
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 400;
             color: #666666;
             margin: 0 0 48px;
-            line-height: 1.7;
+            line-height: 1.75;
         }
 
         .pub-item {
@@ -491,7 +510,7 @@
         .pub-item:last-child { border-bottom: none; }
 
         .pub-year {
-            font-family: 'Cormorant Garamond', serif;
+            font-family: 'Raleway', sans-serif;
             font-size: 1.6rem;
             font-weight: 600;
             color: #cccccc;
@@ -502,24 +521,29 @@
         .pub-item:hover .pub-year { color: #000000; }
 
         .pub-content h4 {
-            font-size: 0.95rem;
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.88rem;
             font-weight: 700;
             margin: 0 0 6px;
-            line-height: 1.3;
+            line-height: 1.35;
+            color: #000;
         }
 
         .pub-content p {
-            font-size: 0.82rem;
-            color: #777777;
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 400;
+            color: #888888;
             margin: 0;
             font-style: italic;
         }
 
         .pub-badge {
-            font-size: 0.6rem;
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.58rem;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 0.18em;
             border: 1.5px solid #000000;
             padding: 5px 12px;
             border-radius: 999px;
@@ -532,24 +556,27 @@
             .pub-badge { display: none; }
         }
 
-        /* ── EXTERNAL LINKS BAND ── */
+        /* ── EXTERNAL LINKS ── */
         .res-links-section {
             padding: 64px 8%;
             border-bottom: 1px solid #e8e8e8;
         }
 
         .res-links-section > h2 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2.4rem;
+            font-family: 'Raleway', sans-serif;
+            font-size: 2.2rem;
             font-weight: 600;
             margin: 0 0 8px;
+            line-height: 1.1;
         }
 
         .res-links-section > p {
-            font-size: 0.9rem;
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 400;
             color: #666666;
             margin: 0 0 48px;
-            line-height: 1.7;
+            line-height: 1.75;
         }
 
         .res-links-grid {
@@ -575,7 +602,7 @@
         }
 
         .ext-link-num {
-            font-family: 'Cormorant Garamond', serif;
+            font-family: 'Raleway', sans-serif;
             font-size: 2rem;
             font-weight: 700;
             color: #eeeeee;
@@ -588,18 +615,22 @@
         .ext-link-card:hover .ext-link-num { color: #cccccc; }
 
         .ext-link-body h4 {
-            font-size: 0.9rem;
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.78rem;
             font-weight: 700;
             margin: 0 0 4px;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.08em;
+            color: #000;
         }
 
         .ext-link-body p {
-            font-size: 0.8rem;
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 400;
             color: #666666;
             margin: 0;
-            line-height: 1.5;
+            line-height: 1.6;
         }
 
         .ext-link-arrow {
@@ -627,8 +658,8 @@
         }
 
         .res-quote blockquote {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2.6rem;
+            font-family: 'Raleway', sans-serif;
+            font-size: clamp(1.8rem, 3.5vw, 2.6rem);
             font-weight: 400;
             font-style: italic;
             color: #ffffff;
@@ -639,18 +670,14 @@
 
         .res-quote cite {
             display: block;
-            font-family: 'DM Sans', sans-serif;
-            font-size: 0.72rem;
-            font-weight: 600;
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.58rem;
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 4px;
+            letter-spacing: 0.28em;
             color: rgba(255,255,255,0.4);
             margin-top: 32px;
             font-style: normal;
-        }
-
-        @media (max-width: 768px) {
-            .res-quote blockquote { font-size: 1.8rem; }
         }
 
         /* ── CTA STRIP ── */
@@ -665,7 +692,7 @@
 
         .res-cta h3 {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 2.6rem;
+            font-size: 2.2rem;
             font-weight: 600;
             margin: 0;
             line-height: 1.1;
@@ -677,10 +704,11 @@
         .cta-btn {
             display: inline-block;
             padding: 14px 28px;
-            font-size: 0.72rem;
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.65rem;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 0.18em;
             text-decoration: none;
             transition: all 0.3s;
         }
@@ -697,7 +725,7 @@
             .cta-btn { text-align: center; }
         }
 
-        /* ── FOOTER (same as main page) ── */
+        /* ── FOOTER ── */
         .site-footer { border-top: 2px solid #000000; background: #ffffff; }
 
         .footer-main {
@@ -710,26 +738,46 @@
         }
 
         .footer-brand .footer-logo {
-            font-size: 1.4rem;
+            font-family: 'Raleway', sans-serif;
+            font-size: 1.05rem;
             font-weight: 800;
             color: #000000;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 0.18em;
             display: block;
             margin-bottom: 16px;
         }
 
-        .footer-brand p { font-size: 0.9rem; color: #666666; line-height: 1.75; margin: 0; max-width: 360px; }
+        .footer-brand p {
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 300;
+            color: #666666;
+            line-height: 1.75;
+            margin: 0;
+            max-width: 360px;
+        }
 
-        .footer-social h4 { font-size: 0.65rem; font-weight: 800; text-transform: uppercase; letter-spacing: 4px; color: #888888; margin: 0 0 20px 0; }
+        .footer-social h4 {
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.58rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.28em;
+            color: #bbb;
+            margin: 0 0 20px 0;
+        }
 
         .footer-social-links { display: flex; gap: 12px; flex-wrap: wrap; }
 
         .social-btn {
             display: flex; align-items: center; gap: 8px;
             padding: 10px 18px; border: 1.5px solid #000000; border-radius: 999px;
-            text-decoration: none; color: #000000; font-size: 0.75rem; font-weight: 700;
-            text-transform: uppercase; letter-spacing: 1.5px; transition: background 0.25s, color 0.25s;
+            text-decoration: none; color: #000000;
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.65rem; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.18em;
+            transition: background 0.25s, color 0.25s;
         }
 
         .social-btn:hover { background: #000000; color: #ffffff; }
@@ -740,13 +788,22 @@
             align-items: center; gap: 20px;
         }
 
-        .footer-copy { font-size: 0.76rem; color: #888888; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; }
+        .footer-copy {
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.62rem;
+            color: #bbb;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+        }
 
         .footer-bottom-links { display: flex; gap: 24px; }
 
         .footer-bottom-links a {
-            font-size: 0.76rem; color: #888888; font-weight: 600;
-            text-transform: uppercase; letter-spacing: 1px; text-decoration: none; transition: color 0.2s;
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.62rem; color: #bbb; font-weight: 600;
+            text-transform: uppercase; letter-spacing: 0.18em;
+            text-decoration: none; transition: color 0.2s;
         }
 
         .footer-bottom-links a:hover { color: #000000; }
@@ -755,35 +812,13 @@
             .footer-main { grid-template-columns: 1fr; gap: 40px; padding: 48px 6% 36px; }
             .footer-bottom { flex-direction: column; align-items: flex-start; padding: 24px 6%; gap: 14px; }
         }
-.breadcrumb {
-    position: sticky;
-    top: 57px; /* adjust to match your header height */
-    z-index: 900;
-    background: #fff;
-    border-bottom: 1px solid #ececec;
-    padding: 10px 8%;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 0.72rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-.breadcrumb a {
-    color: #888;
-    text-decoration: none;
-    transition: color 0.2s;
-}
-.breadcrumb a:hover { color: #000; }
-.bc-sep { color: #ccc; font-size: 0.8rem; }
-.bc-current { color: #000; }
+
     </style>
 </head>
 
 <body>
 
-<!-- ── HEADER (identical to main site) ── -->
+<!-- ── HEADER ── -->
 <header>
     <div class="nav-container">
         <a href="index.html" class="logo">RTC Heritage Portal</a>
@@ -794,11 +829,11 @@
             <ul class="nav-list">
 
                 <li class="has-dropdown mega-parent">
-                    <a href="#">Location, Theme & More <span class="arrow">▾</span></a>
+                    <a href="#">Location, Theme &amp; More <span class="arrow">▾</span></a>
                     <div class="mega-dropdown">
                         <div class="mega-col">
                             <p class="mega-heading">Location</p>
-                            <a href="haa-resourea.html">Haa Resources</a>
+                            <a href="haa-resources.html">Haa Resources</a>
                             <a href="#sephu">Sephu Resources</a>
                             <a href="#thimphu">Thimphu Resources</a>
                         </div>
@@ -813,7 +848,7 @@
                         <div class="mega-col">
                             <p class="mega-heading">More</p>
                             <a href="resources.html" class="active-nav">Additional Resources</a>
-                            <a href="#interactive-map">Interactive Map</a>
+                            <a href="interactive-map.html">Interactive Map</a>
                             <a href="#announcement">Announcement</a>
                         </div>
                     </div>
@@ -837,9 +872,11 @@
                         <li><a href="vmo.html#vision">Vision</a></li>
                         <li><a href="vmo.html#mission">Mission</a></li>
                         <li><a href="vmo.html#objectives">Objective</a></li>
-                    </ul>
-                </li>
+                   </ul>
+                     </li>
 
+                
+                <li><a href="lesson-plan.html">Lesson Plans</a></li>
             </ul>
         </nav>
     </div>
@@ -883,7 +920,7 @@
     <button class="res-filter-btn" data-filter="research">Research Papers</button>
     <button class="res-filter-btn" data-filter="fieldguide">Field Guides</button>
     <button class="res-filter-btn" data-filter="archive">Archival Maps</button>
-    <button class="res-filter-btn" data-filter="audio">Audio & Oral History</button>
+    <button class="res-filter-btn" data-filter="audio">Audio &amp; Oral History</button>
     <button class="res-filter-btn" data-filter="teaching">Teaching Materials</button>
 </div>
 
@@ -941,7 +978,7 @@
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
             </div>
             <span class="res-card-type">Field Guide</span>
-            <h3>Highland Flora & Ethnobotany Guide</h3>
+            <h3>Highland Flora &amp; Ethnobotany Guide</h3>
             <p>A photographic identification guide to 120 medicinal and culturally significant plant species found above 3,000m across the Bhutanese highlands, with local names and traditional uses documented in collaboration with community healers.</p>
             <div class="res-card-footer">
                 <span class="res-card-tag">Field Guide</span>
@@ -980,7 +1017,7 @@
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
             </div>
             <span class="res-card-type">Research Paper</span>
-            <h3>Ritual Calendar & Seasonal Cosmology</h3>
+            <h3>Ritual Calendar &amp; Seasonal Cosmology</h3>
             <p>An academic study of the agricultural and ceremonial calendar systems used across five highland districts, mapping the intersection of Buddhist liturgical cycles with indigenous ecological knowledge and lunar observation practices.</p>
             <div class="res-card-footer">
                 <span class="res-card-tag">Research</span>
@@ -1019,7 +1056,7 @@
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
             </div>
             <span class="res-card-type">Audio Archive</span>
-            <h3>Traditional Music & Song Repository</h3>
+            <h3>Traditional Music &amp; Song Repository</h3>
             <p>Recordings of 80+ traditional songs from across the highlands — including boedra court songs, zhungdra classical forms, and community work songs — with annotated liner notes on context, occasion, and regional variations.</p>
             <div class="res-card-footer">
                 <span class="res-card-tag">Audio</span>
@@ -1032,7 +1069,7 @@
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
             </div>
             <span class="res-card-type">Research Paper</span>
-            <h3>Weaving Traditions & Textile Symbolism</h3>
+            <h3>Weaving Traditions &amp; Textile Symbolism</h3>
             <p>A technical and cultural study of textile production in Bhutan's highland communities — analysing pattern vocabulary, dye sources, loom types, and the social role of weaving as a form of cultural transmission across generations of women weavers.</p>
             <div class="res-card-footer">
                 <span class="res-card-tag">Research</span>
@@ -1122,7 +1159,7 @@
 
 <!-- ── EXTERNAL LINKS ── -->
 <section class="res-links-section" id="partners">
-    <h2>Partner Institutions & External Links</h2>
+    <h2>Partner Institutions &amp; External Links</h2>
     <p>Trusted organisations whose archives, databases, and programmes complement and extend the work of the RTC Heritage Portal.</p>
 
     <div class="res-links-grid">
@@ -1157,7 +1194,7 @@
         <a href="#" class="ext-link-card">
             <span class="ext-link-num">04</span>
             <div class="ext-link-body">
-                <h4>National Library & Archives of Bhutan</h4>
+                <h4>National Library &amp; Archives of Bhutan</h4>
                 <p>Home to thousands of religious manuscripts, historical records, and rare Dzongkha texts — many of which are directly relevant to highland cultural history.</p>
             </div>
             <span class="ext-link-arrow">↗</span>
@@ -1201,7 +1238,7 @@
     </div>
 </section>
 
-<!-- ── FOOTER (same as main page) ── -->
+<!-- ── FOOTER ── -->
 <footer class="site-footer">
     <div class="footer-main">
         <div class="footer-brand">
@@ -1239,9 +1276,6 @@
 </footer>
 
 <script>
-    /* ── NAV SCRIPT (same pattern as all pages) ── */
-
-    // Hamburger
     const hamburger = document.getElementById('hamburger');
     const mainNav   = document.getElementById('main-nav');
 
@@ -1250,36 +1284,26 @@
         mainNav.classList.toggle('open');
     });
 
-    // Desktop hover dropdowns with gap-bridge timer
     document.querySelectorAll('.has-dropdown').forEach(li => {
         const mega   = li.querySelector('.mega-dropdown');
         const simple = li.querySelector('.dropdown');
         const drop   = mega || simple;
         if (!drop) return;
-
         let timer = null;
-
         li.addEventListener('mouseenter', () => {
             if (window.innerWidth <= 900) return;
             clearTimeout(timer);
-            document.querySelectorAll('.mega-dropdown, .dropdown').forEach(d => {
-                if (d !== drop) d.style.display = '';
-            });
+            document.querySelectorAll('.mega-dropdown, .dropdown').forEach(d => { if (d !== drop) d.style.display = ''; });
             drop.style.display = 'flex';
         });
-
         li.addEventListener('mouseleave', () => {
             if (window.innerWidth <= 900) return;
             timer = setTimeout(() => { drop.style.display = ''; }, 120);
         });
-
         drop.addEventListener('mouseenter', () => { clearTimeout(timer); });
-        drop.addEventListener('mouseleave', () => {
-            timer = setTimeout(() => { drop.style.display = ''; }, 120);
-        });
+        drop.addEventListener('mouseleave', () => { timer = setTimeout(() => { drop.style.display = ''; }, 120); });
     });
 
-    // Mobile dropdowns
     document.querySelectorAll('.has-dropdown').forEach(li => {
         li.addEventListener('click', e => {
             if (window.innerWidth > 900) return;
@@ -1289,30 +1313,21 @@
             const arrow  = li.querySelector('.arrow');
             if (!drop) return;
             const isOpen = drop.classList.contains('mobile-open');
-            document.querySelectorAll('.mega-dropdown.mobile-open, .dropdown.mobile-open')
-                .forEach(d => d.classList.remove('mobile-open'));
+            document.querySelectorAll('.mega-dropdown.mobile-open, .dropdown.mobile-open').forEach(d => d.classList.remove('mobile-open'));
             document.querySelectorAll('.arrow').forEach(a => a.style.transform = '');
-            if (!isOpen) {
-                drop.classList.add('mobile-open');
-                if (arrow) arrow.style.transform = 'rotate(180deg)';
-            }
+            if (!isOpen) { drop.classList.add('mobile-open'); if (arrow) arrow.style.transform = 'rotate(180deg)'; }
             e.preventDefault();
         });
     });
 
-    // Close nav on outside click
     document.addEventListener('click', e => {
-        if (mainNav && hamburger &&
-            !mainNav.contains(e.target) &&
-            !hamburger.contains(e.target)) {
+        if (mainNav && hamburger && !mainNav.contains(e.target) && !hamburger.contains(e.target)) {
             mainNav.classList.remove('open');
             hamburger.classList.remove('open');
-            document.querySelectorAll('.mega-dropdown.mobile-open, .dropdown.mobile-open')
-                .forEach(d => d.classList.remove('mobile-open'));
+            document.querySelectorAll('.mega-dropdown.mobile-open, .dropdown.mobile-open').forEach(d => d.classList.remove('mobile-open'));
         }
     });
 
-    // Search expand
     const searchBtn     = document.getElementById('search-btn');
     const searchWrapper = document.getElementById('search-wrapper');
     const searchInput   = document.getElementById('search-input');
@@ -1325,13 +1340,9 @@
     });
 
     document.addEventListener('click', e => {
-        if (!searchWrapper.contains(e.target)) {
-            searchWrapper.classList.remove('expanded');
-            searchInput.value = '';
-        }
+        if (!searchWrapper.contains(e.target)) { searchWrapper.classList.remove('expanded'); searchInput.value = ''; }
     });
 
-    // Filter buttons (visual only — wire to real filtering if needed)
     document.querySelectorAll('.res-filter-btn').forEach(btn => {
         btn.addEventListener('click', () => {
             document.querySelectorAll('.res-filter-btn').forEach(b => b.classList.remove('active'));
