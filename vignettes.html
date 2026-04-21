@@ -4,14 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ethnographic Vignettes — Highland Heritages of Bhutan</title>
-    <script>localStorage.setItem('splashShown', 'true');</script>
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
+    <script>localStorage.setItem('splashShown','true');</script>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&display=swap" rel="stylesheet">
     <style>
         * { font-family: 'Raleway', sans-serif !important; box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; }
         body { background: #fff; color: #000; overflow-x: hidden; }
         a { text-decoration: none; color: inherit; }
-
         header { position: sticky; top: 0; z-index: 1000; background: #fff; padding: 18px 8%; border-bottom: 1px solid #e8e8e8; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
         .nav-container { display: flex; justify-content: space-between; align-items: center; position: relative; }
         .logo { font-size: 1.4rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; flex-shrink: 0; }
@@ -49,18 +48,52 @@
         .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
         .hamburger.open span:nth-child(2) { opacity: 0; }
         .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-
         .breadcrumb { position: sticky; top: 57px; z-index: 900; background: #fff; border-bottom: 1px solid #ececec; padding: 10px 8%; display: flex; align-items: center; gap: 8px; font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
         .breadcrumb a { color: #888; transition: color 0.2s; }
         .breadcrumb a:hover { color: #000; }
         .bc-sep { color: #ccc; }
         .bc-current { color: #000; }
-
         .inner-intro { max-width: 760px; margin: 0 auto; padding: 48px 6% 40px; text-align: center; }
         .inner-intro h2 { font-size: 2.4rem; font-weight: 700; line-height: 1.2; margin-bottom: 16px; }
         .inner-intro p { font-size: 0.95rem; color: #555; line-height: 1.9; }
 
-        .films-controls { padding: 12px 6%; position: sticky; top: 95px; z-index: 800; background: #fff; border-bottom: 1px solid #ececec; }
+        /* FEATURED SLIDER */
+        .featured-section { background: #f8f7f5; padding: 0 6% 48px; overflow: hidden; }
+        .featured-label-row { display: flex; align-items: center; gap: 14px; padding: 32px 0 28px; }
+        .featured-label-row span { font-size: 0.62rem; font-weight: 800; text-transform: uppercase; letter-spacing: 4px; color: #aaa; white-space: nowrap; }
+        .featured-label-row::after { content: ''; flex: 1; height: 1px; background: #e0ddd8; }
+        .slider-outer { position: relative; overflow: hidden; }
+        .crossfade-outer { position: relative; height: 400px; }
+.cf-slide { position: absolute; inset: 0; display: grid; grid-template-columns: 1fr 48%; align-items: center; gap: 52px; opacity: 0; transition: opacity 1.8s ease-in-out; pointer-events: none; }
+.cf-slide.active { opacity: 1; pointer-events: all; }
+        .slide-text { display: flex; flex-direction: column; gap: 18px; padding: 8px 0; }
+        .slide-tag { display: inline-flex; align-items: center; gap: 8px; font-size: 0.6rem; font-weight: 800; text-transform: uppercase; letter-spacing: 3px; color: #888; }
+        .slide-tag::before { content: ''; display: inline-block; width: 18px; height: 1.5px; background: #bbb; }
+        .slide-title { font-size: 2.1rem; font-weight: 800; line-height: 1.12; color: #111; letter-spacing: -0.3px; }
+        .slide-desc { font-size: 0.9rem; color: #555; line-height: 1.85; max-width: 420px; }
+        .slide-stats { display: flex; gap: 24px; }
+        .slide-stat { display: flex; flex-direction: column; gap: 3px; }
+        .slide-stat-num { font-size: 1.3rem; font-weight: 800; color: #111; letter-spacing: -0.5px; }
+        .slide-stat-label { font-size: 0.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: #aaa; }
+        .slide-cta { display: inline-flex; align-items: center; gap: 10px; background: #111; color: #fff; padding: 12px 26px; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; border: none; cursor: pointer; border-radius: 2px; transition: background 0.2s, transform 0.2s; width: fit-content; }
+        .slide-cta:hover { background: #333; transform: translateY(-1px); }
+        .slide-cta svg { width: 13px; height: 13px; }
+        .slide-img-wrap { position: relative; height: 400px; border-radius: 3px; overflow: hidden; }
+        .slide-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .slide-img-badge { position: absolute; top: 18px; left: 18px; background: rgba(0,0,0,0.72); color: #fff; font-size: 0.58rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; padding: 5px 12px; border-radius: 2px; }
+        .slider-dots { display: flex; align-items: center; justify-content: center; gap: 10px; padding-top: 32px; }
+        .slider-dot { width: 28px; height: 2px; background: #ccc; border-radius: 999px; cursor: pointer; transition: background 0.4s, width 0.4s; border: none; }
+        .slider-dot.active { background: #111; width: 48px; }
+        .slide {
+    min-width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 48%;
+    align-items: center;
+    gap: 52px;
+}
+
+        /* MAIN */
+        .films-controls { padding: 20px 6% 12px; position: sticky; top: 95px; z-index: 800; background: #fff; border-bottom: 1px solid #ececec; }
         .filter-toggle-btn { display: inline-flex; align-items: center; gap: 8px; background: #fff; border: 1.5px solid #e0e0e0; border-radius: 999px; padding: 8px 18px 8px 14px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; cursor: pointer; color: #000; transition: background 0.3s, border-color 0.3s, color 0.3s; position: relative; }
         .filter-toggle-btn:hover { background: #f4f4f4; border-color: #bbb; }
         .filter-toggle-btn.open { background: #000; border-color: #000; color: #fff; }
@@ -70,9 +103,7 @@
         .filter-active-dot { width: 6px; height: 6px; background: #000; border-radius: 50%; display: none; position: absolute; top: 5px; right: 5px; }
         .filter-toggle-btn.open .filter-active-dot { background: #fff; }
         .filter-active-dot.visible { display: block; }
-
         .films-layout { display: flex; align-items: flex-start; padding: 28px 6% 80px; gap: 0; }
-
         .filter-sidebar { width: 0; flex-shrink: 0; overflow: hidden; opacity: 0; transform: translateX(-24px); transition: width 0.5s cubic-bezier(0.4,0,0.2,1), opacity 0.4s ease, transform 0.5s cubic-bezier(0.4,0,0.2,1); position: sticky; top: 141px; max-height: calc(100vh - 141px); }
         .filter-sidebar.open { width: 240px; opacity: 1; transform: translateX(0); }
         .filter-sidebar-inner { width: 240px; padding: 0 24px 0 0; }
@@ -89,11 +120,9 @@
         .filter-sidebar-divider { height: 1px; background: #f0f0f0; margin: 6px 8px; }
         .filter-clear { display: flex; align-items: center; justify-content: center; padding: 8px 14px; font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #888; cursor: pointer; border-radius: 8px; transition: color 0.2s, background 0.2s; }
         .filter-clear:hover { color: #000; background: #f4f4f4; }
-
         .cards-area { flex: 1; min-width: 0; }
-        .inner-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; transition: grid-template-columns 0.5s ease, gap 0.5s ease; }
+        .inner-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
         .filter-sidebar.open ~ .cards-area .inner-cards { grid-template-columns: repeat(2, 1fr); }
-
         .film-card { cursor: pointer; border-radius: 4px; overflow: hidden; background: #fff; transition: transform 0.3s, box-shadow 0.3s; }
         .film-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.18); }
         .film-card.hidden { display: none !important; }
@@ -104,7 +133,6 @@
         .film-card-info .film-label { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; color: #aaa; display: block; margin-bottom: 6px; }
         .film-card-info h4 { font-size: 1rem; font-weight: 700; margin-bottom: 6px; color: #000; }
         .film-card-info p { font-size: 0.82rem; color: #555; line-height: 1.7; }
-
         .inner-cards.filtered-view { display: flex; flex-direction: column; gap: 0; }
         .inner-cards.filtered-view .film-card { display: grid; grid-template-columns: 1fr 1fr; align-items: stretch; border-radius: 0; overflow: hidden; background: #fff; box-shadow: none; transform: none !important; margin-bottom: 90px; }
         .inner-cards.filtered-view .film-card:nth-child(odd) .film-card-thumb { order: 1; }
@@ -118,8 +146,6 @@
         .inner-cards.filtered-view .film-card-info .film-label { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 4px; color: #888; display: block; margin-bottom: 0; }
         .inner-cards.filtered-view .film-card-info h4 { font-size: 2.2rem; font-weight: 700; color: #000; line-height: 1.15; margin: 0; }
         .inner-cards.filtered-view .film-card-info p { font-size: 0.95rem; color: #444; line-height: 1.85; margin: 0; }
-
-        /* ── ESSAY LIGHTBOX ── */
         .lightbox-overlay { position: fixed; inset: 0; z-index: 99999; background: rgba(0,0,0,0.88); display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; padding: 32px; }
         .lightbox-overlay.open { opacity: 1; pointer-events: all; }
         .lightbox-box { background: #fff; width: 100%; max-width: 1020px; max-height: 88vh; border-radius: 6px; overflow: hidden; transform: translateY(24px) scale(0.97); transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1); display: grid; grid-template-columns: 1fr 1fr; position: relative; }
@@ -133,12 +159,19 @@
         .lb-label { font-size: 0.62rem; font-weight: 800; text-transform: uppercase; letter-spacing: 4px; color: #aaa; }
         .lb-title { font-size: 1.9rem; font-weight: 800; line-height: 1.12; color: #000; }
         .lb-divider { width: 36px; height: 2px; background: #000; flex-shrink: 0; }
-        .lb-body { font-size: 0.9rem; color: #333; line-height: 2; font-weight: 400; }
+        .lb-body { font-size: 0.9rem; color: #333; line-height: 2; }
         .lb-body p { margin-bottom: 1.1rem; }
         .lb-body p:last-child { margin-bottom: 0; }
-
-        @media (max-width: 1100px) { .inner-cards { grid-template-columns: repeat(2,1fr); } .filter-sidebar.open ~ .cards-area .inner-cards { grid-template-columns: 1fr; } }
+        .slider-track 
+    {
+    display: flex;
+    transition: transform 2.5s cubic-bezier(0.77, 0, 0.175, 1);
+    will-change: transform;
+}
         @media (max-width: 900px) {
+            .slide { grid-template-columns: 1fr; gap: 24px; }
+            .slide-img-wrap { height: 260px; }
+            .slide-title { font-size: 1.5rem; }
             .lightbox-box { grid-template-columns: 1fr; overflow-y: auto; }
             .lb-img-wrap { max-height: 260px; }
             .lb-text-wrap { padding: 28px 24px; }
@@ -170,7 +203,6 @@
     </style>
 </head>
 <body>
-
 <header>
     <div class="nav-container">
         <a href="index.html" class="logo">RTC Heritage Portal</a>
@@ -180,247 +212,191 @@
                 <li class="has-dropdown mega-parent">
                     <a href="#">Location, Theme & More <span class="arrow">▾</span></a>
                     <div class="mega-dropdown">
-                        <div class="mega-col">
-                            <p class="mega-heading">Location</p>
-                            <a href="index.html#haa">Haa Resources</a>
-                            <a href="index.html#sephu">Sephu Resources</a>
-                            <a href="index.html#thimphu">Thimphu Resources</a>
-                        </div>
+                        <div class="mega-col"><p class="mega-heading">Location</p><a href="index.html#haa">Haa Resources</a><a href="index.html#sephu">Sephu Resources</a><a href="index.html#thimphu">Thimphu Resources</a></div>
                         <div class="mega-divider"></div>
-                        <div class="mega-col">
-                            <p class="mega-heading">Theme</p>
-                            <a href="index.html?theme=0">Page Theme</a>
-                            <a href="index.html?theme=1">Theme Cultural</a>
-                            <a href="index.html?theme=2">Theme Cosmetic</a>
-                        </div>
+                        <div class="mega-col"><p class="mega-heading">Theme</p><a href="index.html?theme=0">Page Theme</a><a href="index.html?theme=1">Theme Cultural</a><a href="index.html?theme=2">Theme Cosmetic</a></div>
                         <div class="mega-divider"></div>
-                        <div class="mega-col">
-                            <p class="mega-heading">More</p>
-                            <a href="resources.html">Additional Resources</a>
-                            <a href="#">Interactive Map</a>
-                            <a href="#">Announcement</a>
-                        </div>
+                        <div class="mega-col"><p class="mega-heading">More</p><a href="resources.html">Additional Resources</a><a href="interactive-map.html">Interactive Map</a><a href="#">Announcement</a></div>
                     </div>
                 </li>
-                <li class="search-item">
-                    <div class="search-wrapper" id="search-wrapper">
-                        <button class="search-icon-btn" id="search-btn" aria-label="Search">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-                        </button>
-                        <input type="text" class="search-input" id="search-input" placeholder="Search...">
-                    </div>
-                </li>
-                <li class="has-dropdown">
-                    <a href="vmo.html">About <span class="arrow">▾</span></a>
-                    <ul class="dropdown">
-                        <li><a href="vmo.html">Vision</a></li>
-                        <li><a href="vmo.html">Mission</a></li>
-                        <li><a href="vmo.html">Objective</a></li>
-                    </ul>
-                </li>
-                <li><a href="lessonplan.html">Lesson Plans</a></li>
+                <li class="search-item"><div class="search-wrapper" id="search-wrapper"><button class="search-icon-btn" id="search-btn" aria-label="Search"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></button><input type="text" class="search-input" id="search-input" placeholder="Search..."></div></li>
+                <li class="has-dropdown"><a href="vmo.html">About <span class="arrow">▾</span></a><ul class="dropdown"><li><a href="vmo.html">Vision</a></li><li><a href="vmo.html">Mission</a></li><li><a href="vmo.html">Objective</a></li></ul></li>
+                <li><a href="lesson-plan.html">Lesson Plans</a></li>
             </ul>
         </nav>
     </div>
 </header>
-
-<nav class="breadcrumb">
-    <a href="index.html">Home</a>
-    <span class="bc-sep">›</span>
-    <a href="index.html#media-gallery">Media Gallery</a>
-    <span class="bc-sep">›</span>
-    <span class="bc-current">Vignettes</span>
-</nav>
-
+<nav class="breadcrumb"><a href="index.html">Home</a><span class="bc-sep">›</span><a href="index.html#media-gallery">Media Gallery</a><span class="bc-sep">›</span><span class="bc-current">Vignettes</span></nav>
 <div class="inner-intro">
     <h2>Small Portraits of a Vast Cultural World</h2>
     <p>Ethnographic vignettes are short, closely observed accounts of everyday moments — a lamp being lit, a story told over butter tea, a skill passed from elder to child. Together they form a mosaic of highland Bhutanese life: ordinary, sacred, and irreplaceable.</p>
 </div>
 
+<!-- FEATURED SLIDER -->
+<div class="featured-section">
+    <div class="featured-label-row"><span>Most Viewed &amp; Liked</span></div>
+    <div class="slider-outer" id="sliderOuter">
+        <div class="slider-track" id="sliderTrack">
+            <div class="slide">
+                <div class="slide-text">
+                    <span class="slide-tag">Vignette — Haa</span>
+                    <h2 class="slide-title">The Butter Lamp Room</h2>
+                    <p class="slide-desc">She arrives before the birds. A nun who has tended 108 butter lamps every morning for thirty-one years — alone, methodical, luminous above Trongsa in the dark.</p>
+                    <div class="slide-stats">
+                        <div class="slide-stat"><span class="slide-stat-num">6.3K</span><span class="slide-stat-label">Views</span></div>
+                        <div class="slide-stat"><span class="slide-stat-num">514</span><span class="slide-stat-label">Likes</span></div>
+                        <div class="slide-stat"><span class="slide-stat-num">8 min</span><span class="slide-stat-label">Read</span></div>
+                    </div>
+                    <button class="slide-cta" onclick="openLightboxById('vig-1')">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                        Read Vignette
+                    </button>
+                </div>
+                <div class="slide-img-wrap"><img src="image/ritual.jpeg" alt="The Butter Lamp Room"><span class="slide-img-badge">#1 Most Viewed</span></div>
+            </div>
+            <div class="slide">
+                <div class="slide-text">
+                    <span class="slide-tag">Vignette — Laya</span>
+                    <h2 class="slide-title">Reading the Sky</h2>
+                    <p class="slide-desc">Ap Rinzin learned to read weather from his grandfather. The knowledge has no written form — cloud formations, wind shifts, the particular texture of silence that precedes an autumn storm.</p>
+                    <div class="slide-stats">
+                        <div class="slide-stat"><span class="slide-stat-num">4.9K</span><span class="slide-stat-label">Views</span></div>
+                        <div class="slide-stat"><span class="slide-stat-num">421</span><span class="slide-stat-label">Likes</span></div>
+                        <div class="slide-stat"><span class="slide-stat-num">7 min</span><span class="slide-stat-label">Read</span></div>
+                    </div>
+                    <button class="slide-cta" onclick="openLightboxById('vig-2')">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                        Read Vignette
+                    </button>
+                </div>
+                <div class="slide-img-wrap"><img src="image/education.webp" alt="Reading the Sky"><span class="slide-img-badge">#2 Most Viewed</span></div>
+            </div>
+            <div class="slide">
+                <div class="slide-text">
+                    <span class="slide-tag">Vignette — RTC Memory</span>
+                    <h2 class="slide-title">The Last Thangka Painter</h2>
+                    <p class="slide-desc">Lopen Karma is seventy-one. His hands are still steady. The line he draws is thinner than a hair. His apprentice left two years ago for Thimphu. He continues to paint.</p>
+                    <div class="slide-stats">
+                        <div class="slide-stat"><span class="slide-stat-num">4.2K</span><span class="slide-stat-label">Views</span></div>
+                        <div class="slide-stat"><span class="slide-stat-num">388</span><span class="slide-stat-label">Likes</span></div>
+                        <div class="slide-stat"><span class="slide-stat-num">9 min</span><span class="slide-stat-label">Read</span></div>
+                    </div>
+                    <button class="slide-cta" onclick="openLightboxById('vig-3')">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                        Read Vignette
+                    </button>
+                </div>
+                <div class="slide-img-wrap"><img src="image/student.jpg" alt="The Last Thangka Painter"><span class="slide-img-badge">#3 Most Viewed</span></div>
+            </div>
+        </div>
+    </div>
+    <div class="slider-dots">
+        <button class="slider-dot active" data-index="0"></button>
+        <button class="slider-dot" data-index="1"></button>
+        <button class="slider-dot" data-index="2"></button>
+    </div>
+</div>
+
 <div class="films-controls">
     <button class="filter-toggle-btn" id="filterToggleBtn">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="11" y1="18" x2="13" y2="18"/></svg>
-        Filter
-        <span class="filter-arrow">▾</span>
-        <span class="filter-active-dot" id="filterDot"></span>
+        Filter <span class="filter-arrow">▾</span><span class="filter-active-dot" id="filterDot"></span>
     </button>
 </div>
-
 <div class="films-layout">
     <aside class="filter-sidebar" id="filterSidebar">
         <div class="filter-sidebar-inner">
             <p class="filter-sidebar-title">Filter by location</p>
-            <div class="filter-check-item" data-category="haa">
-                <div class="filter-check-box"><svg viewBox="0 0 10 10" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1.5,5 4,7.5 8.5,2"/></svg></div>
-                <span class="filter-check-label">Haa</span><span class="filter-check-count">2</span>
-            </div>
-            <div class="filter-check-item" data-category="laya">
-                <div class="filter-check-box"><svg viewBox="0 0 10 10" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1.5,5 4,7.5 8.5,2"/></svg></div>
-                <span class="filter-check-label">Laya</span><span class="filter-check-count">2</span>
-            </div>
-            <div class="filter-check-item" data-category="rtc">
-                <div class="filter-check-box"><svg viewBox="0 0 10 10" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1.5,5 4,7.5 8.5,2"/></svg></div>
-                <span class="filter-check-label">RTC Memory</span><span class="filter-check-count">2</span>
-            </div>
+            <div class="filter-check-item" data-category="haa"><div class="filter-check-box"><svg viewBox="0 0 10 10" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1.5,5 4,7.5 8.5,2"/></svg></div><span class="filter-check-label">Haa</span><span class="filter-check-count">2</span></div>
+            <div class="filter-check-item" data-category="laya"><div class="filter-check-box"><svg viewBox="0 0 10 10" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1.5,5 4,7.5 8.5,2"/></svg></div><span class="filter-check-label">Laya</span><span class="filter-check-count">2</span></div>
+            <div class="filter-check-item" data-category="rtc"><div class="filter-check-box"><svg viewBox="0 0 10 10" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1.5,5 4,7.5 8.5,2"/></svg></div><span class="filter-check-label">RTC Memory</span><span class="filter-check-count">2</span></div>
             <div class="filter-sidebar-divider"></div>
             <div class="filter-clear" id="filterClear">Clear all</div>
         </div>
     </aside>
-
     <div class="cards-area">
         <div class="inner-cards" id="innerCards">
-
-            <!-- HAA -->
-            <div class="film-card" data-category="haa"
-                 data-label="Haa — Devotion" data-title="The Butter Lamp Room"
-                 data-img="image/ritual.jpeg"
-                 data-essay="<p>She arrives before the birds. The monastery above Trongsa is still dark when the nun unlocks the lamp room — a low-ceilinged space where 108 butter lamps stand on three long shelves of blackened wood. She does not need a torch. She has done this every morning for thirty-one years.</p><p>The work is methodical: trim the wick, replenish the butter, relight if the flame has gone out in the night. She moves without hurry but without pause. When asked whether she counts the lamps, she says she does not need to. Her body knows when she has reached the last one.</p><p>She does not speak about merit or intention or the cosmological significance of light as offering. When the researcher asked her why she does it, she looked at the lamps for a moment and said: because they should not be dark. That was the whole answer. The lamps burn. The valley below wakes. The answer holds.</p>">
+            <div class="film-card" id="vig-1" data-category="haa" data-label="Haa — Devotion" data-title="The Butter Lamp Room" data-img="image/ritual.jpeg" data-essay="<p>She arrives before the birds. The monastery above Trongsa is still dark when the nun unlocks the lamp room — a low-ceilinged space where 108 butter lamps stand on three long shelves of blackened wood. She does not need a torch. She has done this every morning for thirty-one years.</p><p>The work is methodical: trim the wick, replenish the butter, relight if the flame has gone out in the night. She moves without hurry but without pause. When asked whether she counts the lamps, she says she does not need to. Her body knows when she has reached the last one.</p><p>When the researcher asked her why she does it, she looked at the lamps for a moment and said: because they should not be dark. That was the whole answer. The lamps burn. The valley below wakes. The answer holds.</p>">
                 <div class="film-card-thumb"><img src="image/ritual.jpeg" alt="The Butter Lamp Room"></div>
-                <div class="film-card-info">
-                    <span class="film-label">Haa — Devotion</span>
-                    <h4>The Butter Lamp Room</h4>
-                    <p>A written sketch of an elderly nun who tends 108 lamps each morning — alone, methodical, luminous above Trongsa.</p>
-                </div>
+                <div class="film-card-info"><span class="film-label">Haa — Devotion</span><h4>The Butter Lamp Room</h4><p>A written sketch of an elderly nun who tends 108 lamps each morning — alone, methodical, luminous above Trongsa.</p></div>
             </div>
-
-            <div class="film-card" data-category="haa"
-                 data-label="Haa — Archery" data-title="The Archery Ground at Dusk"
-                 data-img="image/namads.jpeg"
-                 data-essay="<p>The datse target is a thin wooden board, no wider than a man's shoulders, planted in the earth at a distance of 145 metres. From the shooting line it is nearly invisible — a sliver of colour against the treeline. The archers do not seem to look at it directly. They look through it, or past it, or somewhere the eye cannot follow.</p><p>When an arrow hits, the team erupts. There is a song — short, percussive, performed with hand gestures that mock the opposing team's failure. The losing archer accepts this without expression. He has done the same to others. It will be done to him again. This is the contract of the game.</p><p>By dusk the light is horizontal and golden. The arrows are harder to see in flight. The older men shoot with a looseness that younger players study without appearing to study. Something is transmitted in the watching that cannot be said in words. The game ends when the light fails. No one announces it. Everyone simply stops.</p>">
+            <div class="film-card" data-category="haa" data-label="Haa — Archery" data-title="The Archery Ground at Dusk" data-img="image/namads.jpeg" data-essay="<p>The datse target is a thin wooden board, no wider than a man's shoulders, planted in the earth at a distance of 145 metres. From the shooting line it is nearly invisible — a sliver of colour against the treeline.</p><p>When an arrow hits, the team erupts. There is a song — short, percussive, performed with hand gestures that mock the opposing team's failure. The losing archer accepts this without expression. He has done the same to others.</p><p>By dusk the light is horizontal and golden. The arrows are harder to see in flight. The older men shoot with a looseness that younger players study without appearing to study. The game ends when the light fails. No one announces it. Everyone simply stops.</p>">
                 <div class="film-card-thumb"><img src="image/namads.jpeg" alt="The Archery Ground at Dusk"></div>
-                <div class="film-card-info">
-                    <span class="film-label">Haa — Archery</span>
-                    <h4>The Archery Ground at Dusk</h4>
-                    <p>A single afternoon at a village datse competition — laughter, rivalry, and the unspoken language between men who have known each other all their lives.</p>
-                </div>
+                <div class="film-card-info"><span class="film-label">Haa — Archery</span><h4>The Archery Ground at Dusk</h4><p>A single afternoon at a village datse competition — laughter, rivalry, and the unspoken language between men who have known each other all their lives.</p></div>
             </div>
-
-            <!-- LAYA -->
-            <div class="film-card" data-category="laya"
-                 data-label="Laya — Climate" data-title="When the Snow Comes Early"
-                 data-img="image/Bhutan_mountains.jpg"
-                 data-essay="<p>Tshering Dorji was eleven when the snow came three weeks early. He is forty-three now and still speaks about it as if it happened last season. Three feet in two days, he says, holding his hand at knee height. The pasture grass buried. The yak unable to graze. His father carrying hay on his back for six days straight, hauling it up from a cache below the cloud line.</p><p>That winter changed the migration route. The family had used the same high pasture for four generations. After 2019, they shifted their summer grazing two ridgelines west — a route that adds three days to the journey but holds less snow. Other families have made similar adjustments. The land is the same. The relationship to it is not.</p><p>Tshering does not use the word climate. He talks about the sky behaving differently. He talks about certain winds that used to come in August arriving in June. He talks about the colour of the glacier above his summer camp, which is lighter now than it was when he was a child. He is not alarmed. He is observant. He has been watching his entire life.</p>">
+            <div class="film-card" data-category="laya" data-label="Laya — Climate" data-title="When the Snow Comes Early" data-img="image/Bhutan_mountains.jpg" data-essay="<p>Tshering Dorji was eleven when the snow came three weeks early. He is forty-three now and still speaks about it as if it happened last season. Three feet in two days, he says, holding his hand at knee height. The pasture grass buried.</p><p>That winter changed the migration route. The family had used the same high pasture for four generations. After 2019, they shifted their summer grazing two ridgelines west. Other families have made similar adjustments. The land is the same. The relationship to it is not.</p>">
                 <div class="film-card-thumb"><img src="image/Bhutan_mountains.jpg" alt="When the Snow Comes Early"></div>
-                <div class="film-card-info">
-                    <span class="film-label">Laya — Climate</span>
-                    <h4>When the Snow Comes Early</h4>
-                    <p>A Laya herder recounts the winter of 2019 — when unexpected snow buried pastureland and changed a migration route forever.</p>
-                </div>
+                <div class="film-card-info"><span class="film-label">Laya — Climate</span><h4>When the Snow Comes Early</h4><p>A Laya herder recounts the winter of 2019 — when unexpected snow buried pastureland and changed a migration route forever.</p></div>
             </div>
-
-            <div class="film-card" data-category="laya"
-                 data-label="Laya — Knowledge" data-title="Reading the Sky"
-                 data-img="image/education.webp"
-                 data-essay="<p>Ap Rinzin learned to read weather from his grandfather, who learned from his father before him. The knowledge has no written form. It lives in the body, in the habit of looking upward at certain times of day, in the ability to feel a change in wind direction before the grass has begun to bend.</p><p>He shows the researcher three cloud formations that indicate snow within forty-eight hours. He describes the particular quality of silence that precedes a storm in autumn — not the absence of sound, but a different texture of quiet, denser and lower. He explains which direction the birds fly when pressure is dropping. He demonstrates how to read the colour of the horizon at dusk for the following morning's weather.</p><p>None of this knowledge appears in any meteorological database. It has been refined over centuries of direct observation at altitude. When a young researcher asks whether he worries about it being lost, Ap Rinzin considers this for a long time. Then he says: the sky will still behave the same way. Whether anyone can read it — that is the question.</p>">
+            <div class="film-card" id="vig-2" data-category="laya" data-label="Laya — Knowledge" data-title="Reading the Sky" data-img="image/education.webp" data-essay="<p>Ap Rinzin learned to read weather from his grandfather, who learned from his father before him. The knowledge has no written form. It lives in the body, in the habit of looking upward at certain times of day, in the ability to feel a change in wind direction before the grass has begun to bend.</p><p>He shows the researcher three cloud formations that indicate snow within forty-eight hours. He describes the particular quality of silence that precedes a storm in autumn — not the absence of sound, but a different texture of quiet, denser and lower.</p><p>When a young researcher asks whether he worries about it being lost, Ap Rinzin considers this for a long time. Then he says: the sky will still behave the same way. Whether anyone can read it — that is the question.</p>">
                 <div class="film-card-thumb"><img src="image/education.webp" alt="Reading the Sky"></div>
-                <div class="film-card-info">
-                    <span class="film-label">Laya — Knowledge</span>
-                    <h4>Reading the Sky</h4>
-                    <p>An elder from Merak explains cloud formations, wind direction, and snowfall patterns — knowledge passed down without ever being written.</p>
-                </div>
+                <div class="film-card-info"><span class="film-label">Laya — Knowledge</span><h4>Reading the Sky</h4><p>An elder from Merak explains cloud formations, wind direction, and snowfall patterns — knowledge passed down without ever being written.</p></div>
             </div>
-
-            <!-- RTC MEMORY -->
-            <div class="film-card" data-category="rtc"
-                 data-label="RTC Memory — Memory" data-title="Ara & Absence"
-                 data-img="image/culture.jpg"
-                 data-essay="<p>Ara is distilled from maize or rice, depending on what the season has given. The process takes three days and requires a specific clay pot, a copper tube, and a patience that most younger people in the valley say they do not have. Dechen has it. She has been making ara since she was sixteen, watching her mother, then doing it herself, then watching her daughter watch her.</p><p>Her husband died four years ago. Since then she makes ara once a month, in the quantities she used to make for both of them. She pours his cup first. She sets it on the low table by the window where he used to sit. She does not perform a ritual over it. She simply pours it and leaves it there until the evening, when she pours it onto the earth outside.</p><p>When asked about this practice, Dechen does not frame it as grief or ritual or spiritual obligation. She says: he liked it strong and slightly warm. So that is how I pour it. The hospitality is not interrupted by his absence. It has simply changed its form.</p>">
+            <div class="film-card" data-category="rtc" data-label="RTC Memory — Memory" data-title="Ara & Absence" data-img="image/culture.jpg" data-essay="<p>Ara is distilled from maize or rice, depending on what the season has given. The process takes three days and requires a specific clay pot, a copper tube, and a patience that most younger people in the valley say they do not have. Dechen has it.</p><p>Her husband died four years ago. Since then she makes ara once a month, in the quantities she used to make for both of them. She pours his cup first. She sets it on the low table by the window where he used to sit. She does not perform a ritual over it.</p><p>When asked about this practice, Dechen says: he liked it strong and slightly warm. So that is how I pour it. The hospitality is not interrupted by his absence. It has simply changed its form.</p>">
                 <div class="film-card-thumb"><img src="image/culture.jpg" alt="Ara & Absence"></div>
-                <div class="film-card-info">
-                    <span class="film-label">RTC Memory — Memory</span>
-                    <h4>Ara & Absence</h4>
-                    <p>On the ritual of distilling home-brewed ara and the conversations it opens — a vignette about grief, memory, and highland hospitality.</p>
-                </div>
+                <div class="film-card-info"><span class="film-label">RTC Memory — Memory</span><h4>Ara & Absence</h4><p>On the ritual of distilling home-brewed ara and the conversations it opens — a vignette about grief, memory, and highland hospitality.</p></div>
             </div>
-
-            <div class="film-card" data-category="rtc"
-                 data-label="RTC Memory — Craft" data-title="The Last Thangka Painter"
-                 data-img="image/student.jpg"
-                 data-essay="<p>Lopen Karma is seventy-one. His hands are still steady. He holds the squirrel-hair brush between two fingers and a thumb, resting his wrist against a small sandbag to eliminate tremor. The line he draws is thinner than a hair and perfectly even. He has been drawing this line — or variations of it — for fifty years.</p><p>His apprentice left two years ago for Thimphu. There are prospects there, the young man said, and Lopen Karma did not argue. There are prospects everywhere now, he tells the researcher. He does not say this bitterly. It is an observation, like noting the weather.</p><p>The pigments on his worktable are ground from stone: lapis lazuli, malachite, cinnabar, gold. Some he orders from suppliers in Nepal. Some he sources himself, from specific deposits he has known for decades. The colours take weeks to prepare. The thangka he is currently painting will take three years to complete. He does not know who will complete the next one. He continues to paint this one. The brush moves. The line holds.</p>">
+            <div class="film-card" id="vig-3" data-category="rtc" data-label="RTC Memory — Craft" data-title="The Last Thangka Painter" data-img="image/student.jpg" data-essay="<p>Lopen Karma is seventy-one. His hands are still steady. He holds the squirrel-hair brush between two fingers and a thumb, resting his wrist against a small sandbag to eliminate tremor. The line he draws is thinner than a hair and perfectly even. He has been drawing this line for fifty years.</p><p>His apprentice left two years ago for Thimphu. There are prospects there, the young man said, and Lopen Karma did not argue. There are prospects everywhere now, he tells the researcher. He does not say this bitterly.</p><p>The thangka he is currently painting will take three years to complete. He does not know who will complete the next one. He continues to paint this one. The brush moves. The line holds.</p>">
                 <div class="film-card-thumb"><img src="image/student.jpg" alt="The Last Thangka Painter"></div>
-                <div class="film-card-info">
-                    <span class="film-label">RTC Memory — Craft</span>
-                    <h4>The Last Thangka Painter</h4>
-                    <p>A portrait of a master thangka artist in his seventies — his hands still steady, his apprentice absent, his pigments ground from stone.</p>
-                </div>
+                <div class="film-card-info"><span class="film-label">RTC Memory — Craft</span><h4>The Last Thangka Painter</h4><p>A portrait of a master thangka artist in his seventies — his hands still steady, his apprentice absent, his pigments ground from stone.</p></div>
             </div>
-
         </div>
     </div>
 </div>
 
-<!-- ESSAY LIGHTBOX -->
 <div class="lightbox-overlay" id="lightbox" onclick="closeLightboxOnBg(event)">
     <div class="lightbox-box">
-        <button class="lightbox-close" onclick="closeLightbox()">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-        </button>
+        <button class="lightbox-close" onclick="closeLightbox()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
         <div class="lb-img-wrap"><img id="lbImg" src="" alt=""></div>
-        <div class="lb-text-wrap">
-            <span class="lb-label" id="lbLabel"></span>
-            <h2 class="lb-title" id="lbTitle"></h2>
-            <div class="lb-divider"></div>
-            <div class="lb-body" id="lbBody"></div>
-        </div>
+        <div class="lb-text-wrap"><span class="lb-label" id="lbLabel"></span><h2 class="lb-title" id="lbTitle"></h2><div class="lb-divider"></div><div class="lb-body" id="lbBody"></div></div>
     </div>
 </div>
 
 <script>
-(function () {
-    var hamburger = document.getElementById('hamburger'), mainNav = document.getElementById('main-nav'), searchBtn = document.getElementById('search-btn'), searchWrapper = document.getElementById('search-wrapper'), searchInput = document.getElementById('search-input');
-    document.querySelectorAll('.has-dropdown').forEach(function (item) {
-        var drop = item.querySelector('.mega-dropdown') || item.querySelector('.dropdown'); if (!drop) return; var t;
-        item.addEventListener('mouseenter', function () { if (window.innerWidth > 900) { clearTimeout(t); drop.style.display = 'flex'; } });
-        item.addEventListener('mouseleave', function () { if (window.innerWidth > 900) t = setTimeout(function () { drop.style.display = ''; }, 120); });
-        drop.addEventListener('mouseenter', function () { clearTimeout(t); });
-        drop.addEventListener('mouseleave', function () { if (window.innerWidth > 900) t = setTimeout(function () { drop.style.display = ''; }, 120); });
-    });
-    if (searchBtn) { searchBtn.addEventListener('click', function (e) { e.stopPropagation(); var o = searchWrapper.classList.toggle('expanded'); if (o) searchInput.focus(); else { searchInput.value = ''; searchInput.blur(); } }); }
-    document.addEventListener('click', function (e) { if (searchWrapper && !searchWrapper.contains(e.target)) { searchWrapper.classList.remove('expanded'); if (searchInput) searchInput.value = ''; } });
-    if (hamburger) { hamburger.addEventListener('click', function (e) { e.stopPropagation(); hamburger.classList.toggle('open'); mainNav.classList.toggle('open'); }); }
-    document.querySelectorAll('.has-dropdown').forEach(function (item) {
-        item.addEventListener('click', function (e) {
-            if (window.innerWidth <= 900) {
-                var drop = item.querySelector('.mega-dropdown') || item.querySelector('.dropdown'), arrow = item.querySelector('.arrow'); if (!drop) return;
-                var isOpen = drop.classList.contains('mobile-open');
-                document.querySelectorAll('.mega-dropdown.mobile-open,.dropdown.mobile-open').forEach(function (d) { d.classList.remove('mobile-open'); });
-                document.querySelectorAll('.arrow').forEach(function (a) { a.style.transform = ''; });
-                if (!isOpen) { drop.classList.add('mobile-open'); if (arrow) arrow.style.transform = 'rotate(180deg)'; }
-                e.preventDefault();
-            }
-        });
-    });
-    document.addEventListener('click', function (e) { if (mainNav && hamburger && !mainNav.contains(e.target) && !hamburger.contains(e.target)) { mainNav.classList.remove('open'); hamburger.classList.remove('open'); document.querySelectorAll('.mega-dropdown.mobile-open,.dropdown.mobile-open').forEach(function (d) { d.classList.remove('mobile-open'); }); } });
+(function(){
+    var hamburger=document.getElementById('hamburger'),mainNav=document.getElementById('main-nav'),searchBtn=document.getElementById('search-btn'),searchWrapper=document.getElementById('search-wrapper'),searchInput=document.getElementById('search-input');
+    document.querySelectorAll('.has-dropdown').forEach(function(item){var drop=item.querySelector('.mega-dropdown')||item.querySelector('.dropdown');if(!drop)return;var t;item.addEventListener('mouseenter',function(){if(window.innerWidth>900){clearTimeout(t);drop.style.display='flex';}});item.addEventListener('mouseleave',function(){if(window.innerWidth>900)t=setTimeout(function(){drop.style.display='';},120);});drop.addEventListener('mouseenter',function(){clearTimeout(t);});drop.addEventListener('mouseleave',function(){if(window.innerWidth>900)t=setTimeout(function(){drop.style.display='';},120);});});
+    if(searchBtn){searchBtn.addEventListener('click',function(e){e.stopPropagation();var o=searchWrapper.classList.toggle('expanded');if(o)searchInput.focus();else{searchInput.value='';searchInput.blur();}});}
+    document.addEventListener('click',function(e){if(searchWrapper&&!searchWrapper.contains(e.target)){searchWrapper.classList.remove('expanded');if(searchInput)searchInput.value='';}});
+    if(hamburger){hamburger.addEventListener('click',function(e){e.stopPropagation();hamburger.classList.toggle('open');mainNav.classList.toggle('open');});}
+    document.querySelectorAll('.has-dropdown').forEach(function(item){item.addEventListener('click',function(e){if(window.innerWidth<=900){var drop=item.querySelector('.mega-dropdown')||item.querySelector('.dropdown'),arrow=item.querySelector('.arrow');if(!drop)return;var isOpen=drop.classList.contains('mobile-open');document.querySelectorAll('.mega-dropdown.mobile-open,.dropdown.mobile-open').forEach(function(d){d.classList.remove('mobile-open');});document.querySelectorAll('.arrow').forEach(function(a){a.style.transform='';});if(!isOpen){drop.classList.add('mobile-open');if(arrow)arrow.style.transform='rotate(180deg)';}e.preventDefault();}});});
+    document.addEventListener('click',function(e){if(mainNav&&hamburger&&!mainNav.contains(e.target)&&!hamburger.contains(e.target)){mainNav.classList.remove('open');hamburger.classList.remove('open');document.querySelectorAll('.mega-dropdown.mobile-open,.dropdown.mobile-open').forEach(function(d){d.classList.remove('mobile-open');});}});
 
-    var filterBtn = document.getElementById('filterToggleBtn'), sidebar = document.getElementById('filterSidebar'), filterDot = document.getElementById('filterDot'), innerCards = document.getElementById('innerCards'), filterClear = document.getElementById('filterClear');
-    var allCards = document.querySelectorAll('.film-card'), checkItems = document.querySelectorAll('.filter-check-item');
-    var sidebarOpen = false, activeFilter = null;
+var track = document.getElementById('sliderTrack');
+var slides = document.querySelectorAll('.slide');
+var dots = document.querySelectorAll('.slider-dot');
+var TOTAL = slides.length, current = 0, autoTimer;
 
-    filterBtn.addEventListener('click', function (e) { e.stopPropagation(); sidebarOpen = !sidebarOpen; filterBtn.classList.toggle('open', sidebarOpen); sidebar.classList.toggle('open', sidebarOpen); });
-    checkItems.forEach(function (item) {
-        item.addEventListener('click', function () {
-            var cat = item.dataset.category;
-            if (activeFilter === cat) { activeFilter = null; item.classList.remove('checked'); showAll(); filterDot.classList.remove('visible'); return; }
-            checkItems.forEach(function (i) { i.classList.remove('checked'); }); item.classList.add('checked'); activeFilter = cat; filterDot.classList.add('visible'); applyFilter(cat);
-        });
-    });
-    filterClear.addEventListener('click', function () { activeFilter = null; checkItems.forEach(function (i) { i.classList.remove('checked'); }); filterDot.classList.remove('visible'); showAll(); });
-    function showAll() { innerCards.classList.remove('filtered-view'); allCards.forEach(function (c) { c.classList.remove('hidden'); }); }
-    function applyFilter(cat) { innerCards.classList.add('filtered-view'); allCards.forEach(function (c) { c.classList.toggle('hidden', c.dataset.category !== cat); }); }
-    allCards.forEach(function (c) { c.style.cursor = 'pointer'; c.addEventListener('click', function () { openLightbox(c); }); });
+function goTo(idx) {
+    current = (idx + TOTAL) % TOTAL;
+    track.style.transform = 'translateX(-' + (current * 100) + '%)';
+    dots.forEach(function(d, i) { d.classList.toggle('active', i === current); });
+}
+function next() { goTo(current + 1); }
+function startAuto() { clearInterval(autoTimer); autoTimer = setInterval(next, 4500); }
 
-    var overlay = document.getElementById('lightbox');
-    window.openLightbox = function (card) {
-        document.getElementById('lbLabel').textContent = card.dataset.label || '';
-        document.getElementById('lbTitle').textContent = card.dataset.title || '';
-        document.getElementById('lbImg').src = card.dataset.img || '';
-        document.getElementById('lbImg').alt = card.dataset.title || '';
-        document.getElementById('lbBody').innerHTML = card.dataset.essay || '';
-        overlay.classList.add('open'); document.body.style.overflow = 'hidden';
-    };
-    window.closeLightbox = function () { overlay.classList.remove('open'); document.body.style.overflow = ''; };
-    window.closeLightboxOnBg = function (e) { if (e.target === overlay) closeLightbox(); };
-    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeLightbox(); });
+dots.forEach(function(dot, i) {
+    dot.addEventListener('click', function() { goTo(i); startAuto(); });
+});
+goTo(0);
+startAuto();
+
+    /* FILTER */
+    var filterBtn=document.getElementById('filterToggleBtn'),sidebar=document.getElementById('filterSidebar'),filterDot=document.getElementById('filterDot'),innerCards=document.getElementById('innerCards'),filterClear=document.getElementById('filterClear'),allCards=document.querySelectorAll('.film-card'),checkItems=document.querySelectorAll('.filter-check-item'),sidebarOpen=false,activeFilter=null;
+    filterBtn.addEventListener('click',function(e){e.stopPropagation();sidebarOpen=!sidebarOpen;filterBtn.classList.toggle('open',sidebarOpen);sidebar.classList.toggle('open',sidebarOpen);});
+    checkItems.forEach(function(item){item.addEventListener('click',function(){var cat=item.dataset.category;if(activeFilter===cat){activeFilter=null;item.classList.remove('checked');showAll();filterDot.classList.remove('visible');return;}checkItems.forEach(function(i){i.classList.remove('checked');});item.classList.add('checked');activeFilter=cat;filterDot.classList.add('visible');applyFilter(cat);});});
+    filterClear.addEventListener('click',function(){activeFilter=null;checkItems.forEach(function(i){i.classList.remove('checked');});filterDot.classList.remove('visible');showAll();});
+    function showAll(){innerCards.classList.remove('filtered-view');allCards.forEach(function(c){c.classList.remove('hidden');});}
+    function applyFilter(cat){innerCards.classList.add('filtered-view');allCards.forEach(function(c){c.classList.toggle('hidden',c.dataset.category!==cat);});}
+    allCards.forEach(function(c){c.style.cursor='pointer';c.addEventListener('click',function(){openLightbox(c);});});
+
+    /* LIGHTBOX */
+    var overlay=document.getElementById('lightbox');
+    window.openLightbox=function(card){document.getElementById('lbLabel').textContent=card.dataset.label||'';document.getElementById('lbTitle').textContent=card.dataset.title||'';document.getElementById('lbImg').src=card.dataset.img||'';document.getElementById('lbImg').alt=card.dataset.title||'';document.getElementById('lbBody').innerHTML=card.dataset.essay||'';overlay.classList.add('open');document.body.style.overflow='hidden';};
+    window.openLightboxById=function(id){var card=document.getElementById(id);if(card)openLightbox(card);};
+    window.closeLightbox=function(){overlay.classList.remove('open');document.body.style.overflow='';};
+    window.closeLightboxOnBg=function(e){if(e.target===overlay)closeLightbox();};
+    document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLightbox();});
 })();
 </script>
 </body>
