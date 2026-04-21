@@ -4,13 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Photo Essay — Highland Heritages of Bhutan</title>
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&display=swap" rel="stylesheet">
     <style>
         * { font-family: 'Raleway', sans-serif !important; box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; }
         body { background: #fff; color: #000; overflow-x: hidden; }
         a { text-decoration: none; color: inherit; }
-
         header { position: sticky; top: 0; z-index: 1000; background: #fff; padding: 18px 8%; border-bottom: 1px solid #e8e8e8; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
         .nav-container { display: flex; justify-content: space-between; align-items: center; position: relative; }
         .logo { font-size: 1.4rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; flex-shrink: 0; }
@@ -48,18 +47,50 @@
         .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
         .hamburger.open span:nth-child(2) { opacity: 0; }
         .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-
         .breadcrumb { position: sticky; top: 57px; z-index: 900; background: #fff; border-bottom: 1px solid #ececec; padding: 10px 8%; display: flex; align-items: center; gap: 8px; font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
         .breadcrumb a { color: #888; transition: color 0.2s; }
         .breadcrumb a:hover { color: #000; }
         .bc-sep { color: #ccc; }
         .bc-current { color: #000; }
-
         .inner-intro { max-width: 760px; margin: 0 auto; padding: 48px 6% 40px; text-align: center; }
         .inner-intro h2 { font-size: 2.4rem; font-weight: 700; line-height: 1.2; margin-bottom: 16px; }
         .inner-intro p { font-size: 0.95rem; color: #555; line-height: 1.9; }
 
-        .films-controls { padding: 12px 6%; position: sticky; top: 95px; z-index: 800; background: #fff; border-bottom: 1px solid #ececec; }
+        /* FEATURED SLIDER */
+        .featured-section { background: #f8f7f5; padding: 0 6% 48px; overflow: hidden; }
+        .featured-label-row { display: flex; align-items: center; gap: 14px; padding: 32px 0 28px; }
+        .featured-label-row span { font-size: 0.62rem; font-weight: 800; text-transform: uppercase; letter-spacing: 4px; color: #aaa; white-space: nowrap; }
+        .featured-label-row::after { content: ''; flex: 1; height: 1px; background: #e0ddd8; }
+        .slider-outer { position: relative; overflow: hidden; }
+        .slider-track { display: flex; transition: transform 0.9s cubic-bezier(0.77, 0, 0.175, 1); will-change: transform; }
+        .slide { min-width: 100%; display: grid; grid-template-columns: 1fr 48%; align-items: center; gap: 52px; }
+        .slide-text { display: flex; flex-direction: column; gap: 18px; padding: 8px 0; }
+        .slide-tag { display: inline-flex; align-items: center; gap: 8px; font-size: 0.6rem; font-weight: 800; text-transform: uppercase; letter-spacing: 3px; color: #888; }
+        .slide-tag::before { content: ''; display: inline-block; width: 18px; height: 1.5px; background: #bbb; }
+        .slide-title { font-size: 2.1rem; font-weight: 800; line-height: 1.12; color: #111; letter-spacing: -0.3px; }
+        .slide-desc { font-size: 0.9rem; color: #555; line-height: 1.85; max-width: 420px; }
+        .slide-stats { display: flex; gap: 24px; }
+        .slide-stat { display: flex; flex-direction: column; gap: 3px; }
+        .slide-stat-num { font-size: 1.3rem; font-weight: 800; color: #111; letter-spacing: -0.5px; }
+        .slide-stat-label { font-size: 0.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: #aaa; }
+        .slide-cta { display: inline-flex; align-items: center; gap: 10px; background: #111; color: #fff; padding: 12px 26px; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; border: none; cursor: pointer; border-radius: 2px; transition: background 0.2s, transform 0.2s; width: fit-content; }
+        .slide-cta:hover { background: #333; transform: translateY(-1px); }
+        .slide-cta svg { width: 13px; height: 13px; }
+        .slide-img-wrap { position: relative; height: 400px; border-radius: 3px; overflow: hidden; }
+        .slide-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .slide-img-badge { position: absolute; top: 18px; left: 18px; background: rgba(0,0,0,0.72); color: #fff; font-size: 0.58rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; padding: 5px 12px; border-radius: 2px; }
+        .slider-dots { display: flex; align-items: center; justify-content: center; gap: 10px; padding-top: 32px; }
+        .slider-dot { width: 28px; height: 2px; background: #ccc; border-radius: 999px; cursor: pointer; transition: background 0.4s, width 0.4s; border: none; }
+        .slider-dot.active { background: #111; width: 48px; }
+        .slide {
+    min-width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 48%;
+    align-items: center;
+    gap: 52px;
+}
+        /* MAIN */
+        .films-controls { padding: 20px 6% 12px; position: sticky; top: 95px; z-index: 800; background: #fff; border-bottom: 1px solid #ececec; }
         .filter-toggle-btn { display: inline-flex; align-items: center; gap: 8px; background: #fff; border: 1.5px solid #e0e0e0; border-radius: 999px; padding: 8px 18px 8px 14px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; cursor: pointer; color: #000; transition: background 0.3s, border-color 0.3s, color 0.3s; position: relative; }
         .filter-toggle-btn:hover { background: #f4f4f4; border-color: #bbb; }
         .filter-toggle-btn.open { background: #000; border-color: #000; color: #fff; }
@@ -69,9 +100,7 @@
         .filter-active-dot { width: 6px; height: 6px; background: #000; border-radius: 50%; display: none; position: absolute; top: 5px; right: 5px; }
         .filter-toggle-btn.open .filter-active-dot { background: #fff; }
         .filter-active-dot.visible { display: block; }
-
         .films-layout { display: flex; align-items: flex-start; padding: 28px 6% 80px; gap: 0; }
-
         .filter-sidebar { width: 0; flex-shrink: 0; overflow: hidden; opacity: 0; transform: translateX(-24px); transition: width 0.5s cubic-bezier(0.4,0,0.2,1), opacity 0.4s ease, transform 0.5s cubic-bezier(0.4,0,0.2,1); position: sticky; top: 141px; max-height: calc(100vh - 141px); }
         .filter-sidebar.open { width: 240px; opacity: 1; transform: translateX(0); }
         .filter-sidebar-inner { width: 240px; padding: 0 24px 0 0; }
@@ -88,11 +117,9 @@
         .filter-sidebar-divider { height: 1px; background: #f0f0f0; margin: 6px 8px; }
         .filter-clear { display: flex; align-items: center; justify-content: center; padding: 8px 14px; font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #888; cursor: pointer; border-radius: 8px; transition: color 0.2s, background 0.2s; }
         .filter-clear:hover { color: #000; background: #f4f4f4; }
-
         .cards-area { flex: 1; min-width: 0; }
-        .inner-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; transition: grid-template-columns 0.5s ease, gap 0.5s ease; }
+        .inner-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
         .filter-sidebar.open ~ .cards-area .inner-cards { grid-template-columns: repeat(2, 1fr); }
-
         .film-card { cursor: pointer; border-radius: 4px; overflow: hidden; background: #fff; transition: transform 0.3s, box-shadow 0.3s; }
         .film-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.18); }
         .film-card.hidden { display: none !important; }
@@ -103,8 +130,6 @@
         .film-card-info .film-label { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; color: #aaa; display: block; margin-bottom: 6px; }
         .film-card-info h4 { font-size: 1rem; font-weight: 700; margin-bottom: 6px; color: #000; }
         .film-card-info p { font-size: 0.82rem; color: #555; line-height: 1.7; }
-
-        /* ── FILTERED VIEW ── */
         .inner-cards.filtered-view { display: flex; flex-direction: column; gap: 0; }
         .inner-cards.filtered-view .film-card { display: grid; grid-template-columns: 1fr 1fr; align-items: stretch; border-radius: 0; overflow: hidden; background: #fff; box-shadow: none; transform: none !important; margin-bottom: 90px; }
         .inner-cards.filtered-view .film-card:nth-child(odd) .film-card-thumb { order: 1; }
@@ -118,8 +143,6 @@
         .inner-cards.filtered-view .film-card-info .film-label { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 4px; color: #888; display: block; margin-bottom: 0; }
         .inner-cards.filtered-view .film-card-info h4 { font-size: 2.2rem; font-weight: 700; color: #000; line-height: 1.15; margin: 0; }
         .inner-cards.filtered-view .film-card-info p { font-size: 0.95rem; color: #444; line-height: 1.85; margin: 0; }
-
-        /* ── ESSAY LIGHTBOX ── */
         .lightbox-overlay { position: fixed; inset: 0; z-index: 99999; background: rgba(0,0,0,0.88); display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; padding: 32px; }
         .lightbox-overlay.open { opacity: 1; pointer-events: all; }
         .lightbox-box { background: #fff; width: 100%; max-width: 1020px; max-height: 88vh; border-radius: 6px; overflow: hidden; transform: translateY(24px) scale(0.97); transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1); display: grid; grid-template-columns: 1fr 1fr; position: relative; }
@@ -136,10 +159,15 @@
         .lb-body { font-size: 0.9rem; color: #333; line-height: 2; font-weight: 400; }
         .lb-body p { margin-bottom: 1.1rem; }
         .lb-body p:last-child { margin-bottom: 0; }
-
-        /* ── RESPONSIVE ── */
-        @media (max-width: 1100px) { .inner-cards { grid-template-columns: repeat(2,1fr); } .filter-sidebar.open ~ .cards-area .inner-cards { grid-template-columns: 1fr; } }
+        .slider-track {
+    display: flex;
+    transition: transform 2.5s cubic-bezier(0.77, 0, 0.175, 1);
+    will-change: transform;
+}
         @media (max-width: 900px) {
+            .slide { grid-template-columns: 1fr; gap: 24px; }
+            .slide-img-wrap { height: 260px; }
+            .slide-title { font-size: 1.5rem; }
             .lightbox-box { grid-template-columns: 1fr; overflow-y: auto; }
             .lb-img-wrap { max-height: 260px; }
             .lb-text-wrap { padding: 28px 24px; }
@@ -171,7 +199,6 @@
     </style>
 </head>
 <body>
-
 <header>
     <div class="nav-container">
         <a href="index.html" class="logo">RTC Heritage Portal</a>
@@ -181,254 +208,191 @@
                 <li class="has-dropdown mega-parent">
                     <a href="#">Location, Theme & More <span class="arrow">▾</span></a>
                     <div class="mega-dropdown">
-                        <div class="mega-col">
-                            <p class="mega-heading">Location</p>
-                            <a href="index.html#haa">Haa Resources</a>
-                            <a href="index.html#sephu">Sephu Resources</a>
-                            <a href="index.html#thimphu">Thimphu Resources</a>
-                        </div>
+                        <div class="mega-col"><p class="mega-heading">Location</p><a href="index.html#haa">Haa Resources</a><a href="index.html#sephu">Sephu Resources</a><a href="index.html#thimphu">Thimphu Resources</a></div>
                         <div class="mega-divider"></div>
-                        <div class="mega-col">
-                            <p class="mega-heading">Theme</p>
-                            <a href="index.html?theme=0">Page Theme</a>
-                            <a href="index.html?theme=1">Theme Cultural</a>
-                            <a href="index.html?theme=2">Theme Cosmetic</a>
-                        </div>
+                        <div class="mega-col"><p class="mega-heading">Theme</p><a href="index.html?theme=0">Page Theme</a><a href="index.html?theme=1">Theme Cultural</a><a href="index.html?theme=2">Theme Cosmetic</a></div>
                         <div class="mega-divider"></div>
-                        <div class="mega-col">
-                            <p class="mega-heading">More</p>
-                            <a href="resources.html">Additional Resources</a>
-                            <a href="#">Interactive Map</a>
-                            <a href="#">Announcement</a>
-                        </div>
+                        <div class="mega-col"><p class="mega-heading">More</p><a href="resources.html">Additional Resources</a><a href="interactive-map.html">Interactive Map</a><a href="#">Announcement</a></div>
                     </div>
                 </li>
-                <li class="search-item">
-                    <div class="search-wrapper" id="search-wrapper">
-                        <button class="search-icon-btn" id="search-btn" aria-label="Search">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-                        </button>
-                        <input type="text" class="search-input" id="search-input" placeholder="Search...">
-                    </div>
-                </li>
-                <li class="has-dropdown">
-                    <a href="vmo.html">About <span class="arrow">▾</span></a>
-                    <ul class="dropdown">
-                        <li><a href="vmo.html">Vision</a></li>
-                        <li><a href="vmo.html">Mission</a></li>
-                        <li><a href="vmo.html">Objective</a></li>
-                    </ul>
-                </li>
-                <li><a href="lessonplan.html">Lesson Plans</a></li>
+                <li class="search-item"><div class="search-wrapper" id="search-wrapper"><button class="search-icon-btn" id="search-btn" aria-label="Search"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></button><input type="text" class="search-input" id="search-input" placeholder="Search..."></div></li>
+                <li class="has-dropdown"><a href="vmo.html">About <span class="arrow">▾</span></a><ul class="dropdown"><li><a href="vmo.html">Vision</a></li><li><a href="vmo.html">Mission</a></li><li><a href="vmo.html">Objective</a></li></ul></li>
+                <li><a href="lesson-plan.html">Lesson Plans</a></li>
             </ul>
         </nav>
     </div>
 </header>
-
-<nav class="breadcrumb">
-    <a href="index.html">Home</a>
-    <span class="bc-sep">›</span>
-    <a href="index.html#media-gallery">Media Gallery</a>
-    <span class="bc-sep">›</span>
-    <span class="bc-current">Photo Essay</span>
-</nav>
-
+<nav class="breadcrumb"><a href="index.html">Home</a><span class="bc-sep">›</span><a href="index.html#media-gallery">Media Gallery</a><span class="bc-sep">›</span><span class="bc-current">Photo Essay</span></nav>
 <div class="inner-intro">
     <h2>Visual Stories From the Roof of the World</h2>
     <p>These photo essays document the textures, rhythms, and quiet moments of highland Bhutanese life — captured by researchers and local photographers, offering an intimate look at ritual, labour, kinship, and the landscape that shapes everything.</p>
 </div>
 
+<!-- FEATURED SLIDER -->
+<div class="featured-section">
+    <div class="featured-label-row"><span>Most Viewed &amp; Liked</span></div>
+    <div class="slider-outer" id="sliderOuter">
+        <div class="slider-track" id="sliderTrack">
+            <div class="slide">
+                <div class="slide-text">
+                    <span class="slide-tag">Photo Essay — Haa</span>
+                    <h2 class="slide-title">Before the Mask</h2>
+                    <p class="slide-desc">Backstage portraits of cham dancers preparing in silence — robes folded with deliberate care, faces calm before transformation at the Haa Tsechu.</p>
+                    <div class="slide-stats">
+                        <div class="slide-stat"><span class="slide-stat-num">5.1K</span><span class="slide-stat-label">Views</span></div>
+                        <div class="slide-stat"><span class="slide-stat-num">402</span><span class="slide-stat-label">Likes</span></div>
+                        <div class="slide-stat"><span class="slide-stat-num">18 Photos</span><span class="slide-stat-label">In Series</span></div>
+                    </div>
+                    <button class="slide-cta" onclick="openLightboxById('essay-1')">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                        View Essay
+                    </button>
+                </div>
+                <div class="slide-img-wrap"><img src="image/Bhutan-Ceremonial-procession-getting-ready.jpg" alt="Before the Mask"><span class="slide-img-badge">#1 Most Viewed</span></div>
+            </div>
+            <div class="slide">
+                <div class="slide-text">
+                    <span class="slide-tag">Photo Essay — Laya</span>
+                    <h2 class="slide-title">Above the Cloud Line</h2>
+                    <p class="slide-desc">High-altitude landscapes of the Lunana Gewog, where glacial lakes reflect a sky untouched by light pollution and yak herders move before the first hard freeze.</p>
+                    <div class="slide-stats">
+                        <div class="slide-stat"><span class="slide-stat-num">4.4K</span><span class="slide-stat-label">Views</span></div>
+                        <div class="slide-stat"><span class="slide-stat-num">361</span><span class="slide-stat-label">Likes</span></div>
+                        <div class="slide-stat"><span class="slide-stat-num">24 Photos</span><span class="slide-stat-label">In Series</span></div>
+                    </div>
+                    <button class="slide-cta" onclick="openLightboxById('essay-2')">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                        View Essay
+                    </button>
+                </div>
+                <div class="slide-img-wrap"><img src="image/Bhutan_mountains.jpg" alt="Above the Cloud Line"><span class="slide-img-badge">#2 Most Viewed</span></div>
+            </div>
+            <div class="slide">
+                <div class="slide-text">
+                    <span class="slide-tag">Photo Essay — RTC Memory</span>
+                    <h2 class="slide-title">Daughters of Sephu</h2>
+                    <p class="slide-desc">Young women from Sephu balancing school notebooks and traditional striped kiras — a portrait of two worlds held fluently in a single frame.</p>
+                    <div class="slide-stats">
+                        <div class="slide-stat"><span class="slide-stat-num">3.7K</span><span class="slide-stat-label">Views</span></div>
+                        <div class="slide-stat"><span class="slide-stat-num">298</span><span class="slide-stat-label">Likes</span></div>
+                        <div class="slide-stat"><span class="slide-stat-num">14 Photos</span><span class="slide-stat-label">In Series</span></div>
+                    </div>
+                    <button class="slide-cta" onclick="openLightboxById('essay-3')">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                        View Essay
+                    </button>
+                </div>
+                <div class="slide-img-wrap"><img src="image/student.jpg" alt="Daughters of Sephu"><span class="slide-img-badge">#3 Most Viewed</span></div>
+            </div>
+        </div>
+    </div>
+    <div class="slider-dots">
+        <button class="slider-dot active" data-index="0"></button>
+        <button class="slider-dot" data-index="1"></button>
+        <button class="slider-dot" data-index="2"></button>
+    </div>
+</div>
+
 <div class="films-controls">
     <button class="filter-toggle-btn" id="filterToggleBtn">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="11" y1="18" x2="13" y2="18"/></svg>
-        Filter
-        <span class="filter-arrow">▾</span>
-        <span class="filter-active-dot" id="filterDot"></span>
+        Filter <span class="filter-arrow">▾</span><span class="filter-active-dot" id="filterDot"></span>
     </button>
 </div>
-
 <div class="films-layout">
     <aside class="filter-sidebar" id="filterSidebar">
         <div class="filter-sidebar-inner">
             <p class="filter-sidebar-title">Filter by location</p>
-            <div class="filter-check-item" data-category="haa">
-                <div class="filter-check-box"><svg viewBox="0 0 10 10" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1.5,5 4,7.5 8.5,2"/></svg></div>
-                <span class="filter-check-label">Haa</span><span class="filter-check-count">2</span>
-            </div>
-            <div class="filter-check-item" data-category="laya">
-                <div class="filter-check-box"><svg viewBox="0 0 10 10" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1.5,5 4,7.5 8.5,2"/></svg></div>
-                <span class="filter-check-label">Laya</span><span class="filter-check-count">2</span>
-            </div>
-            <div class="filter-check-item" data-category="rtc">
-                <div class="filter-check-box"><svg viewBox="0 0 10 10" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1.5,5 4,7.5 8.5,2"/></svg></div>
-                <span class="filter-check-label">RTC Memory</span><span class="filter-check-count">2</span>
-            </div>
+            <div class="filter-check-item" data-category="haa"><div class="filter-check-box"><svg viewBox="0 0 10 10" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1.5,5 4,7.5 8.5,2"/></svg></div><span class="filter-check-label">Haa</span><span class="filter-check-count">2</span></div>
+            <div class="filter-check-item" data-category="laya"><div class="filter-check-box"><svg viewBox="0 0 10 10" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1.5,5 4,7.5 8.5,2"/></svg></div><span class="filter-check-label">Laya</span><span class="filter-check-count">2</span></div>
+            <div class="filter-check-item" data-category="rtc"><div class="filter-check-box"><svg viewBox="0 0 10 10" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1.5,5 4,7.5 8.5,2"/></svg></div><span class="filter-check-label">RTC Memory</span><span class="filter-check-count">2</span></div>
             <div class="filter-sidebar-divider"></div>
             <div class="filter-clear" id="filterClear">Clear all</div>
         </div>
     </aside>
-
     <div class="cards-area">
         <div class="inner-cards" id="innerCards">
-
-            <!-- HAA -->
-            <div class="film-card" data-category="haa"
-                 data-label="Haa — Ceremony" data-title="Before the Mask"
-                 data-img="image/Bhutan-Ceremonial-procession-getting-ready.jpg"
-                 data-essay="<p>Behind the dzong's thick walls, in a room that smells of camphor and aged silk, the cham dancers prepare in near silence. Robes are folded with deliberate care — each crease a form of reverence. Faces remain calm, almost blank, as if the act of stillness itself is the first movement of the dance.</p><p>The masks lie waiting on low wooden shelves: a wrathful deity with bulging eyes, a skull-crowned protector, a deer whose gentle expression belies its cosmic significance. The dancer who lifts his mask does so with both hands, pausing before placing it over his face. In that pause, something passes between the human and the sacred.</p><p>These backstage portraits were taken over three consecutive Tsechu mornings in Haa. The photographers worked without speaking. What emerged is not documentation of preparation — it is documentation of transformation.</p>">
+            <div class="film-card" id="essay-1" data-category="haa" data-label="Haa — Ceremony" data-title="Before the Mask" data-img="image/Bhutan-Ceremonial-procession-getting-ready.jpg" data-essay="<p>Behind the dzong's thick walls, in a room that smells of camphor and aged silk, the cham dancers prepare in near silence. Robes are folded with deliberate care — each crease a form of reverence. Faces remain calm, almost blank, as if the act of stillness itself is the first movement of the dance.</p><p>The masks lie waiting on low wooden shelves: a wrathful deity with bulging eyes, a skull-crowned protector, a deer whose gentle expression belies its cosmic significance. The dancer who lifts his mask does so with both hands, pausing before placing it over his face. In that pause, something passes between the human and the sacred.</p>">
                 <div class="film-card-thumb"><img src="image/Bhutan-Ceremonial-procession-getting-ready.jpg" alt="Before the Mask"></div>
-                <div class="film-card-info">
-                    <span class="film-label">Haa — Ceremony</span>
-                    <h4>Before the Mask</h4>
-                    <p>Backstage portraits of cham dancers preparing in silence — robes folded, faces calm before transformation.</p>
-                <br>
-                <br>
-                </div>
+                <div class="film-card-info"><span class="film-label">Haa — Ceremony</span><h4>Before the Mask</h4><p>Backstage portraits of cham dancers preparing in silence — robes folded, faces calm before transformation.</p></div>
             </div>
-
-            <div class="film-card" data-category="haa"
-                 data-label="Haa — Craft" data-title="Felt & Flock"
-                 data-img="image/namads.jpeg"
-                 data-essay="<p>In the lower valleys of Haa, the making of namda felt is an act that binds the animal, the human, and the earth into a single gesture. Raw yak wool is laid across a reed mat, soaked with warm water, and then pressed — first with the palms, then with the full weight of the body, arms braced against a wooden beam for leverage.</p><p>The women who do this work have been doing it since childhood. Their hands move with a knowledge that language cannot fully carry. The patterns they press into the felt — diamond lattices, interlocking borders, the occasional stylised flower — are not drawn first. They emerge from memory and muscle.</p><p>Beside the open hearth, a grandmother supervises while her granddaughter presses her first full panel. The older woman says nothing but nods at intervals, and in that nodding is an entire pedagogy. The hearth smoke rises. The wool felts. The pattern holds.</p>">
+            <div class="film-card" data-category="haa" data-label="Haa — Craft" data-title="Felt & Flock" data-img="image/namads.jpeg" data-essay="<p>In the lower valleys of Haa, the making of namda felt is an act that binds the animal, the human, and the earth into a single gesture. Raw yak wool is laid across a reed mat, soaked with warm water, and then pressed — first with the palms, then with the full weight of the body.</p><p>The women who do this work have been doing it since childhood. Their hands move with a knowledge that language cannot fully carry. The patterns they press into the felt emerge from memory and muscle.</p>">
                 <div class="film-card-thumb"><img src="image/namads.jpeg" alt="Felt & Flock"></div>
-                <div class="film-card-info">
-                    <span class="film-label">Haa — Craft</span>
-                    <h4>Felt & Flock</h4>
-                    <br>
-                    <p>The craft of namda felt-making in Haa — hands pressing raw wool into dense, patterned mats beside open hearths.</p>
-                </div>
+                <div class="film-card-info"><span class="film-label">Haa — Craft</span><h4>Felt & Flock</h4><p>The craft of namda felt-making in Haa — hands pressing raw wool into dense, patterned mats beside open hearths.</p></div>
             </div>
-
-            <!-- LAYA -->
-            <div class="film-card" data-category="laya"
-                 data-label="Laya — Landscape" data-title="Above the Cloud Line"
-                 data-img="image/Bhutan_mountains.jpg"
-                 data-essay="<p>At 3,800 metres, the sky is a different colour. It is not the soft blue of the valley floors but something harder, more saturated — a blue that feels architectural, load-bearing. The glacial lakes of Lunana reflect this sky without distortion, and standing at the water's edge, it becomes impossible to say which is real and which is mirror.</p><p>These photographs were taken during the late autumn migration, when the Layap herders move their yak down from the highest pastures before the first hard freeze. The animals move slowly and in loose columns, their breath rising in small clouds that briefly match the mist clinging to the ridgelines above.</p><p>There is no light pollution here. At night, the Milky Way is not a suggestion — it is a structure, a road you feel you could walk. The researchers who camped here for twelve days reported that after the third night, the silence began to feel like a presence rather than an absence.</p>">
+            <div class="film-card" id="essay-2" data-category="laya" data-label="Laya — Landscape" data-title="Above the Cloud Line" data-img="image/Bhutan_mountains.jpg" data-essay="<p>At 3,800 metres, the sky is a different colour. It is not the soft blue of the valley floors but something harder, more saturated — a blue that feels architectural, load-bearing. The glacial lakes of Lunana reflect this sky without distortion.</p><p>These photographs were taken during the late autumn migration, when the Layap herders move their yak down from the highest pastures before the first hard freeze. The animals move slowly and in loose columns, their breath rising in small clouds.</p>">
                 <div class="film-card-thumb"><img src="image/Bhutan_mountains.jpg" alt="Above the Cloud Line"></div>
-                <div class="film-card-info">
-                    <span class="film-label">Laya — Landscape</span>
-                    <h4>Above the Cloud Line</h4>
-                    <p>High-altitude landscapes of the Lunana Gewog, where glacial lakes reflect a sky untouched by light pollution.</p>
-                <br>
-                <br>
-                </div>
+                <div class="film-card-info"><span class="film-label">Laya — Landscape</span><h4>Above the Cloud Line</h4><p>High-altitude landscapes of the Lunana Gewog, where glacial lakes reflect a sky untouched by light pollution.</p></div>
             </div>
-
-            <div class="film-card" data-category="laya"
-                 data-label="Laya — Harvest" data-title="The Harvest Table"
-                 data-img="image/culture.jpg"
-                 data-essay="<p>The red rice of Phobjikha takes four months to grow and one afternoon to harvest. By late October the terraced fields have turned the colour of rust, and families who have spent the growing season in separate pastures and schoolrooms come back together for the cutting. Children too young for school are tied to their mothers' backs.</p><p>After the harvest, the communal meal is laid not on tables but on long strips of woven grass mat rolled out across the farmyard. Red rice, ara distilled from maize, dried chillies, and whatever vegetables the season has spared. The meal is not announced — people drift toward it as the light changes, drawn by smell and habit and the sound of voices gathering.</p><p>These photographs were taken over two consecutive harvest seasons. What changed between the years: one family's eldest son did not come back from Thimphu. What stayed the same: everything else. Culture, it seems, holds its shape longest in the gestures that happen without thinking.</p>">
+            <div class="film-card" data-category="laya" data-label="Laya — Harvest" data-title="The Harvest Table" data-img="image/culture.jpg" data-essay="<p>The red rice of Phobjikha takes four months to grow and one afternoon to harvest. By late October the terraced fields have turned the colour of rust, and families who have spent the growing season in separate pastures and schoolrooms come back together for the cutting.</p><p>After the harvest, the communal meal is laid not on tables but on long strips of woven grass mat rolled out across the farmyard. The meal is not announced — people drift toward it as the light changes, drawn by smell and habit and the sound of voices gathering.</p>">
                 <div class="film-card-thumb"><img src="image/culture.jpg" alt="The Harvest Table"></div>
-                <div class="film-card-info">
-                    <span class="film-label">Laya — Harvest</span>
-                    <h4>The Harvest Table</h4>
-                    <p>Post-harvest gatherings in Phobjikha valley — red rice, ara, and communal meals laid on woven grass mats.</p>
-                <br>
-                <br>
-                </div>
+                <div class="film-card-info"><span class="film-label">Laya — Harvest</span><h4>The Harvest Table</h4><p>Post-harvest gatherings in Phobjikha valley — red rice, ara, and communal meals laid on woven grass mats.</p></div>
             </div>
-
-            <!-- RTC MEMORY -->
-            <div class="film-card" data-category="rtc"
-                 data-label="RTC Memory — Ritual" data-title="Fire & Juniper"
-                 data-img="image/ritual.jpeg"
-                 data-essay="<p>The lhab-sang begins before dawn. Juniper branches, dried and bundled the evening before, are placed on the stone hearth at the edge of the village. The eldest male of the household lights the fire with a single match — there is no second attempt, no lighter held in reserve. The first match must catch, and it always does.</p><p>As the smoke rises, it carries with it the offerings: roasted barley, milk, fruit, small rectangular blocks of butter pressed with thumb prints. The smoke is the message. It rises because the deities and protector spirits who watch over the mountain passes and the household and the livestock live upward, in the sky and beyond it.</p><p>These photographs document three separate lhab-sang rituals observed across two field seasons: one in early spring before the herds moved to high pasture, one at the conclusion of a house-building, and one following the death of a village elder. Each began the same way. Each smoke rose differently — shaped by wind, by season, by what was being asked.</p>">
+            <div class="film-card" data-category="rtc" data-label="RTC Memory — Ritual" data-title="Fire & Juniper" data-img="image/ritual.jpeg" data-essay="<p>The lhab-sang begins before dawn. Juniper branches, dried and bundled the evening before, are placed on the stone hearth at the edge of the village. The eldest male of the household lights the fire with a single match — there is no second attempt. The first match must catch, and it always does.</p><p>As the smoke rises, it carries with it the offerings: roasted barley, milk, fruit, small rectangular blocks of butter pressed with thumb prints. The smoke is the message.</p>">
                 <div class="film-card-thumb"><img src="image/ritual.jpeg" alt="Fire & Juniper"></div>
-                <div class="film-card-info">
-                    <span class="film-label">RTC Memory — Ritual</span>
-                    <h4>Fire & Juniper</h4>
-                    <p>The lhab-sang smoke ritual at dawn — photographs of incense, prayer flags, and ash rising over mountain ridgelines.</p>
-                </div>
+                <div class="film-card-info"><span class="film-label">RTC Memory — Ritual</span><h4>Fire & Juniper</h4><p>The lhab-sang smoke ritual at dawn — photographs of incense, prayer flags, and ash rising over mountain ridgelines.</p></div>
             </div>
-
-            <div class="film-card" data-category="rtc"
-                 data-label="RTC Memory — Youth" data-title="Daughters of Sephu"
-                 data-img="image/student.jpg"
-                 data-essay="<p>Karma is seventeen and walks forty minutes each morning to reach the road where the school bus stops. She carries a canvas bag with a notebook, a pencil case decorated with cartoon characters, and a small tiffin of leftover red rice. She wears her striped kira precisely — her mother checks the fold before she leaves.</p><p>At school in Sephu town she studies biology, English, and Dzongkha. She wants to become a nurse. She also knows how to weave a basic pattern on her mother's backstrap loom, how to tell the weather by the shape of clouds over the eastern ridge, and three songs in the dialect of her grandmother's village that no one at her school has heard.</p><p>These photographs are not about tension between tradition and modernity. That framing misses what is actually here: a young woman who moves between worlds with a fluency that neither world fully sees. The kira and the notebook are not opposites. They are both hers.</p>">
+            <div class="film-card" id="essay-3" data-category="rtc" data-label="RTC Memory — Youth" data-title="Daughters of Sephu" data-img="image/student.jpg" data-essay="<p>Karma is seventeen and walks forty minutes each morning to reach the road where the school bus stops. She carries a canvas bag with a notebook, a pencil case decorated with cartoon characters, and a small tiffin of leftover red rice. She wears her striped kira precisely — her mother checks the fold before she leaves.</p><p>These photographs are not about tension between tradition and modernity. That framing misses what is actually here: a young woman who moves between worlds with a fluency that neither world fully sees. The kira and the notebook are not opposites. They are both hers.</p>">
                 <div class="film-card-thumb"><img src="image/student.jpg" alt="Daughters of Sephu"></div>
-                <div class="film-card-info">
-                    <span class="film-label">RTC Memory — Youth</span>
-                    <h4>Daughters of Sephu</h4>
-                    <p>Young women from Sephu balancing school notebooks and traditional striped kiras — two worlds in a single frame.</p>
-                </div>
+                <div class="film-card-info"><span class="film-label">RTC Memory — Youth</span><h4>Daughters of Sephu</h4><p>Young women from Sephu balancing school notebooks and traditional striped kiras — two worlds in a single frame.</p></div>
             </div>
-
         </div>
     </div>
 </div>
 
-<!-- ESSAY LIGHTBOX -->
 <div class="lightbox-overlay" id="lightbox" onclick="closeLightboxOnBg(event)">
     <div class="lightbox-box">
-        <button class="lightbox-close" onclick="closeLightbox()">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-        </button>
+        <button class="lightbox-close" onclick="closeLightbox()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
         <div class="lb-img-wrap"><img id="lbImg" src="" alt=""></div>
-        <div class="lb-text-wrap">
-            <span class="lb-label" id="lbLabel"></span>
-            <h2 class="lb-title" id="lbTitle"></h2>
-            <div class="lb-divider"></div>
-            <div class="lb-body" id="lbBody"></div>
-        </div>
+        <div class="lb-text-wrap"><span class="lb-label" id="lbLabel"></span><h2 class="lb-title" id="lbTitle"></h2><div class="lb-divider"></div><div class="lb-body" id="lbBody"></div></div>
     </div>
 </div>
 
 <script>
-(function () {
-    var hamburger = document.getElementById('hamburger'), mainNav = document.getElementById('main-nav'), searchBtn = document.getElementById('search-btn'), searchWrapper = document.getElementById('search-wrapper'), searchInput = document.getElementById('search-input');
-    document.querySelectorAll('.has-dropdown').forEach(function (item) {
-        var drop = item.querySelector('.mega-dropdown') || item.querySelector('.dropdown'); if (!drop) return; var t;
-        item.addEventListener('mouseenter', function () { if (window.innerWidth > 900) { clearTimeout(t); drop.style.display = 'flex'; } });
-        item.addEventListener('mouseleave', function () { if (window.innerWidth > 900) t = setTimeout(function () { drop.style.display = ''; }, 120); });
-        drop.addEventListener('mouseenter', function () { clearTimeout(t); });
-        drop.addEventListener('mouseleave', function () { if (window.innerWidth > 900) t = setTimeout(function () { drop.style.display = ''; }, 120); });
-    });
-    if (searchBtn) { searchBtn.addEventListener('click', function (e) { e.stopPropagation(); var o = searchWrapper.classList.toggle('expanded'); if (o) searchInput.focus(); else { searchInput.value = ''; searchInput.blur(); } }); }
-    document.addEventListener('click', function (e) { if (searchWrapper && !searchWrapper.contains(e.target)) { searchWrapper.classList.remove('expanded'); if (searchInput) searchInput.value = ''; } });
-    if (hamburger) { hamburger.addEventListener('click', function (e) { e.stopPropagation(); hamburger.classList.toggle('open'); mainNav.classList.toggle('open'); }); }
-    document.querySelectorAll('.has-dropdown').forEach(function (item) {
-        item.addEventListener('click', function (e) {
-            if (window.innerWidth <= 900) {
-                var drop = item.querySelector('.mega-dropdown') || item.querySelector('.dropdown'), arrow = item.querySelector('.arrow'); if (!drop) return;
-                var isOpen = drop.classList.contains('mobile-open');
-                document.querySelectorAll('.mega-dropdown.mobile-open,.dropdown.mobile-open').forEach(function (d) { d.classList.remove('mobile-open'); });
-                document.querySelectorAll('.arrow').forEach(function (a) { a.style.transform = ''; });
-                if (!isOpen) { drop.classList.add('mobile-open'); if (arrow) arrow.style.transform = 'rotate(180deg)'; }
-                e.preventDefault();
-            }
-        });
-    });
-    document.addEventListener('click', function (e) { if (mainNav && hamburger && !mainNav.contains(e.target) && !hamburger.contains(e.target)) { mainNav.classList.remove('open'); hamburger.classList.remove('open'); document.querySelectorAll('.mega-dropdown.mobile-open,.dropdown.mobile-open').forEach(function (d) { d.classList.remove('mobile-open'); }); } });
+(function(){
+    var hamburger=document.getElementById('hamburger'),mainNav=document.getElementById('main-nav'),searchBtn=document.getElementById('search-btn'),searchWrapper=document.getElementById('search-wrapper'),searchInput=document.getElementById('search-input');
+    document.querySelectorAll('.has-dropdown').forEach(function(item){var drop=item.querySelector('.mega-dropdown')||item.querySelector('.dropdown');if(!drop)return;var t;item.addEventListener('mouseenter',function(){if(window.innerWidth>900){clearTimeout(t);drop.style.display='flex';}});item.addEventListener('mouseleave',function(){if(window.innerWidth>900)t=setTimeout(function(){drop.style.display='';},120);});drop.addEventListener('mouseenter',function(){clearTimeout(t);});drop.addEventListener('mouseleave',function(){if(window.innerWidth>900)t=setTimeout(function(){drop.style.display='';},120);});});
+    if(searchBtn){searchBtn.addEventListener('click',function(e){e.stopPropagation();var o=searchWrapper.classList.toggle('expanded');if(o)searchInput.focus();else{searchInput.value='';searchInput.blur();}});}
+    document.addEventListener('click',function(e){if(searchWrapper&&!searchWrapper.contains(e.target)){searchWrapper.classList.remove('expanded');if(searchInput)searchInput.value='';}});
+    if(hamburger){hamburger.addEventListener('click',function(e){e.stopPropagation();hamburger.classList.toggle('open');mainNav.classList.toggle('open');});}
+    document.querySelectorAll('.has-dropdown').forEach(function(item){item.addEventListener('click',function(e){if(window.innerWidth<=900){var drop=item.querySelector('.mega-dropdown')||item.querySelector('.dropdown'),arrow=item.querySelector('.arrow');if(!drop)return;var isOpen=drop.classList.contains('mobile-open');document.querySelectorAll('.mega-dropdown.mobile-open,.dropdown.mobile-open').forEach(function(d){d.classList.remove('mobile-open');});document.querySelectorAll('.arrow').forEach(function(a){a.style.transform='';});if(!isOpen){drop.classList.add('mobile-open');if(arrow)arrow.style.transform='rotate(180deg)';}e.preventDefault();}});});
+    document.addEventListener('click',function(e){if(mainNav&&hamburger&&!mainNav.contains(e.target)&&!hamburger.contains(e.target)){mainNav.classList.remove('open');hamburger.classList.remove('open');document.querySelectorAll('.mega-dropdown.mobile-open,.dropdown.mobile-open').forEach(function(d){d.classList.remove('mobile-open');});}});
 
-    var filterBtn = document.getElementById('filterToggleBtn'), sidebar = document.getElementById('filterSidebar'), filterDot = document.getElementById('filterDot'), innerCards = document.getElementById('innerCards'), filterClear = document.getElementById('filterClear');
-    var allCards = document.querySelectorAll('.film-card'), checkItems = document.querySelectorAll('.filter-check-item');
-    var sidebarOpen = false, activeFilter = null;
+    var track = document.getElementById('sliderTrack');
+var slides = document.querySelectorAll('.slide');
+var dots = document.querySelectorAll('.slider-dot');
+var TOTAL = slides.length, current = 0, autoTimer;
 
-    filterBtn.addEventListener('click', function (e) { e.stopPropagation(); sidebarOpen = !sidebarOpen; filterBtn.classList.toggle('open', sidebarOpen); sidebar.classList.toggle('open', sidebarOpen); });
-    checkItems.forEach(function (item) {
-        item.addEventListener('click', function () {
-            var cat = item.dataset.category;
-            if (activeFilter === cat) { activeFilter = null; item.classList.remove('checked'); showAll(); filterDot.classList.remove('visible'); return; }
-            checkItems.forEach(function (i) { i.classList.remove('checked'); }); item.classList.add('checked'); activeFilter = cat; filterDot.classList.add('visible'); applyFilter(cat);
-        });
-    });
-    filterClear.addEventListener('click', function () { activeFilter = null; checkItems.forEach(function (i) { i.classList.remove('checked'); }); filterDot.classList.remove('visible'); showAll(); });
-    function showAll() { innerCards.classList.remove('filtered-view'); allCards.forEach(function (c) { c.classList.remove('hidden'); }); }
-    function applyFilter(cat) { innerCards.classList.add('filtered-view'); allCards.forEach(function (c) { c.classList.toggle('hidden', c.dataset.category !== cat); }); }
-    allCards.forEach(function (c) { c.style.cursor = 'pointer'; c.addEventListener('click', function () { openLightbox(c); }); });
+function goTo(idx) {
+    current = (idx + TOTAL) % TOTAL;
+    track.style.transform = 'translateX(-' + (current * 100) + '%)';
+    dots.forEach(function(d, i) { d.classList.toggle('active', i === current); });
+}
+function next() { goTo(current + 1); }
+function startAuto() { clearInterval(autoTimer); autoTimer = setInterval(next, 4500); }
 
-    var overlay = document.getElementById('lightbox');
-    window.openLightbox = function (card) {
-        document.getElementById('lbLabel').textContent = card.dataset.label || '';
-        document.getElementById('lbTitle').textContent = card.dataset.title || '';
-        document.getElementById('lbImg').src = card.dataset.img || '';
-        document.getElementById('lbImg').alt = card.dataset.title || '';
-        document.getElementById('lbBody').innerHTML = card.dataset.essay || '';
-        overlay.classList.add('open'); document.body.style.overflow = 'hidden';
-    };
-    window.closeLightbox = function () { overlay.classList.remove('open'); document.body.style.overflow = ''; };
-    window.closeLightboxOnBg = function (e) { if (e.target === overlay) closeLightbox(); };
-    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeLightbox(); });
+dots.forEach(function(dot, i) {
+    dot.addEventListener('click', function() { goTo(i); startAuto(); });
+});
+goTo(0);
+startAuto();
+
+    /* FILTER */
+    var filterBtn=document.getElementById('filterToggleBtn'),sidebar=document.getElementById('filterSidebar'),filterDot=document.getElementById('filterDot'),innerCards=document.getElementById('innerCards'),filterClear=document.getElementById('filterClear'),allCards=document.querySelectorAll('.film-card'),checkItems=document.querySelectorAll('.filter-check-item'),sidebarOpen=false,activeFilter=null;
+    filterBtn.addEventListener('click',function(e){e.stopPropagation();sidebarOpen=!sidebarOpen;filterBtn.classList.toggle('open',sidebarOpen);sidebar.classList.toggle('open',sidebarOpen);});
+    checkItems.forEach(function(item){item.addEventListener('click',function(){var cat=item.dataset.category;if(activeFilter===cat){activeFilter=null;item.classList.remove('checked');showAll();filterDot.classList.remove('visible');return;}checkItems.forEach(function(i){i.classList.remove('checked');});item.classList.add('checked');activeFilter=cat;filterDot.classList.add('visible');applyFilter(cat);});});
+    filterClear.addEventListener('click',function(){activeFilter=null;checkItems.forEach(function(i){i.classList.remove('checked');});filterDot.classList.remove('visible');showAll();});
+    function showAll(){innerCards.classList.remove('filtered-view');allCards.forEach(function(c){c.classList.remove('hidden');});}
+    function applyFilter(cat){innerCards.classList.add('filtered-view');allCards.forEach(function(c){c.classList.toggle('hidden',c.dataset.category!==cat);});}
+    allCards.forEach(function(c){c.style.cursor='pointer';c.addEventListener('click',function(){openLightbox(c);});});
+
+    /* LIGHTBOX */
+    var overlay=document.getElementById('lightbox');
+    window.openLightbox=function(card){document.getElementById('lbLabel').textContent=card.dataset.label||'';document.getElementById('lbTitle').textContent=card.dataset.title||'';document.getElementById('lbImg').src=card.dataset.img||'';document.getElementById('lbImg').alt=card.dataset.title||'';document.getElementById('lbBody').innerHTML=card.dataset.essay||'';overlay.classList.add('open');document.body.style.overflow='hidden';};
+    window.openLightboxById=function(id){var card=document.getElementById(id);if(card)openLightbox(card);};
+    window.closeLightbox=function(){overlay.classList.remove('open');document.body.style.overflow='';};
+    window.closeLightboxOnBg=function(e){if(e.target===overlay)closeLightbox();};
+    document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLightbox();});
 })();
 </script>
 </body>
