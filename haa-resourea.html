@@ -224,6 +224,13 @@
         </div>
     </div>
 </section>
+<div id="page-breadcrumb" style="display:none; background:#fafafa; border-bottom:1px solid #e8e8e8; padding:9px 8%; font-family:'Raleway',sans-serif; font-size:0.62rem; font-weight:600; text-transform:uppercase; letter-spacing:0.18em; display:flex; align-items:center; gap:8px;">
+  <a href="index.html" style="color:#bbb; text-decoration:none; transition:color 0.2s;">Home</a>
+  <span style="color:#ddd;">›</span>
+  <a href="interactive-map.html" style="color:#bbb; text-decoration:none;" id="bc-map-link">Interactive Map</a>
+  <span style="color:#ddd;" id="bc-sep2">›</span>
+  <span style="color:#000;">Haa Resources</span>
+</div>
 
 <div class="resources-body">
 
@@ -502,6 +509,26 @@
         update();
     });
 })();
+
+  (function(){
+    const params = new URLSearchParams(window.location.search);
+    const bar = document.getElementById('page-breadcrumb');
+    const sep2 = document.getElementById('bc-sep2');
+    const mapLink = document.getElementById('bc-map-link');
+
+    if (params.get('from') === 'map') {
+      // came from interactive map — show full trail
+      bar.style.display = 'flex';
+      mapLink.style.display = 'inline';
+      sep2.style.display = 'inline';
+    } else {
+      // direct visit — show just Home › Haa Resources, hide the map crumb
+      bar.style.display = 'flex';
+      mapLink.style.display = 'none';
+      sep2.style.display = 'none';
+    }
+  })();
+
 </script>
 </body>
 </html>
